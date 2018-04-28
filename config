@@ -4,9 +4,6 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set variable for main accent color
-set $acolour #eb564d
-
 # set default desktop layout (default is tiling) <stacking|tabbed>
 workspace_layout tabbed
 
@@ -138,6 +135,7 @@ bindsym $mod+Mod1+c exec --no-startup-id compton -b
 
 # focus the parent container
 bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -345,6 +343,9 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
+# set variable for main accent color
+set $acolour #eb564d
+
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     i3bar_command i3bar
@@ -378,13 +379,16 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          $acolour $acolour #F9FAF9 #FDF6E3
-  client.focused_inactive $acolour #4a4a4a $acolour #454948
-  client.unfocused        $acolour #4a4a4a #F9FAF9 #454948
-  client.urgent           #CB4B16 #FDF6E3 #F9FAF9 #268BD2
-  client.placeholder      #000000 #0c0c0c #F9FAF9 #000000
+set $bgcolor #6a6868
+set $txtcolor #F9FAF9
+set $indcolor #00ff00
 
+# class                   border  backgr. text    indic.   child_border
+  client.focused          $acolour $acolour $txtcolor $indcolor
+  client.focused_inactive $acolour #4a4a4a $txtcolor $indcolor
+  client.unfocused        $acolour $bgcolor #bdbbbb $indcolor
+  client.urgent           #CB4B16 #FDF6E3 $txtcolor $indcolor
+  client.placeholder      #000000 #0c0c0c #F9FAF9 #000000
   client.background       #2B2C2B
 
 #############################
