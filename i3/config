@@ -116,7 +116,6 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+s split toggle; layout stacking;exec notify-send 'sub-stacking layout'
 bindsym $mod+Shift+w split toggle; layout tabbed; exec notify-send 'sub-tabbed layout'
 
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -296,6 +295,7 @@ bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
 # "netflix" mode
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 656 370;border none
+bindsym $mod+Mod1+m floating enable;sticky enable;resize set 799 71;border none
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
