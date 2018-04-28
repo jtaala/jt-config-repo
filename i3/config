@@ -294,6 +294,9 @@ bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
+# "netflix" mode
+bindsym $mod+Mod1+n floating enable;sticky enable;resize set 656 370;border none
+
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
