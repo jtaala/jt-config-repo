@@ -4,15 +4,19 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
+# set variable for main accent color
+set $acolour #eb564d
+
+# set default desktop layout (default is tiling) <stacking|tabbed>
+workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+#new_window pixel 1
+new_window normal
 new_float normal
 
-# Hide borders
-hide_edge_borders none
+# Hide borders <none|vertical|horizontal|both|smart>
+hide_edge_borders smart
 
 # change borders
 bindsym $mod+u border none
@@ -33,7 +37,9 @@ bindsym $mod+Return exec terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+#bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
+bindsym $mod+x exec --no-startup-id "rofi -modi window,drun,run -show window"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -51,16 +57,14 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+F6 exec "xbacklight -inc 5; notify-send \\"brightness up [$(xbacklight)%]\\""
+bindsym $mod+F5 exec "xbacklight -dec 5; notify-send \\"brightness down [$(xbacklight)%]\\""
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+F2 exec --no-startup-id pavucontrol
+#bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+F10 exec blueman-manager
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -70,27 +74,25 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+bindsym $mod+j exec google-chrome-stable
+bindsym $mod+k exec KeeWeb
+bindsym $mod+l exec pcmanfm
+bindsym $mod+Shift+l exec gksu pcmanfm
+bindsym $mod+semicolon exec --no-startup-id terminal -e 'ranger'
+bindsym $mod+Shift+semicolon exec --no-startup-id sudo terminal -e 'ranger'
+bindsym $mod+apostrophe exec --no-startup-id terminal -e 'htop'
+bindsym $mod+Shift+apostrophe exec --no-startup-id sudo terminal -e 'htop'
+bindsym $mod+p exec putty
+
 # focus_follows_mouse no
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -110,9 +112,13 @@ bindsym $mod+q split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
+bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+s split toggle; layout stacking;exec notify-send 'sub-stacking layout'
+bindsym $mod+Shift+w split toggle; layout tabbed; exec notify-send 'sub-tabbed layout'
+
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -121,7 +127,14 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Mod1+s sticky toggle;exec notify-send 'sticky windows toggled'
+
+# window transparency adjustment (and alias to restart compton)
+bindsym $mod+Mod1+z exec transset-df -a --min 0.25 --dec 0.25
+bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+Mod1+x exec transset-df -a --inc 0.25
+bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1
+bindsym $mod+Mod1+c exec --no-startup-id compton -b
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -200,11 +213,11 @@ for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
+#for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
+#for_window [class="Pamac-manager"] floating enable
+#for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
@@ -212,7 +225,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
+#for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
 # switch to workspace with urgent window automatically
@@ -244,32 +257,44 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+Home exec --no-startup-id i3exit lock, mode "default"
+bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
+
+## Resize window (you can also use the mouse for that)
+#bindsym $mod+r mode "resize"
+#mode "resize" {
+        ## These bindings trigger as soon as you enter the resize mode
+        ## Pressing left will shrink the window’s width.
+        ## Pressing right will grow the window’s width.
+        ## Pressing up will shrink the window’s height.
+        ## Pressing down will grow the window’s height.
+        #bindsym l resize shrink width 5 px or 5 ppt
+        #bindsym j resize grow height 5 px or 5 ppt
+        #bindsym k resize shrink height 5 px or 5 ppt
+        #bindsym semicolon resize grow width 5 px or 5 ppt
+
+        ## same bindings, but for the arrow keys
+        #bindsym Left resize shrink width 10 px or 10 ppt
+        #bindsym Down resize grow height 10 px or 10 ppt
+        #bindsym Up resize shrink height 10 px or 10 ppt
+        #bindsym Right resize grow width 10 px or 10 ppt
+
+        ## exit resize mode: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+#}
+
+# arrow key resizing without resize mode
+bindsym $mod+Mod1+Left resize shrink width 100 px or 20 ppt
+bindsym $mod+Mod1+Down resize grow height 100 px or 20 ppt
+bindsym $mod+Mod1+Up resize shrink height 100 px or 20 ppt
+bindsym $mod+Mod1+Right resize grow width 100 px or 20 ppt
+
+bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -283,9 +308,11 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker "dm-tool lock"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec --no-startup-id indicator-keylock
+exec --no-startup-id autocutsel
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -293,7 +320,7 @@ exec_always --no-startup-id fix_xcursor
 # Change the variable name at the place you want to match the color
 # of your terminal like this:
 # [example]
-# If you want your bar to have the same background color as your 
+# If you want your bar to have the same background color as your
 # terminal background change the line 362 from:
 # background #14191D
 # to:
@@ -320,30 +347,30 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
+    i3bar_command i3bar
+    status_command py3status -c ~/.i3status.conf
+    position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+#   tray_output primary
+#   tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
+    bindsym button4 nop
+    bindsym button5 nop
 #   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
+    strip_workspace_numbers yes
 
     colors {
-        background #283339
+        background #4a4a4a
         statusline #F9FAF9
         separator  #454947
 
 #                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
+        focused_workspace  #F9FAF9 $acolour #F9FAF9
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
+        binding_mode       $acolour #2C2C2C #F9FAF9
+        urgent_workspace   $acolour #FDF6E3 #E5201D
     }
 }
 
@@ -352,11 +379,11 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+  client.focused          $acolour $acolour #F9FAF9 #FDF6E3
+  client.focused_inactive $acolour #4a4a4a $acolour #454948
+  client.unfocused        $acolour #4a4a4a #F9FAF9 #454948
+  client.urgent           #CB4B16 #FDF6E3 #F9FAF9 #268BD2
+  client.placeholder      #000000 #0c0c0c #F9FAF9 #000000
 
   client.background       #2B2C2B
 
@@ -365,8 +392,8 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer -4
+# gaps inner 10
+# gaps outer -10
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -374,11 +401,11 @@ gaps outer -4
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
