@@ -103,7 +103,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+q split h; layout tabbed
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
