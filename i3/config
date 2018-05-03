@@ -382,16 +382,18 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-set $bgcolor #6a6868
-set $txtcolor #F9FAF9
+set $bgicolor #4a4a4a
+set $bgucolor #6a6868
+set $txtacolor #F9FAF9
+set $txtucolor #bdbbbb
 set $indcolor #00ff00
 
 # class                   border  backgr. text    indic.   child_border
-  client.focused          $acolour $acolour $txtcolor $indcolor
-  client.focused_inactive $acolour #4a4a4a $txtcolor $indcolor
-  client.unfocused        $acolour $bgcolor #bdbbbb $indcolor
-  client.urgent           #CB4B16 #FDF6E3 $txtcolor $indcolor
-  client.placeholder      #000000 #0c0c0c #F9FAF9 #000000
+  client.focused          $acolour $acolour $txtacolor $indcolor
+  client.focused_inactive $acolour $bgicolor $txtucolor $indcolor
+  client.unfocused        $acolour $bgucolor $txtucolor $indcolor
+  client.urgent           #CB4B16 #FDF6E3 $txtacolor $indcolor
+  client.placeholder      #000000 #0c0c0c $txtacolor #000000
   client.background       #2B2C2B
 
 #############################
