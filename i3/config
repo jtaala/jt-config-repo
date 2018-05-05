@@ -73,6 +73,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 bindsym $mod+j exec google-chrome-stable
 bindsym $mod+k exec KeeWeb
+bindsym $mod+Shift+k splith; exec KeeWeb
 bindsym $mod+l exec pcmanfm
 bindsym $mod+Shift+l exec gksu pcmanfm
 bindsym $mod+semicolon exec --no-startup-id terminal -e 'ranger'
