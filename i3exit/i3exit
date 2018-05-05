@@ -15,10 +15,10 @@ case "$1" in
     	dm-tool switch-to-greeter
     	;;
     suspend)
-        dm-tool lock && sleep 1 && $logind suspend
+        dm-tool lock && sleep 2 && $logind suspend
         ;;
     hibernate)
-    	dm-tool lock && sleep 1 &&  $logind hibernate
+    	dm-tool lock && sleep 2 &&  $logind hibernate
         ;;
     reboot)
         $logind reboot
