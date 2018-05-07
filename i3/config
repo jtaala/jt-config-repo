@@ -298,7 +298,7 @@ bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
-# "netflix" mode
+# "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 656 370;border none
 bindsym $mod+Mod1+m floating enable;sticky enable;resize set 799 71;border none
 
@@ -314,7 +314,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker "dm-tool lock"
+exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id indicator-keylock
