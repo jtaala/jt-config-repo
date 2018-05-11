@@ -397,7 +397,7 @@ set $indcolor #00ff00
   client.focused          $acolour $acolour $txtacolor $indcolor
   client.focused_inactive $acolour $bgicolor $txtucolor $indcolor
   client.unfocused        $acolour $bgucolor $txtucolor $indcolor
-  client.urgent           #CB4B16 #FDF6E3 $txtacolor $indcolor
+  client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
   client.placeholder      #000000 #0c0c0c $txtacolor #000000
   client.background       #2B2C2B
 
