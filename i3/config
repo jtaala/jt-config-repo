@@ -77,7 +77,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 bindsym $mod+j exec google-chrome-stable
 bindsym $mod+k exec KeeWeb
-bindsym $mod+Shift+k splith; exec KeeWeb
+bindsym $mod+Mod1+k splith; exec KeeWeb
 bindsym $mod+l exec pcmanfm
 bindsym $mod+Shift+l exec gksu pcmanfm
 bindsym $mod+semicolon exec --no-startup-id terminal -e 'ranger'
@@ -109,6 +109,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q split h; layout tabbed
+bindsym $mod+Mod1+q split h;
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -237,7 +238,7 @@ for_window [urgent=latest] focus
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
