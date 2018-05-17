@@ -35,9 +35,8 @@ load {
 }
 
 disk "/" {
-        # format = " hdd %avail "
-    prefix_type = decimal
-    format = " ⛁ %used / %total "
+	prefix_type = decimal
+	format = " ⛁ %percentage_used (U:%used, F:%free) "
 }
 
 wireless _first_ {
