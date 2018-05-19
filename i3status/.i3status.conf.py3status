@@ -52,8 +52,7 @@ load {
 
 disk "/" {
 	prefix_type = decimal
-	# format = " ⛁ %used / %total (%percentage_used)"
-	format = " ⛁ %percentage_used (%used/%total) "
+	format = " ⛁ %percentage_used (U:%used, F:%free) "
 }
 
 whatismyip {
