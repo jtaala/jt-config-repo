@@ -136,7 +136,7 @@ bindsym $mod+Mod1+z exec transset-df -a --min 0.25 --dec 0.25
 bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
 bindsym $mod+Mod1+x exec transset-df -a --inc 0.25
 bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1
-bindsym $mod+Mod1+c exec --no-startup-id compton -b
+bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
 bindsym $mod+a focus parent
