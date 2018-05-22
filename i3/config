@@ -105,10 +105,10 @@ workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# split orientation
+# split orientations
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split h; layout tabbed
+bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
 
 # toggle fullscreen mode for the focused container
@@ -116,11 +116,9 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
+bindsym $mod+Mod1+s split h; layout stacking
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
-bindsym $mod+e layout toggle split
-
-bindsym $mod+Shift+s split toggle; layout stacking;exec notify-send 'sub-stacking layout'
-bindsym $mod+Shift+w split toggle; layout tabbed; exec notify-send 'sub-tabbed layout'
+bindsym $mod+Mod1+w split h; layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -129,14 +127,14 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Mod1+s sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Shift+s sticky toggle;exec notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart compton)
 bindsym $mod+Mod1+z exec transset-df -a --min 0.25 --dec 0.25
 bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
 bindsym $mod+Mod1+x exec transset-df -a --inc 0.25
 bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1
-bindsym $mod+Mod1+c exec --no-startup-id compton -b
+bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -208,7 +206,7 @@ for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
+#for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
@@ -230,6 +228,7 @@ for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 #for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="copyq"] floating enable border pixel 1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
