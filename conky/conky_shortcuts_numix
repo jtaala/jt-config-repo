@@ -1,9 +1,9 @@
 conky.config = {
 	alignment = 'bottom_left',
 	background = true,
-	color2 = '5D7B86',
+	color2 = 'F9FAF9',
 	cpu_avg_samples = 2,
-	default_color = 'F9FAF9',
+	default_color = 'EB564D',
 	double_buffer = true,
 	font = 'Bitstream Vera Sans:size=8',
 	draw_shades = false,
@@ -19,18 +19,28 @@ conky.config = {
 }
 conky.text = [[
 ${color2}open new terminal - ${color}mod+Enter
-${color2}kill focused - ${color}mod+Shift+q
-${color2}open browser - ${color}mod+F2
-${color2}toggle split direction - ${color}mod+q
-${color2}dmenu - ${color}mod+d
+${color2}open browser - ${color}mod+j
+${color2}rofi (launcher) - ${color}mod+d
 ${color2}bmenu - ${color}mod+Ctrl+b
 ${color2}morc_menu - ${color}mod+z
+${color2}kill focused - ${color}mod+Shift+q
+
+${color2}toggle split direction - ${color}mod+q
+${color2}container layout (tabd) - ${color}mod+w
+${color2}container layout (stck) - ${color}mod+s
+${color2}make child (horz) - ${color}mod+Shift+q
+${color2}make child (tabd) - ${color}mod+Shift+w
+${color2}make child (vert) - ${color}mod+Shift+e
+${color2}make child (stck) - ${color}mod+Shift+s
+
+${color2}toggle floating - ${color}mod+Shift+Space
+${color2}toggle sticky - ${color}mod+Shift+s
+
 ${color2}switch to workspace 1-8 - ${color}mod+1-8
 ${color2}send to workspace 1-8 - ${color}mod+Ctrl+1-8
 ${color2}navigate workspaces - ${color}mod+Ctrl+arrowkeys
-${color2}toggle floating - ${color}mod+Shift+Space
-${color2}exit - ${color}mod+0
 
+${color2}exit - ${color}mod+0
 ${color2}help - ${color}mod+Shift+h
-default mod=<Super>
+${color2}mod = ${color}<Super>
 ]]
