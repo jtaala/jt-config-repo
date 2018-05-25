@@ -110,6 +110,7 @@ bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
+bindsym $mod+Mod1+e split v;
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
