@@ -39,7 +39,7 @@ ${color2}toggle sticky - ${color}mod+Shift+s
 ${color2}window opacity up[dn] - ${color}mod+Alt+x[z]
 
 ${color2}switch to workspace 1-8 - ${color}mod+1-8
-${color2}send to workspace 1-8 - ${color}mod+Ctrl+1-8
+${color2}send to workspace 1-8 - ${color}mod+Alt+1-8
 ${color2}navigate workspaces - ${color}mod+Ctrl+arrowkeys
 
 ${color2}exit - ${color}mod+0
