@@ -75,6 +75,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+bindsym $mod+h exec pamac-manager
 bindsym $mod+j exec google-chrome-stable
 bindsym $mod+k exec KeeWeb
 bindsym $mod+Mod1+k splith; exec KeeWeb
@@ -106,8 +107,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientations
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+#bindsym $mod+h split h;exec notify-send 'tile horizontally'
+#bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
 bindsym $mod+Mod1+e split v;
