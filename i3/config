@@ -86,6 +86,7 @@ bindsym $mod+Shift+semicolon exec --no-startup-id sudo terminal -e 'ranger'
 bindsym $mod+apostrophe exec --no-startup-id terminal -e 'htop'
 bindsym $mod+Shift+apostrophe exec --no-startup-id sudo terminal -e 'htop'
 bindsym $mod+p exec putty
+bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
 
 # focus_follows_mouse no
 
@@ -318,12 +319,12 @@ exec --no-startup-id copyq
 # exec --no-startup-id start_conky_green
 exec --no-startup-id conky -c ~/.config/conky
 exec --no-startup-id conky -c ~/.config/conky_shortcuts
-exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id indicator-keylock
 exec --no-startup-id autocutsel
+exec --no-startup-id fcitx -d
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
