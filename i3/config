@@ -302,8 +302,8 @@ bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+Mod1+n floating enable;sticky enable;resize set 656 370;border none
-bindsym $mod+Mod1+m floating enable;sticky enable;resize set 799 71;border none
+bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
+bindsym $mod+Mod1+m floating enable;sticky enable;resize set 795 74;border none
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
