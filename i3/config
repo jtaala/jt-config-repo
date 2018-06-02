@@ -75,6 +75,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+bindsym $mod+h exec pamac-manager
 bindsym $mod+j exec google-chrome-stable
 bindsym $mod+k exec KeeWeb
 bindsym $mod+Mod1+k splith; exec KeeWeb
@@ -85,6 +86,7 @@ bindsym $mod+Shift+semicolon exec --no-startup-id sudo terminal -e 'ranger'
 bindsym $mod+apostrophe exec --no-startup-id terminal -e 'htop'
 bindsym $mod+Shift+apostrophe exec --no-startup-id sudo terminal -e 'htop'
 bindsym $mod+p exec putty
+bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
 
 # focus_follows_mouse no
 
@@ -106,8 +108,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientations
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+#bindsym $mod+h split h;exec notify-send 'tile horizontally'
+#bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
 bindsym $mod+Mod1+e split v;
@@ -176,14 +178,14 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Mod1+1 move container to workspace $ws1
+bindsym $mod+Mod1+2 move container to workspace $ws2
+bindsym $mod+Mod1+3 move container to workspace $ws3
+bindsym $mod+Mod1+4 move container to workspace $ws4
+bindsym $mod+Mod1+5 move container to workspace $ws5
+bindsym $mod+Mod1+6 move container to workspace $ws6
+bindsym $mod+Mod1+7 move container to workspace $ws7
+bindsym $mod+Mod1+8 move container to workspace $ws8
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -224,7 +226,7 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
+#for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 #for_window [class="(?i)virtualbox"] floating enable border normal
@@ -300,8 +302,8 @@ bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+Mod1+n floating enable;sticky enable;resize set 656 370;border none
-bindsym $mod+Mod1+m floating enable;sticky enable;resize set 799 71;border none
+bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
+bindsym $mod+Mod1+m floating enable;sticky enable;resize set 795 74;border none
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -310,16 +312,19 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+exec --no-startup-id copyq
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
+exec --no-startup-id conky -c ~/.config/conky
+exec --no-startup-id conky -c ~/.config/conky_shortcuts
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id indicator-keylock
 exec --no-startup-id autocutsel
+exec --no-startup-id fcitx -d
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
