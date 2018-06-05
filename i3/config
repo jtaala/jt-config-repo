@@ -76,7 +76,7 @@ bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 bindsym $mod+h exec pamac-manager
-bindsym $mod+j exec google-chrome-stable
+bindsym $mod+j exec chromium
 bindsym $mod+k exec KeeWeb
 bindsym $mod+Mod1+k splith; exec KeeWeb
 bindsym $mod+l exec pcmanfm
