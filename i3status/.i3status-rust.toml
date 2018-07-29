@@ -1,11 +1,30 @@
-theme = "solarized-dark"
+#theme = "solarized-dark"
 icons = "awesome"
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#353836"
+idle_fg = "#F9FAF9"
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["play", "next"]
+
+[[block]]
+block = "net"
+device = "wlp5s0"
+ssid = true
+ip = true
+interval = 5
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
-info_type = "available"
+alias = "⛁"
+info_type = "free"
+show_percentage = true
 unit = "GB"
 interval = 20
 warning = 20.0
@@ -28,6 +47,11 @@ format = "{1m}"
 
 [[block]]
 block = "sound"
+
+[[block]]
+block = "battery"
+interval = 10
+show = "both"
 
 [[block]]
 block = "time"
