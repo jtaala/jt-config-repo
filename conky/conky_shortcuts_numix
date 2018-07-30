@@ -26,7 +26,7 @@ ${color2}bmenu - ${color}mod+Ctrl+b
 ${color2}morc_menu - ${color}mod+z
 ${color2}kill focused - ${color}mod+Shift+q
 
-${color2}toggle split direction - ${color}mod+q
+${color2}toggle split direction - ${color}mod+q[e]
 ${color2}container layout (tabd) - ${color}mod+w
 ${color2}container layout (stck) - ${color}mod+s
 ${color2}child container (horz) - ${color}mod+Alt+q
