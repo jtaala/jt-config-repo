@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
-bindsym $mod+x exec --no-startup-id "rofi -modi window,drun,run -show window"
+bindsym $mod+Tab exec --no-startup-id "rofi -modi window,drun,run -show window"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -221,7 +221,7 @@ for_window [class="Nitrogen"] floating enable sticky enable border normal
 #for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
-#for_window [class="Pamac-manager"] floating enable
+for_window [class="Pamac-manager"] border normal
 #for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -325,6 +325,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id indicator-keylock
 exec --no-startup-id fcitx -d
+exec --no-startup-id alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -362,7 +363,7 @@ set $acolour #eb564d
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-    i3bar_command i3bar -t
+    i3bar_command i3bar
     status_command py3status -c ~/.i3status.conf
     position bottom
 
@@ -412,8 +413,8 @@ set $indcolor #00ff00
 #############################
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer 0
+#gaps inner 6
+#gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -421,11 +422,11 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+#smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+#smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
