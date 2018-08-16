@@ -14,7 +14,7 @@ conky.config = {
 	own_window = true,
 	own_window_type = 'override',
 	own_window_transparent = true,
-	update_interval = 10.0,
+	update_interval = 1.0,
 	use_xft = true,
 }
 conky.text = [[
