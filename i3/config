@@ -115,18 +115,22 @@ bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
 bindsym $mod+Mod1+e split v;
 
-# toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 bindsym $mod+Mod1+s split h; layout stacking
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed
 
+# special combo for vertical split of two windows next to each other
+bindsym $mod+x layout splith, split v, focus right, move left, focus up
+bindsym $mod+Shift+x focus down, move right, focus left, move right
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space floating toggle resize set 1900 1040; exec xdotool getactivewindow windowmove 10 30
+bindsym $mod+space floating toggle resize set 1920 1055; exec xdotool getactivewindow windowmove 2 23
 
 # change focus between tiling / floating windows
 bindsym $mod+Mod1+space focus mode_toggle
