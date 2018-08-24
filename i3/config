@@ -39,7 +39,7 @@ bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
 bindsym $mod+Tab exec --no-startup-id "rofi -modi window,drun,run -show window"
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+c exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -115,20 +115,29 @@ bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
 bindsym $mod+Mod1+e split v;
 
-# toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 bindsym $mod+Mod1+s split h; layout stacking
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed
 
+# special combo for vertical split of two windows next to each other (and inverse method)
+bindsym $mod+x layout splith, split v, focus right, move left, focus up
+bindsym $mod+Shift+x focus down, move right, focus left, move right
+
+# special combo for tabbed split of two windows next to each other (and inverse method)
+bindsym $mod+z split h, layout tabbed, focus right, move left, focus left
+bindsym $mod+Shift+z move left, focus right, move left
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle resize set 1920 1055; exec xdotool getactivewindow windowmove 2 23
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Mod1+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle;exec notify-send 'sticky windows toggled'
@@ -413,8 +422,8 @@ set $indcolor #00ff00
 #############################
 
 # Set inner/outer gaps
-#gaps inner 6
-#gaps outer 0
+gaps inner 6
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -422,11 +431,11 @@ set $indcolor #00ff00
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-#smart_borders on
+smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
