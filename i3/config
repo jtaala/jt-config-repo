@@ -121,13 +121,13 @@ bindsym $mod+Mod1+s split h; layout stacking
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed
 
-# special combo for vertical split of two windows next to each other (and inverse method)
+# special combo for vertical split of two windows next to each other
 bindsym $mod+x layout splith, split v, focus right, move left, focus up
-bindsym $mod+Shift+x focus down, move right, focus left, move right
+bindsym $mod+Shift+x layout splith, split v, focus left, move right, move up, focus down
 
-# special combo for tabbed split of two windows next to each other (and inverse method)
+# special combo for tabbed split of two windows next to each other
 bindsym $mod+z split h, layout tabbed, focus right, move left, focus left
-bindsym $mod+Shift+z move left, focus right, move left
+bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
