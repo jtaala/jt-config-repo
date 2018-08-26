@@ -9,8 +9,7 @@ set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 #new_window pixel 1
-new_window normal
-new_float normal
+for_window [class=".*"] border normal
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders smart
@@ -423,7 +422,7 @@ set $indcolor #00ff00
 
 # Set inner/outer gaps
 gaps inner 6
-gaps outer 0
+gaps outer -6
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
