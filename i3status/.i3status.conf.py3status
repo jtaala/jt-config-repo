@@ -21,8 +21,8 @@ order += "wireless _first_"
 order += "ethernet _first_"
 # order += "load"
 order += "cpu_usage"
-order += "disk /"
-# order += "disk /home"
+#order += "disk /"
+order += "diskdata"
 # order += "battery all"
 order += "battery_level"
 # order += "load"
@@ -50,9 +50,10 @@ load {
         # max_threshold = 0.3
 }
 
-disk "/" {
+diskdata {
 	prefix_type = decimal
-	format = " ⛁ %percentage_used (U:%used, F:%free) "
+  #format_space = "[\?min_length=5 {value:.2f}]"
+	format = " ⛁ {used_percent}% (U:{used} GB, F:{free} GB) "
 }
 
 whatismyip {
