@@ -131,6 +131,10 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# several 16:9 resolutions binded for quick switching
+bindsym $mod+bracketleft exec xrandr -s 1280x720
+bindsym $mod+bracketright exec xrandr -s 1920x1080
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space floating toggle resize set 1920 1055; exec xdotool getactivewindow windowmove 2 23
