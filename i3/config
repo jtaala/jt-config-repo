@@ -9,8 +9,7 @@ set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 #new_window pixel 1
-new_window normal
-new_float normal
+for_window [class=".*"] border normal
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders smart
@@ -122,8 +121,8 @@ bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed
 
 # special combo for vertical split of two windows next to each other
-bindsym $mod+x layout splith, split v, focus right, move left, focus up
-bindsym $mod+Shift+x layout splith, split v, focus left, move right, move up, focus down
+bindsym $mod+x split h, layout splitv, focus right, move left, focus up
+bindsym $mod+Shift+x split h, layout splitv, focus left, move right, move up, focus down
 
 # special combo for tabbed split of two windows next to each other
 bindsym $mod+z split h, layout tabbed, focus right, move left, focus left
@@ -131,6 +130,10 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
+# several 16:9 resolutions binded for quick switching
+bindsym $mod+bracketleft exec xrandr -s 1280x720
+bindsym $mod+bracketright exec xrandr -s 1920x1080
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -423,7 +426,7 @@ set $indcolor #00ff00
 
 # Set inner/outer gaps
 gaps inner 6
-gaps outer 0
+gaps outer -6
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
