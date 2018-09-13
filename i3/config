@@ -57,8 +57,8 @@ bindsym $mod+F2 exec pactl set-sink-volume 1 -5%; exec notify-send 'sink 1 volum
 bindsym $mod+F3 exec pactl set-sink-volume 1 +5%; exec notify-send 'sink 1 volume increased'
 
 # Screen brightness controls
-bindsym $mod+F6 exec "xbacklight -inc 5; notify-send \\"brightness up [$(xbacklight)%]\\""
-bindsym $mod+F5 exec "xbacklight -dec 5; notify-send \\"brightness down [$(xbacklight)%]\\""
+bindsym $mod+F6 exec xbacklight -inc 5
+bindsym $mod+F5 exec xbacklight -dec 5
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -120,9 +120,9 @@ bindsym $mod+Mod1+s split h; layout stacking
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed
 
-# special combo for vertical split of two windows next to each other
-bindsym $mod+x split h, layout splitv, focus right, move left, focus up
-bindsym $mod+Shift+x split h, layout splitv, focus left, move right, move up, focus down
+# special combo for horizontal split of two windows next to each other
+bindsym $mod+x split h, layout splith, focus right, move left, focus left
+bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right
 
 # special combo for tabbed split of two windows next to each other
 bindsym $mod+z split h, layout tabbed, focus right, move left, focus left
@@ -132,6 +132,7 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 bindsym $mod+f fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
+bindsym $mod+Shift+bracketleft exec xrandr -s 1024x576
 bindsym $mod+bracketleft exec xrandr -s 1280x720
 bindsym $mod+bracketright exec xrandr -s 1920x1080
 
