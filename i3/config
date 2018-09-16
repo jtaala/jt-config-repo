@@ -310,10 +310,10 @@ bindsym $mod+Mod1+Down resize grow height 100 px or 20 ppt
 bindsym $mod+Mod1+Up resize shrink height 100 px or 20 ppt
 bindsym $mod+Mod1+Right resize grow width 100 px or 20 ppt
 
-bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 2 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
