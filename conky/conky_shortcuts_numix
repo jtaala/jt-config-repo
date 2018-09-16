@@ -34,6 +34,11 @@ ${color2}child container (tabd) - ${color}mod+Alt+w
 ${color2}child container (vert) - ${color}mod+Alt+e
 ${color2}child container (stck) - ${color}mod+Alt+s
 
+${color2}tab with next window - ${color}mod+z
+${color2}tab with previous window - ${color}mod+Shift+z
+${color2}splith with next window - ${color}mod+x
+${color2}splith with previous window - ${color}mod+Shift+x
+
 ${color2}toggle floating - ${color}mod+Shift+Space
 ${color2}toggle sticky - ${color}mod+Shift+s
 ${color2}window opacity up[dn] - ${color}mod+Alt+x[z]
