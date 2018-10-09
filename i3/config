@@ -53,12 +53,13 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Increase/decrease sink volume 1
-bindsym $mod+F2 exec pactl set-sink-volume 1 -5%; exec notify-send 'sink 1 volume decreased'
-bindsym $mod+F3 exec pactl set-sink-volume 1 +5%; exec notify-send 'sink 1 volume increased'
+bindsym $mod+F1 exec amixer -qD pulse set Master toggle; exec notify-send 'sound toggled'
+bindsym $mod+F2 exec amixer -qc 0 set Master 2db-; exec notify-send 'volume decreased'
+bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-bindsym $mod+F6 exec xbacklight -inc 5
-bindsym $mod+F5 exec xbacklight -dec 5
+bindsym $mod+F8 exec sudo xbacklight -10
+bindsym $mod+F9 exec sudo xbacklight +10
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
