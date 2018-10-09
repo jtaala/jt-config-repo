@@ -127,7 +127,7 @@ bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right
 
 # special combo for stacked split of two windows next to each other
 bindsym $mod+z split h, layout stacked, focus right, move left, focus up
-bindsym $mod+Shift+z split h, layout stacked, focus left, move right, focus down
+bindsym $mod+Shift+z split h, layout stacked, focus left, move right, move up, focus down
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
