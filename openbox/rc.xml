@@ -264,6 +264,9 @@
         <desktop>1</desktop>
       </action>
     </keybind>
+    <keybind key="W-x">
+      <action name="ToggleShowDesktop"/>
+    </keybind>
     <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -289,6 +292,9 @@
         <command>rofi -modi window,drun,run -show drun</command>
       </action>
     </keybind>
+    <keybind key="S-W-q">
+      <action name="Close"/>
+    </keybind>
     <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
@@ -300,6 +306,11 @@
     <keybind key="A-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
+      </action>
+    </keybind>
+    <keybind key="W-Tab">
+      <action name="ShowMenu">
+        <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
     <keybind key="A-Tab">
@@ -340,30 +351,43 @@
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
        switching due to hitting the edge of the screen -->
     <context name="Frame">
-      <mousebind action="Press" button="A-Left">
+      <mousebind action="Press" button="S-W-Middle">
+        <action name="ShowMenu">
+          <menu>client-list-combined-menu</menu>
+        </action>
+      </mousebind>
+      <mousebind action="Press" button="S-W-Right">
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+        </action>
+      </mousebind>
+      <mousebind action="Press" button="W-Left">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind action="Click" button="A-Left">
+      <mousebind action="Click" button="W-Left">
+        <action name="ToggleMaximize"/>
+      </mousebind>
+      <mousebind action="Click" button="W-Left">
         <action name="Unshade"/>
       </mousebind>
-      <mousebind action="Drag" button="A-Left">
+      <mousebind action="Drag" button="W-Left">
         <action name="Move"/>
       </mousebind>
-      <mousebind action="Press" button="A-Right">
+      <mousebind action="Press" button="W-Right">
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind action="Drag" button="A-Right">
+      <mousebind action="Drag" button="W-Right">
         <action name="Resize"/>
       </mousebind>
-      <mousebind action="Press" button="A-Middle">
+      <mousebind action="Press" button="W-Middle">
         <action name="Lower"/>
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-      <mousebind action="Click" button="A-Up">
+      <!--<mousebind action="Click" button="A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
@@ -371,8 +395,8 @@
       <mousebind action="Click" button="A-Down">
         <action name="GoToDesktop">
           <to>next</to>
-        </action>
-      </mousebind>
+      </action>
+      </mousebind>-->
       <mousebind action="Click" button="C-A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
@@ -383,12 +407,12 @@
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="A-S-Up">
+      <mousebind action="Click" button="W-S-Up">
         <action name="SendToDesktop">
           <to>previous</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="A-S-Down">
+      <mousebind action="Click" button="W-S-Down">
         <action name="SendToDesktop">
           <to>next</to>
         </action>
@@ -633,6 +657,16 @@
         </action>
       </mousebind>
       <mousebind action="Press" button="Right">
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+        </action>
+      </mousebind>
+      <mousebind action="Press" button="W-S-Middle">
+        <action name="ShowMenu">
+          <menu>client-list-combined-menu</menu>
+        </action>
+      </mousebind>
+      <mousebind action="Press" button="W-S-Right">
         <action name="ShowMenu">
           <menu>root-menu</menu>
         </action>
