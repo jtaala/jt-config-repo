@@ -131,6 +131,7 @@ bindsym $mod+Shift+z split h, layout stacked, focus left, move right, move up, f
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym --whole-window $mod+button1 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
 bindsym $mod+Shift+bracketleft exec xrandr -s 1024x576
