@@ -27,6 +27,7 @@ order += "diskdata"
 order += "battery_level"
 # order += "load"
 order += "timer"
+order += "external_script"
 order += "tztime local"
 # order += "ipv6"
 
@@ -54,6 +55,11 @@ diskdata {
 	prefix_type = decimal
   #format_space = "[\?min_length=5 {value:.2f}]"
 	format = " ⛁ {used_percent}% (U:{used} GB, F:{free} GB) "
+}
+
+external_script {
+    format = "{output}"
+    script_path = "cat /sys/class/tty/tty0/active"
 }
 
 whatismyip {
