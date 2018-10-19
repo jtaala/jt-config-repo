@@ -53,12 +53,13 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Increase/decrease sink volume 1
-bindsym $mod+F2 exec pactl set-sink-volume 1 -5%; exec notify-send 'sink 1 volume decreased'
-bindsym $mod+F3 exec pactl set-sink-volume 1 +5%; exec notify-send 'sink 1 volume increased'
+bindsym $mod+F1 exec amixer -qD pulse set Master toggle; exec notify-send 'sound toggled'
+bindsym $mod+F2 exec amixer -qc 0 set Master 2db-; exec notify-send 'volume decreased'
+bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-bindsym $mod+F6 exec xbacklight -inc 5
-bindsym $mod+F5 exec xbacklight -dec 5
+bindsym $mod+F8 exec sudo xbacklight -10
+bindsym $mod+F9 exec sudo xbacklight +10
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -124,12 +125,13 @@ bindsym $mod+Mod1+w split h; layout tabbed
 bindsym $mod+x split h, layout splith, focus right, move left, focus left
 bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right
 
-# special combo for tabbed split of two windows next to each other
-bindsym $mod+z split h, layout tabbed, focus right, move left, focus left
-bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
+# special combo for stacked split of two windows next to each other
+bindsym $mod+z split h, layout stacked, focus right, move left, focus up
+bindsym $mod+Shift+z split h, layout stacked, focus left, move right, move up, focus down
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym --whole-window $mod+Shift+button1 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
 bindsym $mod+Shift+bracketleft exec xrandr -s 1024x576
@@ -310,10 +312,10 @@ bindsym $mod+Mod1+Down resize grow height 100 px or 20 ppt
 bindsym $mod+Mod1+Up resize shrink height 100 px or 20 ppt
 bindsym $mod+Mod1+Right resize grow width 100 px or 20 ppt
 
-bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 10 ppt
-bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 2 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
