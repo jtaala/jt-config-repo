@@ -108,8 +108,8 @@ battery all {
 
 battery_level {
 	cache_timeout = 30
-  #measurement_mode = "acpi"
-  hide_when_full = "True"
+	measurement_mode = "acpi"
+	hide_when_full = "True"
 	hide_seconds = "True"
 	blocks = ""
 	color_charging = "#00ff00"
