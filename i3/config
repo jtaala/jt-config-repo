@@ -34,8 +34,10 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
-bindsym $mod+Tab exec --no-startup-id "rofi -modi window,drun,run -show window"
+bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec --no-startup-id "rofi -modi windowcd,window -show windowcd"
+bindsym $mod+Shift+Tab exec --no-startup-id "rofi -modi windowcd,window -show window"
+
 
 # launch categorized menu
 bindsym $mod+c exec --no-startup-id morc_menu
@@ -130,8 +132,7 @@ bindsym $mod+z split h, layout stacked, focus right, move left, focus up
 bindsym $mod+Shift+z split h, layout stacked, focus left, move right, move up, focus down
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-bindsym --whole-window $mod+button2 fullscreen toggle
+bindsym $mod+space fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
 bindsym $mod+Shift+bracketleft exec xrandr -s 1024x576
@@ -140,7 +141,6 @@ bindsym $mod+bracketright exec xrandr -s 1920x1080
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space floating toggle resize set 1920 1055; exec xdotool getactivewindow windowmove 2 23
 
 # change focus between tiling / floating windows
 bindsym $mod+Mod1+space focus mode_toggle
