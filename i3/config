@@ -36,8 +36,6 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+d exec --no-startup-id "rofi -modi windowcd,window,drun,run -show drun"
 bindsym $mod+Tab exec --no-startup-id "rofi -modi windowcd,window,drun,run -show windowcd"
-bindsym $mod+Shift+Tab exec --no-startup-id "rofi -modi windowcd,window,drun,run -show window"
-
 
 # launch categorized menu
 bindsym $mod+c exec --no-startup-id morc_menu
