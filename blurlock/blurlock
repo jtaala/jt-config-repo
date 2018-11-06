@@ -9,6 +9,6 @@
 #rm /tmp/screenshot.png
 
 # lock the screen
-i3lock -i /usr/share/backgrounds/grey-split-manjaro.png
+i3lock -i /usr/share/backgrounds/numix_JT.png
 
 exit 0
