@@ -1,1 +1,8 @@
+!theme location
 rofi.theme: ~/.jt-config-repo/rofi/themes/lb-numix.rasi
+
+!keyboard binding changes: tab, shift+tab to switch modes
+rofi.kb-row-tab:	
+rofi.kb-row-up:		Up,Control+p
+rofi.kb-mode-next:	Tab
+rofi.kb-mode-previous:	ISO_Left_Tab
