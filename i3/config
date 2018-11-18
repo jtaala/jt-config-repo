@@ -14,8 +14,8 @@ for_window [class=".*"] border pixel 5
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 5
+bindsym $mod+v border none
+bindsym $mod+b border pixel 5
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -72,20 +72,16 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-bindsym $mod+h exec pamac-manager
-bindsym $mod+j exec chromium
-bindsym $mod+k exec KeeWeb
-bindsym $mod+Mod1+k splith; exec KeeWeb
-bindsym $mod+l exec pcmanfm
-bindsym $mod+Shift+l exec gksu pcmanfm
-bindsym $mod+semicolon exec --no-startup-id terminal -e 'ranger'
-bindsym $mod+Shift+semicolon exec --no-startup-id sudo terminal -e 'ranger'
-bindsym $mod+apostrophe exec --no-startup-id terminal -e 'htop'
-bindsym $mod+Shift+apostrophe exec --no-startup-id sudo terminal -e 'htop'
+# shortcuts to often used applications
+bindsym $mod+u exec pamac-manager
+bindsym $mod+i exec chromium
+bindsym $mod+o exec KeeWeb
+bindsym $mod+Mod1+o splith; exec KeeWeb
 bindsym $mod+p exec putty
+bindsym $mod+bracketleft exec pcmanfm
+bindsym $mod+Shift+bracketleft exec gksu pcmanfm
 bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
 
 # focus_follows_mouse no
@@ -96,20 +92,30 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# hjkl focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
 # move focused window
 bindsym $mod+Shift+Left move left 100px
 bindsym $mod+Shift+Down move down 100px
 bindsym $mod+Shift+Up move up 100px
 bindsym $mod+Shift+Right move right 100px
 
+# hjkl move
+bindsym $mod+Shift+h move left 100px
+bindsym $mod+Shift+j move down 100px
+bindsym $mod+Shift+k move up 100px
+bindsym $mod+Shift+l move right 100px
+
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+#bindsym $mod+b workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientations
-#bindsym $mod+h split h;exec notify-send 'tile horizontally'
-#bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+Mod1+q split h;
@@ -134,9 +140,8 @@ bindsym $mod+space fullscreen toggle
 bindsym --whole-window button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
-bindsym $mod+Shift+bracketleft exec xrandr -s 1024x576
-bindsym $mod+bracketleft exec xrandr -s 1280x720
-bindsym $mod+bracketright exec xrandr -s 1920x1080
+bindsym $mod+bracketright exec xrandr -s 1280x720
+bindsym $mod+backslash exec xrandr -s 1920x1080
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -225,7 +230,6 @@ for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 #for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
@@ -311,10 +315,22 @@ bindsym $mod+Mod1+Down resize grow height 100 px or 20 ppt
 bindsym $mod+Mod1+Up resize shrink height 100 px or 20 ppt
 bindsym $mod+Mod1+Right resize grow width 100 px or 20 ppt
 
+# hkjl resize
+bindsym $mod+Mod1+h resize shrink width 100 px or 20 ppt
+bindsym $mod+Mod1+j resize grow height 100 px or 20 ppt
+bindsym $mod+Mod1+k resize shrink height 100 px or 20 ppt
+bindsym $mod+Mod1+l resize grow width 100 px or 20 ppt
+
 bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 2 ppt
 bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 2 ppt
 bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 2 ppt
 bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 2 ppt
+
+# hjkl resize (small)
+bindsym $mod+Mod1+Shift+h resize shrink width 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+j resize grow height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+k resize shrink height 10 px or 2 ppt
+bindsym $mod+Mod1+Shift+l resize grow width 10 px or 2 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
