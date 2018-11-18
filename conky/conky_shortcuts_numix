@@ -19,8 +19,7 @@ conky.config = {
 }
 conky.text = [[
 ${color2}open new terminal - ${color}mod+Enter
-${color2}open browser - ${color}mod+j
-${color2}open ranger - ${color}mod+;
+${color2}open browser - ${color}mod+i
 ${color2}rofi (launcher) - ${color}mod+d
 ${color2}bmenu - ${color}mod+Ctrl+b
 ${color2}morc_menu - ${color}mod+z
@@ -34,8 +33,8 @@ ${color2}child container (tabd) - ${color}mod+Alt+w
 ${color2}child container (vert) - ${color}mod+Alt+e
 ${color2}child container (stck) - ${color}mod+Alt+s
 
-${color2}stack with next window - ${color}mod+z
-${color2}stack with previous window - ${color}mod+Shift+z
+${color2}tab with next window - ${color}mod+z
+${color2}tab with previous window - ${color}mod+Shift+z
 ${color2}splith with next window - ${color}mod+x
 ${color2}splith with previous window - ${color}mod+Shift+x
 
