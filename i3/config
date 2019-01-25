@@ -34,7 +34,8 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec --no-startup-id "rofi -modi window,windowcd,drun,run -show drun"
+#bindsym $mod+d exec --no-startup-id "rofi -modi window,windowcd,drun,run -show drun"
+exec --no-startup-id kupfer
 bindsym $mod+Tab exec --no-startup-id "rofi -modi window,drun,run,windowcd -show window"
 
 # launch categorized menu
