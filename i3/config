@@ -12,7 +12,7 @@ set $con_title focus parent; title_format "<span foreground='pink'><b> 📦 %tit
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -133,8 +133,8 @@ bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed; $con_title
 
 # special combo for horizontal split of two windows next to each other
-bindsym $mod+x split h, layout splith, focus right, $border_normal, move left, focus left, $border_normal, $con_title
-bindsym $mod+Shift+x split h, layout splith, focus left, $border_normal, move right, focus right, $border_normal, $con_title
+bindsym $mod+x split h, layout splith, focus right, move left, focus left, $con_title
+bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right, $con_title
 
 # special combo for container tabbed split of two windows next to each other
 bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, $con_title
@@ -267,7 +267,7 @@ for_window [urgent=latest] focus
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
+bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
