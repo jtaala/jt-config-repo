@@ -133,8 +133,8 @@ bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Mod1+w split h; layout tabbed; $con_title
 
 # special combo for horizontal split of two windows next to each other
-bindsym $mod+x split h, layout splith, focus right, $border_normal, move left, focus left, $border_normal, $con_title
-bindsym $mod+Shift+x split h, layout splith, focus left, $border_normal, move right, focus right, $border_normal, $con_title
+bindsym $mod+x split h, layout splith, focus right, move left, focus left, $con_title
+bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right, $con_title
 
 # special combo for container tabbed split of two windows next to each other
 bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, $con_title
