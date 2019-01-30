@@ -6,7 +6,7 @@
 set $mod Mod4
 set $border_no_name border pixel 5
 set $border_normal border normal 5
-set $con_title focus parent; title_format "<span foreground='pink'><b> 📦 %title</b></span>"; focus child
+set $con_title focus parent; title_format "<span foreground='pink'><b> 📦 %title</b></span>"; focus child; title_format " %title"
 
 # set default desktop layout (default is tiling) <stacking|tabbed>
 workspace_layout tabbed
@@ -229,7 +229,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] title_format " %title"
 for_window [class=".*"] $con_title
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
