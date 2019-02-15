@@ -169,6 +169,9 @@ bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
+# dynamic renaming of parent container
+bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %TITLE for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 $answer</b></span>\\", focus child; else i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 %title</b></span>\\", focus child; fi"
+
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
@@ -230,7 +233,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] $con_title
+for_window [class=".*"] title_format " %title"
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
