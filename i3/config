@@ -141,7 +141,8 @@ bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, $con_
 bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right, $con_title
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+space fullscreen toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Mod1+f focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
@@ -160,13 +161,16 @@ bindsym $mod+Shift+s sticky toggle;exec notify-send 'sticky windows toggled'
 # window transparency adjustment (and alias to restart compton)
 bindsym $mod+Mod1+z exec transset-df -a --min 0.20 --dec 0.20
 bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
-bindsym $mod+Mod1+x exec transset-df -a --inc 0.20
-bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1
+bindsym $mod+Mod1+x exec transset-df -a --inc 0.20 --max 0.99
+bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
+
+# dynamic renaming of parent container
+bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %TITLE for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 $answer</b></span>\\", focus child; else i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 %title</b></span>\\", focus child; fi"
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -229,7 +233,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] $con_title
+for_window [class=".*"] title_format " %title"
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
