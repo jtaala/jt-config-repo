@@ -142,7 +142,7 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Mod1+f focus parent; fullscreen toggle; focus child
+bindsym $mod+space focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
