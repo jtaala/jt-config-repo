@@ -19,3 +19,13 @@ bspc config focus_follows_pointer true
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+
+
+# start compton
+compton -b --config ~/.config/bspwm/compton.conf
+
+# set wallpaper (needs nitrogen installed)
+nitrogen --restore
+
+## AUTOSTART Applications
+#alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64 &

@@ -7,7 +7,9 @@ super + Return
 	terminator
 
 # program launcher
-super + @space
+super + d
+	kupfer
+super + alt + d
 	rofi -modi window,drun,run,windowcd -show window
 
 # make sxhkd reload its configuration files:
@@ -23,11 +25,11 @@ super + alt + Escape
 	bspc quit
 
 # close and kill
-super + {_,shift + }q
-	bspc node -{c,k}
+super + shift + q
+	bspc node -c
 
 # alternate between the tiled and monocle layout
-super + m
+super + space
 	bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
@@ -43,7 +45,7 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
+super + {q,w,e,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
@@ -71,8 +73,8 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+super + grave
+	bspc node -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
