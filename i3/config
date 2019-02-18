@@ -6,7 +6,6 @@
 set $mod Mod4
 set $border_no_name border pixel 5
 set $border_normal border normal 5
-set $con_title focus parent; title_format "<span foreground='#ff8c85'><b> 📦 %title</b></span>"; focus child; title_format " %title"
 
 # Theme colors
 # set variable for main accent color
@@ -131,6 +130,13 @@ workspace_auto_back_and_forth yes
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
+# Set $con_title (embedded script) - used in split orientations below.
+# Two options for container title_format below (comment out one).  The first one leaves the shown title as i3 deault (e.g. %title).
+# The second option uses application window title (but colored and bolded) that was selected when the container was created.
+#
+#set $con_title focus parent; title_format "<span foreground='#ff8c85'><b> 📦 %title</b></span>"; focus child; title_format " %title"
+set $con_title exec "answer=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> ⮡$answer</b></span>\\", focus child"
+
 # split orientations
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
@@ -181,7 +187,9 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # dynamic renaming of parent container
-bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %TITLE for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> 📦 $answer</b></span>\\", focus child; else i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> 📦 %title</b></span>\\", focus child; fi"
+bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> 📦 $answer</b></span>\\", focus child; fi"
+bindsym $mod+Mod1+slash focus parent, title_format "<span foreground='#ff8c85'><b> 📦 %title</b></span>", focus child
+
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -357,7 +365,6 @@ bindsym $mod+Mod1+Shift+l resize grow width 10 px or 2 ppt
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
 bindsym $mod+Mod1+m floating enable;sticky enable;resize set 791 70;border none
-bindsym $mod+Mod1+slash floating enable;resize set 800 1;$border_normal
 
 # Autostart applications
 exec --no-startup-id "xkbset exp =m; xkbset m"
