@@ -1,15 +1,25 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# SETTERS
+# MISC. SETTERS
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 set $border_no_name border pixel 5
 set $border_normal border normal 5
-set $con_title focus parent; title_format "<span foreground='pink'><b> 📦 %title</b></span>"; focus child; title_format " %title"
+
+# Theme colors
+# set variable for main accent color
+set $acolor #eb564d
+# set other colors
+set $bdrcolor #4d4949
+set $bgicolor #373737
+set $bgucolor #6a6868
+set $txtacolor #F9FAF9
+set $txtucolor #bdbbbb
+set $indcolor #00ff00
 
 # set default desktop layout (default is tiling) <stacking|tabbed>
-workspace_layout tabbed
+#workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_no_name
@@ -103,6 +113,12 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# container focusing
+bindsym $mod+Ctrl+h focus parent, focus left
+bindsym $mod+Ctrl+j focus parent, focus down
+bindsym $mod+Ctrl+k focus parent, focus up
+bindsym $mod+Ctrl+l focus parent, focus right
+
 # move focused window
 bindsym $mod+Shift+Left move left 100px
 bindsym $mod+Shift+Down move down 100px
@@ -119,6 +135,13 @@ bindsym $mod+Shift+l move right 100px
 workspace_auto_back_and_forth yes
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# Set $con_title (embedded script) - used in split orientations below.
+# Two options for container title_format below (comment out one).  The first one leaves the shown title as i3 deault (e.g. %title).
+# The second option uses application window title (but colored and bolded) that was selected when the container was created.
+#
+#set $con_title focus parent; title_format "<span foreground='#ff8c85'><b> 📦 %title</b></span>"; focus child; title_format " %title"
+set $con_title exec "answer=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> ⮡$answer</b></span>\\", focus child"
 
 # split orientations
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
@@ -142,7 +165,7 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Mod1+f focus parent; fullscreen toggle; focus child
+bindsym $mod+space focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
@@ -170,7 +193,8 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # dynamic renaming of parent container
-bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %TITLE for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 $answer</b></span>\\", focus child; else i3-msg focus parent, title_format \\"<span foreground='pink'><b> 📦 %title</b></span>\\", focus child; fi"
+bindsym $mod+slash exec "answer=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$answer\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> 📦 $answer</b></span>\\", focus child; fi"
+bindsym $mod+Mod1+slash focus parent, title_format "<span foreground='#ff8c85'><b> 📦 %title</b></span>", focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -245,7 +269,7 @@ for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
+#for_window [class="Nitrogen"] floating enable sticky enable border normal
 #for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
@@ -399,9 +423,6 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# set variable for main accent color
-set $acolour #eb564d
-
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     i3bar_command i3bar
@@ -423,27 +444,19 @@ bar {
         separator  #454947
 
 #                      border  backgr. text
-        focused_workspace  #F9FAF9 $acolour #F9FAF9
+        focused_workspace  #F9FAF9 $acolor #F9FAF9
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       $acolour #2C2C2C #F9FAF9
-        urgent_workspace   $acolour #FDF6E3 #E5201D
+        binding_mode       $acolor #2C2C2C #F9FAF9
+        urgent_workspace   $acolor #FDF6E3 #E5201D
     }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-# Theme colors
-set $bdrcolor #4d4949
-set $bgicolor #373737
-set $bgucolor #6a6868
-set $txtacolor #F9FAF9
-set $txtucolor #bdbbbb
-set $indcolor #00ff00
-
 # class                   border  backgr. text    indic.   child_border
-  client.focused          $bdrcolor $acolour $txtacolor $indcolor
+  client.focused          $bdrcolor $acolor $txtacolor $indcolor
   client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor
   client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor
   client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
