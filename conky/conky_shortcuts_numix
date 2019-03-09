@@ -25,7 +25,7 @@ ${color2}bmenu - ${color}mod+Ctrl+b
 ${color2}morc_menu - ${color}mod+z
 ${color2}kill focused - ${color}mod+Shift+q
 
-${color2}toggle split direction - ${color}mod+q[e]
+${color2}toggle split direction - ${color}mod+[q|e]
 ${color2}container layout (tabd) - ${color}mod+w
 ${color2}container layout (stck) - ${color}mod+s
 ${color2}child container (horz) - ${color}mod+Alt+q
@@ -38,13 +38,16 @@ ${color2}tab with previous window - ${color}mod+Shift+z
 ${color2}splith with next window - ${color}mod+x
 ${color2}splith with previous window - ${color}mod+Shift+x
 
-${color2}toggle floating - ${color}mod+Shift+Space
-${color2}toggle sticky - ${color}mod+Shift+s
-${color2}window opacity up[dn] - ${color}mod+Alt+x[z]
+${color2}focus windows - ${color}mod+[hjkl | arrow_keys]
+${color2}focus containers - ${color}mod+Ctrl+[hjkl | arrow_keys]
 
 ${color2}switch to workspace 1-8 - ${color}mod+1-8
 ${color2}send to workspace 1-8 - ${color}mod+Alt+1-8
 ${color2}navigate workspaces - ${color}mod+Ctrl+arrowkeys
+
+${color2}toggle floating - ${color}mod+Shift+Space
+${color2}toggle sticky - ${color}mod+Shift+s
+${color2}window opacity up[dn] - ${color}mod+Alt+[x|z]
 
 ${color2}exit - ${color}mod+0
 ${color2}help - ${color}mod+Shift+h
