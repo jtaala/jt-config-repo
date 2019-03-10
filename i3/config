@@ -21,6 +21,9 @@ set $indcolor #00ff00
 # set default desktop layout (default is tiling) <stacking|tabbed>
 #workspace_layout tabbed
 
+# set preferred focus_wrapping <yes|no|force>
+focus_wrapping no
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_no_name
 
