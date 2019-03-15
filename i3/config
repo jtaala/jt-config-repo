@@ -45,6 +45,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec terminator
+bindsym $mod+Shift+Return exec "APP=\\"terminator\\"; CLASS=\\"Terminator\\"; if pgrep -x \\"$APP\\" > /dev/null 2>&1; then i3-msg \\"[class=\\"$CLASS\\"] scratchpad show\\"; else \\"$APP\\"; fi"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -95,7 +96,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # shortcuts to often used applications
 bindsym $mod+u exec pamac-manager
 bindsym $mod+i exec chromium
-bindsym $mod+o exec KeeWeb
+bindsym $mod+o exec "APP=\\"KeeWeb\\"; if pgrep -x \\"$APP\\" > /dev/null 2>&1; then i3-msg \\"[class=\\"$APP\\"] scratchpad show\\"; else \\"$APP\\"; fi"
 bindsym $mod+Mod1+o splith; exec KeeWeb
 bindsym $mod+p exec putty
 bindsym $mod+bracketleft exec pcmanfm
