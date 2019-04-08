@@ -52,8 +52,9 @@ load {
 }
 
 diskdata {
+    disk = sda2
 	prefix_type = decimal
-  #format_space = "[\?min_length=5 {value:.2f}]"
+    #format_space = "[\?min_length=5 {value:.2f}]"
 	format = " ⛁ {used_percent}% (U:{used} GB, F:{free} GB) "
 }
 
