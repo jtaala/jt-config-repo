@@ -57,7 +57,13 @@ exec --no-startup-id kupfer
 bindsym $mod+Tab exec --no-startup-id "rofi -modi window,drun,run,windowcd -show window"
 
 # launch categorized menu
-bindsym $mod+c exec --no-startup-id morc_menu
+#bindsym $mod+c exec --no-startup-id morc_menu
+
+# launch i3-layout-Manager (and binding several layouts)
+bindsym $mod+c exec --no-startup-id i3-layout-manager
+bindsym $mod+Shift+w exec --no-startup-id "i3-layout-manager ALL-TABBED"
+bindsym $mod+Shift+a exec --no-startup-id "i3-layout-manager SPLIT-TWO-TABBED"
+bindsym $mod+Shift+s exec --no-startup-id "i3-layout-manager SPLIT-FOUR-TABBED"
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -87,7 +93,7 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F10 exec blueman-manager
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Ctrl+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
@@ -185,7 +191,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Mod1+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart compton)
 bindsym $mod+Mod1+z exec transset-df -a --min 0.20 --dec 0.20
@@ -196,7 +202,7 @@ bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
 bindsym $mod+a focus parent
-bindsym $mod+Shift+a focus child
+bindsym $mod+Ctrl+a focus child
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#ff8c85'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
