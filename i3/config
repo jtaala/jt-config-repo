@@ -107,7 +107,12 @@ bindsym $mod+Mod1+o splith; exec KeeWeb
 bindsym $mod+p exec putty
 bindsym $mod+bracketleft exec pcmanfm
 bindsym $mod+Shift+bracketleft exec gksu pcmanfm
+
+#sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
+bindsym Mod1+Shift+h exec --no-startup-id smplayer -send-action rewind1
+bindsym Mod1+Shift+l exec --no-startup-id smplayer -send-action forward1
+
 
 # focus_follows_mouse no
 
