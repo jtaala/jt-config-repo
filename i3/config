@@ -12,7 +12,7 @@ set $border_normal border normal 5
 set $acolor #eb564d
 # set other colors
 set $bdrcolor #4d4949
-set $bgicolor #373737
+set $bgicolor #eb564d
 set $bgucolor #6a6868
 set $txtacolor #F9FAF9
 set $txtucolor #bdbbbb
@@ -473,9 +473,9 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # class                   border  backgr. text    indic.   child_border
-  client.focused          $bdrcolor $acolor $txtacolor $indcolor
-  client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor
-  client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor
+  client.focused          $bdrcolor $acolor $txtacolor $indcolor $acolor
+  client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor $bgucolor
+  client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor $bgucolor
   client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
   client.placeholder      #000000 #0c0c0c $txtacolor #000000
   client.background       #2B2C2B
