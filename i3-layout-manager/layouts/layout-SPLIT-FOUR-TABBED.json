@@ -3,131 +3,220 @@
 	"border": "normal",
 		"floating": "auto_off",
 		"fullscreen_mode": 0,
-		"layout": "splitv",
+		"layout": "splith",
 		"percent": null,
 		"type": "con",
 		"nodes": [
 		{
 			"border": "normal",
 			"floating": "auto_off",
-			"layout": "splith",
-			"percent": 0.5,
+			"layout": "splitv",
+			"percent": 1,
 			"type": "con",
 			"nodes": [
 			{
 				"border": "normal",
 				"floating": "auto_off",
-				"layout": "tabbed",
+				"layout": "splith",
 				"percent": 0.5,
 				"type": "con",
 				"nodes": [
 				{
-					"border": "pixel",
-					"current_border_width": 5,
+					"border": "normal",
 					"floating": "auto_off",
-					"geometry": {
-						"height": 450,
-						"width": 651,
-						"x": 0,
-						"y": 0
-					},
-					"percent": null,
-					"swallows": [
+					"layout": "tabbed",
+					"percent": 0.5,
+					"type": "con",
+					"nodes": [
 					{
-						"instance": ""
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
+					},
+					{
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
 					}
-					],
-					"type": "con"
+					]
+				},
+				{
+					"border": "normal",
+					"floating": "auto_off",
+					"layout": "tabbed",
+					"percent": 0.5,
+					"type": "con",
+					"nodes": [
+					{
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
+					},
+					{
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
+					}
+					]
 				}
 				]
 			},
 			{
 				"border": "normal",
 				"floating": "auto_off",
-				"layout": "tabbed",
+				"layout": "splith",
 				"percent": 0.5,
 				"type": "con",
 				"nodes": [
 				{
-					"border": "pixel",
-					"current_border_width": 5,
+					"border": "normal",
 					"floating": "auto_off",
-					"geometry": {
-						"height": 450,
-						"width": 651,
-						"x": 0,
-						"y": 0
-					},
-					"percent": null,
-					"swallows": [
+					"layout": "tabbed",
+					"percent": 0.5,
+					"type": "con",
+					"nodes": [
 					{
-						"instance": ""
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
+					},
+					{
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
 					}
-					],
-					"type": "con"
-				}
-				]
-			}
-			]
-		},
-		{
-			"border": "normal",
-			"floating": "auto_off",
-			"layout": "splith",
-			"percent": 0.5,
-			"type": "con",
-			"nodes": [
-			{
-				"border": "normal",
-				"floating": "auto_off",
-				"layout": "tabbed",
-				"percent": 0.5,
-				"type": "con",
-				"nodes": [
+					]
+				},
 				{
-					"border": "pixel",
-					"current_border_width": 5,
+					"border": "normal",
 					"floating": "auto_off",
-					"geometry": {
-						"height": 450,
-						"width": 651,
-						"x": 0,
-						"y": 0
-					},
-					"percent": null,
-					"swallows": [
+					"layout": "tabbed",
+					"percent": 0.5,
+					"type": "con",
+					"nodes": [
 					{
-						"instance": ""
-					}
-					],
-					"type": "con"
-				}
-				]
-			},
-			{
-				"border": "normal",
-				"floating": "auto_off",
-				"layout": "tabbed",
-				"percent": 0.5,
-				"type": "con",
-				"nodes": [
-				{
-					"border": "pixel",
-					"current_border_width": 5,
-					"floating": "auto_off",
-					"geometry": {
-						"height": 450,
-						"width": 651,
-						"x": 0,
-						"y": 0
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
 					},
-					"percent": null,
-					"swallows": [
 					{
-						"instance": ""
+						"border": "pixel",
+						"current_border_width": 5,
+						"floating": "auto_off",
+						"geometry": {
+							"height": 450,
+							"width": 651,
+							"x": 0,
+							"y": 0
+						},
+						"name": " CONTAINER",
+						"percent": 0.5,
+						"swallows": [
+						{
+							"instance": ""
+						}
+						],
+						"type": "con"
 					}
-					],
-					"type": "con"
+					]
 				}
 				]
 			}
