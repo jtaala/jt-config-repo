@@ -39,11 +39,11 @@ ${color2}splith with next window - ${color}mod+x
 ${color2}splith with previous window - ${color}mod+Shift+x
 
 ${color2}focus windows - ${color}mod+[hjkl | arrow_keys]
-${color2}focus containers - ${color}mod+Ctrl+[hjkl | arrow_keys]
+${color2}focus containers - ${color}mod+Ctrl+[hjkl | arrows]
 
 ${color2}switch to workspace 1-8 - ${color}mod+1-8
 ${color2}send to workspace 1-8 - ${color}mod+Alt+1-8
-${color2}navigate workspaces - ${color}mod+Ctrl+arrowkeys
+${color2}navigate workspaces - ${color}mod+Ctrl+arrows
 
 ${color2}toggle floating - ${color}mod+Shift+Space
 ${color2}toggle sticky - ${color}mod+Shift+s
