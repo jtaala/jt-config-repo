@@ -43,9 +43,27 @@ font xft:URWGothic-Book 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec terminator
-bindsym $mod+Shift+Return exec "APP=\\"terminator\\"; CLASS=\\"Terminator\\"; if pgrep -x \\"$APP\\" > /dev/null 2>&1; then i3-msg \\"[class=\\"$CLASS\\"] scratchpad show\\"; else \\"$APP\\"; fi"
+# Autostart applications
+exec --no-startup-id "xkbset exp =m; xkbset m"
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id manjaro-hello
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id copyq
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
+# exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_green
+exec --no-startup-id conky -c ~/.config/conky
+exec --no-startup-id conky -c ~/.config/conky_shortcuts
+exec --no-startup-id xautolock -time 10 -locker blurlock
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+exec --no-startup-id fcitx -d
+exec --no-startup-id alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+exec_always --no-startup-id "pkill skippy-xd; skippy-xd --start-daemon"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -53,7 +71,7 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 exec --no-startup-id kupfer
-bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd"
+bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,windowcd,drun -show windowcd"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
@@ -84,34 +102,6 @@ bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume incr
 # Screen brightness controls
 bindsym $mod+F8 exec sudo xbacklight -10
 bindsym $mod+F9 exec sudo xbacklight +10
-
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-#bindsym $mod+F2 exec --no-startup-id pavucontrol
-#bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+F10 exec blueman-manager
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Ctrl+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-# shortcuts to often used applications
-bindsym $mod+u exec pamac-manager
-bindsym $mod+i exec chromium
-bindsym $mod+o exec "APP=\\"KeeWeb\\"; if pgrep -x \\"$APP\\" > /dev/null 2>&1; then i3-msg \\"[class=\\"$APP\\"] scratchpad show\\"; else \\"$APP\\"; fi"
-bindsym $mod+Mod1+o splith; exec KeeWeb
-bindsym $mod+p exec putty
-bindsym $mod+bracketleft exec pcmanfm
-bindsym $mod+Shift+bracketleft exec gksu pcmanfm
-
-#sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
-bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
-bindsym Mod1+Shift+h exec --no-startup-id smplayer -send-action rewind1
-bindsym Mod1+Shift+l exec --no-startup-id smplayer -send-action forward1
-
 
 # focus_follows_mouse no
 
@@ -156,8 +146,8 @@ workspace_auto_back_and_forth yes
 # The second option uses application window title (but colored and bolded) that was selected when the container was created.
 # NOTE: requires xdotool
 #
-set $con_title focus parent; title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>"; focus child; title_format " %title"
-#set $con_title exec "ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child"
+#set $con_title focus parent; title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>"; focus child; title_format " %title"
+set $con_title exec "ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child"
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
@@ -304,6 +294,47 @@ for_window [class="copyq"] floating enable border pixel 1
 for_window [class="Shutter"] floating enable
 for_window [title="Color Picker"] floating enable border none
 
+# setting up dropdown terminal
+for_window [title="dropdown-terminal"] sticky enable border none
+for_window [title="dropdown-terminal"] move scratchpad
+exec --no-startup-id terminator -T dropdown-terminal
+bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show; move position 0px 0px; resize set 1920 600
+
+# setting up dropdown keeweb
+for_window [class="KeeWeb"] sticky enable border none
+for_window [class="KeeWeb"] move scratchpad
+exec --no-startup-id KeeWeb
+bindsym $mod+o [class="KeeWeb"] scratchpad show; move position 0px 0px; resize set 1920 400
+
+
+# Application shortcuts
+bindsym $mod+Return exec terminator
+bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+#bindsym $mod+F2 exec --no-startup-id pavucontrol
+#bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+F10 exec blueman-manager
+bindsym $mod+t exec --no-startup-id pkill compton
+bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+Ctrl+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym Mod1+grave exec --no-startup-id skippy-xd --activate-window-picker
+
+# shortcuts to often used applications
+bindsym $mod+u exec pamac-manager
+bindsym $mod+i exec chromium
+bindsym $mod+Mod1+o splith; exec KeeWeb
+bindsym $mod+p exec putty
+bindsym $mod+bracketleft exec pcmanfm
+bindsym $mod+Shift+bracketleft exec gksu pcmanfm
+
+#sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
+bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
+bindsym Mod1+Shift+h exec --no-startup-id smplayer -send-action rewind1
+bindsym Mod1+Shift+l exec --no-startup-id smplayer -send-action forward1
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
@@ -387,27 +418,6 @@ bindsym $mod+Mod1+Shift+l resize grow width 10 px or 2 ppt
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
 bindsym $mod+Mod1+m floating enable;sticky enable;resize set 791 70;border none
-
-# Autostart applications
-exec --no-startup-id "xkbset exp =m; xkbset m"
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id copyq
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id conky -c ~/.config/conky
-exec --no-startup-id conky -c ~/.config/conky_shortcuts
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-exec --no-startup-id fcitx -d
-exec --no-startup-id alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
