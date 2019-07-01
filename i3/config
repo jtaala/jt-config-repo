@@ -62,7 +62,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id fcitx -d
-exec --no-startup-id alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 exec_always --no-startup-id "pkill skippy-xd; skippy-xd --start-daemon"
 
 # kill focused window
@@ -293,6 +293,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="copyq"] floating enable border pixel 1
 for_window [class="Shutter"] floating enable
 for_window [title="Color Picker"] floating enable border none
+for_window [class="(?i)Kupfer"] border none
 
 # setting up dropdown terminal
 for_window [title="dropdown-terminal"] sticky enable border none
