@@ -77,10 +77,10 @@ bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,windowcd,dr
 #bindsym $mod+c exec --no-startup-id morc_menu
 
 # launch i3-layout-Manager (and binding several layouts)
-bindsym $mod+c exec --no-startup-id i3-layout-manager
-bindsym $mod+Shift+w exec --no-startup-id "i3-layout-manager ALL-TABBED"
-bindsym $mod+Shift+a exec --no-startup-id "i3-layout-manager SPLIT-TWO-TABBED"
-bindsym $mod+Shift+s exec --no-startup-id "i3-layout-manager SPLIT-FOUR-TABBED"
+#bindsym $mod+c exec --no-startup-id i3-layout-manager
+#bindsym $mod+Shift+w exec --no-startup-id "i3-layout-manager ALL-TABBED"
+#bindsym $mod+Shift+a exec --no-startup-id "i3-layout-manager SPLIT-TWO-TABBED"
+#bindsym $mod+Shift+s exec --no-startup-id "i3-layout-manager SPLIT-FOUR-TABBED"
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -200,7 +200,7 @@ bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
 bindsym $mod+a focus parent
-bindsym $mod+Ctrl+a focus child
+bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -301,11 +301,11 @@ for_window [title="dropdown-terminal"] move scratchpad
 exec --no-startup-id terminator -T dropdown-terminal
 bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show; move position 0px 0px; resize set 1920 600
 
-# setting up dropdown keeweb
-for_window [class="KeeWeb"] sticky enable border none
-for_window [class="KeeWeb"] move scratchpad
-exec --no-startup-id KeeWeb
-bindsym $mod+o [class="KeeWeb"] scratchpad show; move position 0px 0px; resize set 1920 400
+# setting up dropdown Bitwarden
+for_window [class="Bitwarden"] sticky enable border none
+for_window [class="Bitwarden"] move scratchpad
+exec --no-startup-id bitwarden-bin
+bindsym $mod+o [class="Bitwarden"] scratchpad show; move position 0px 0px; resize set 1920 500
 
 
 # Application shortcuts
