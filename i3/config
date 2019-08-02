@@ -76,7 +76,7 @@ bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,windowcd,dr
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
 
-# launch i3-layout-Manager (and binding several layouts)
+# launch i3-layout-Manager (and binding several layouts) - EXPERIMENTAL
 #bindsym $mod+c exec --no-startup-id i3-layout-manager
 #bindsym $mod+Shift+w exec --no-startup-id "i3-layout-manager ALL-TABBED"
 #bindsym $mod+Shift+a exec --no-startup-id "i3-layout-manager SPLIT-TWO-TABBED"
@@ -299,13 +299,15 @@ for_window [class="(?i)Kupfer"] border none
 for_window [title="dropdown-terminal"] sticky enable border none
 for_window [title="dropdown-terminal"] move scratchpad
 exec --no-startup-id terminator -T dropdown-terminal
-bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show; move position 0px 0px; resize set 1920 600
+bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
+bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
 # setting up dropdown Bitwarden
 for_window [class="Bitwarden"] sticky enable border none
 for_window [class="Bitwarden"] move scratchpad
 exec --no-startup-id bitwarden-bin
-bindsym $mod+o [class="Bitwarden"] scratchpad show; move position 0px 0px; resize set 1920 500
+bindsym $mod+o [class="Bitwarden"] scratchpad show
+bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
 
 
 # Application shortcuts
@@ -326,7 +328,6 @@ bindsym Mod1+grave exec --no-startup-id skippy-xd --activate-window-picker
 # shortcuts to often used applications
 bindsym $mod+u exec pamac-manager
 bindsym $mod+i exec chromium
-bindsym $mod+Mod1+o splith; exec KeeWeb
 bindsym $mod+p exec putty
 bindsym $mod+bracketleft exec pcmanfm
 bindsym $mod+Shift+bracketleft exec gksu pcmanfm
