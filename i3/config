@@ -71,7 +71,7 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 exec --no-startup-id kupfer
-bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,windowcd,drun -show windowcd"
+bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
@@ -203,7 +203,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+Tab move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
@@ -305,7 +305,7 @@ bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resi
 # setting up dropdown Bitwarden
 for_window [class="Bitwarden"] sticky enable border none
 for_window [class="Bitwarden"] move scratchpad
-exec --no-startup-id bitwarden-bin
+exec --no-startup-id bitwarden-desktop
 bindsym $mod+o [class="Bitwarden"] scratchpad show
 bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
 
