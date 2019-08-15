@@ -294,6 +294,7 @@ for_window [class="copyq"] floating enable border pixel 1
 for_window [class="Shutter"] floating enable
 for_window [title="Color Picker"] floating enable border none
 for_window [class="(?i)Kupfer"] border none
+for_window [class="(?i)Gnome-calculator"] floating enable
 
 # setting up dropdown terminal
 for_window [title="dropdown-terminal"] sticky enable border none
