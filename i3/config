@@ -195,8 +195,10 @@ bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
 # window transparency adjustment (and alias to restart compton)
 bindsym $mod+Mod1+z exec transset-df -a --min 0.20 --dec 0.20
 bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+Mod1+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
 bindsym $mod+Mod1+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+Mod1+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
