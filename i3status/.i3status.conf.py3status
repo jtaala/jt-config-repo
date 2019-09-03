@@ -125,7 +125,7 @@ tztime local {
 }
 
 path_exists VPN {
-        format = "%title"
+        format = "%title:tun0"
         format_down = ""
         color_good = "#00ff00"
         path = "/sys/class/net/tun0/dev_id"
