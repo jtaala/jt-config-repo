@@ -19,7 +19,7 @@ set $txtucolor #bdbbbb
 set $indcolor #00ff00
 
 # set default desktop layout (default is tiling) <stacking|tabbed>
-#workspace_layout tabbed
+workspace_layout tabbed
 
 # set preferred focus_wrapping <yes|no|force>
 focus_wrapping no
