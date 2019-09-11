@@ -20,18 +20,21 @@ conky.config = {
 conky.text = [[
 ${color2}open new terminal - ${color}mod+Enter
 ${color2}open browser - ${color}mod+i
+${color2}open pamac-manager - ${color}mod+u
+${color2}open bitwarden-desktop - ${color}mod+o
+${color2}open putty - ${color}mod+p
+
 ${color2}rofi (launcher) - ${color}mod+d
+${color2}rofi (windows) - ${color}mod+Tab
 ${color2}bmenu - ${color}mod+Ctrl+b
-${color2}morc_menu - ${color}mod+z
 ${color2}kill focused - ${color}mod+Shift+q
 
 ${color2}toggle split direction - ${color}mod+[q|e]
-${color2}container layout (tabd) - ${color}mod+w
+${color2}container layout (tabbed) - ${color}mod+w
 ${color2}container layout (stck) - ${color}mod+s
-${color2}child container (horz) - ${color}mod+Alt+q
-${color2}child container (tabd) - ${color}mod+Alt+w
-${color2}child container (vert) - ${color}mod+Alt+e
-${color2}child container (stck) - ${color}mod+Alt+s
+${color2}child container (tabbed) - ${color}mod+Shift+w
+${color2}child container (vert) - ${color}mod+Shift+e
+${color2}child container (stck) - ${color}mod+Shift+s
 
 ${color2}tab with next window - ${color}mod+z
 ${color2}tab with previous window - ${color}mod+Shift+z

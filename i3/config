@@ -19,7 +19,7 @@ set $txtucolor #bdbbbb
 set $indcolor #00ff00
 
 # set default desktop layout (default is tiling) <stacking|tabbed>
-#workspace_layout tabbed
+workspace_layout tabbed
 
 # set preferred focus_wrapping <yes|no|force>
 focus_wrapping no
@@ -50,7 +50,7 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+#exec --no-startup-id pamac-tray
 exec --no-startup-id copyq
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
@@ -70,8 +70,9 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-exec --no-startup-id kupfer
-bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,windowcd,drun -show windowcd"
+#exec --no-startup-id kupfer
+bindsym $mod+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
+bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
@@ -146,32 +147,33 @@ workspace_auto_back_and_forth yes
 # The second option uses application window title (but colored and bolded) that was selected when the container was created.
 # NOTE: requires xdotool
 #
-#set $con_title focus parent; title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>"; focus child; title_format " %title"
-set $con_title exec "ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child"
+#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
+set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
 bindsym $mod+Mod1+slash focus parent, title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>", focus child
+bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"split h; layout tabbed\\"; $con_title; done"
+bindsym $mod+Mod1+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
 
 # split orientations
 bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
 bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
-bindsym $mod+Mod1+q split h; $con_title
-bindsym $mod+Mod1+e split v; $con_title
+bindsym $mod+Shift+e split h; exec "$con_title"
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
-bindsym $mod+Mod1+s split h; layout stacking; $con_title
+bindsym $mod+Shift+s split h; layout stacking; exec "$con_title"
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
-bindsym $mod+Mod1+w split h; layout tabbed; $con_title
+bindsym $mod+Shift+w split h; layout tabbed; exec "$con_title"
 
 # special combo for horizontal split of two windows next to each other
-bindsym $mod+x split h, layout splith, focus right, move left, focus left, $con_title
-bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right, $con_title
+bindsym $mod+x split h, layout splith, focus right, move left, focus left, exec "$con_title"
+bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right, exec "$con_title"
 
 # special combo for container tabbed split of two windows next to each other
-bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, $con_title
-bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right, $con_title
+bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, exec "$con_title"
+bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right, exec "$con_title"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -194,8 +196,10 @@ bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
 # window transparency adjustment (and alias to restart compton)
 bindsym $mod+Mod1+z exec transset-df -a --min 0.20 --dec 0.20
 bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+Mod1+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
 bindsym $mod+Mod1+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+Mod1+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
 # focus the parent container
@@ -203,7 +207,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+Tab move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
@@ -294,6 +298,7 @@ for_window [class="copyq"] floating enable border pixel 1
 for_window [class="Shutter"] floating enable
 for_window [title="Color Picker"] floating enable border none
 for_window [class="(?i)Kupfer"] border none
+for_window [class="(?i)Gnome-calculator"] floating enable
 
 # setting up dropdown terminal
 for_window [title="dropdown-terminal"] sticky enable border none
@@ -305,7 +310,7 @@ bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resi
 # setting up dropdown Bitwarden
 for_window [class="Bitwarden"] sticky enable border none
 for_window [class="Bitwarden"] move scratchpad
-exec --no-startup-id bitwarden-bin
+exec --no-startup-id bitwarden-desktop
 bindsym $mod+o [class="Bitwarden"] scratchpad show
 bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
 
@@ -347,7 +352,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
