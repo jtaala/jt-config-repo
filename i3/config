@@ -300,10 +300,11 @@ for_window [title="Color Picker"] floating enable border none
 for_window [class="(?i)Kupfer"] border none
 for_window [class="(?i)Gnome-calculator"] floating enable
 
-# setting up dropdown terminal
+# setting up dropdown terminal (using tilix)
+# NOTE: you'll need to disable CSD and set 'Application title' to '${activeTerminalTitle}' (appearance options)
 for_window [title="dropdown-terminal"] sticky enable border none
 for_window [title="dropdown-terminal"] move scratchpad
-exec --no-startup-id terminator -T dropdown-terminal
+exec --no-startup-id tilix -t dropdown-terminal
 bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
 bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
@@ -315,7 +316,7 @@ bindsym $mod+o [class="Bitwarden"] scratchpad show
 bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
 
 # Application shortcuts
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec tilix
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 #bindsym $mod+F2 exec --no-startup-id pavucontrol
 #bindsym $mod+F5 exec terminal -e 'mocp'
