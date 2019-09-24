@@ -1,0 +1,49 @@
+#!/bin/bash
+
+showExample() { 
+    echo -e "\ne.g. \""$(basename -- "$0")" 1920 1080 60\"\n"
+}
+
+createRes() {
+    cvt "$WIDTH" "$HEIGHT" "$REFRESH" | grep Modeline | sed "s/Modeline//" | xargs xrandr --newmode
+}
+
+addRes() {
+    xrandr --addmode eDP1 "$WIDTH"x"$HEIGHT"_"$REFRESH".00
+}
+
+# check arguments
+if [ -z "$1" ]; then
+    echo "Please provide a screen width as the first argument"
+    showExample
+    exit 128
+fi
+
+if [ -z "$2" ]; then
+    echo "Please provide a screen height as the second argument"
+    showExample
+    exit 128
+fi
+
+if [ -z "$3" ]; then
+    echo "Please provide a refresh rate as the third argument"
+    showExample
+    exit 128
+fi
+
+#init
+WIDTH=$1
+HEIGHT=$2
+REFRESH=$3
+
+createRes || {
+    echo -e "\nERROR creating resolution with \"cvt\"\n"
+    exit 1
+}
+
+addRes || {
+    echo -e "\nERROR adding resolution with \"xrandr\"\n"
+    exit 1
+}
+
+exit 0
