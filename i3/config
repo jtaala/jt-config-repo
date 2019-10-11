@@ -334,8 +334,8 @@ bindsym Mod1+grave exec --no-startup-id skippy-xd --activate-window-picker
 bindsym $mod+u exec pamac-manager
 bindsym $mod+i exec chromium
 bindsym $mod+p exec putty
-bindsym $mod+bracketleft exec pcmanfm
-bindsym $mod+Shift+bracketleft exec gksu pcmanfm
+bindsym $mod+bracketleft exec nautilus
+bindsym $mod+Shift+bracketleft exec gksu nautilus
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
