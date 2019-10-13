@@ -13,7 +13,26 @@ addRes() {
 }
 
 switchRes() {
-    xrandr --output "$DEVICE" --mode "$WIDTH"x"$HEIGHT"_"$REFRESH".00
+
+    while true; do
+        read -p "$1" yn
+        case $yn in
+            [Yy]* ) xrandr --output "$DEVICE" --mode "$WIDTH"x"$HEIGHT"_"$REFRESH".00 || {
+                        echo -e "\nERROR switching resolution with \"xrandr\"\n"
+                        return 1
+                    }; break;;
+            [Nn]* ) break;;
+            * ) echo "Please type \"y\" or \"n\"";;
+        esac
+    done
+}
+
+switchResAnyway() {
+    switchRes "Adding resolution failed. Try to switch to this resolution anyway? (y/n) "
+}
+
+switchResNow() {
+    switchRes "Switch to this resolution now? (y/n) "
 }
 
 # check arguments
@@ -49,25 +68,15 @@ REFRESH=$4
 
 createRes || {
     echo -e "\nERROR creating resolution with \"cvt\"\n"
+    switchResAnyway
     exit 1
 }
 
 addRes || {
     echo -e "\nERROR adding resolution with \"xrandr\"\n"
+    switchResAnyway
     exit 1
 }
 
-echo -e "\n"
-while true; do
-    read -p "Do you want to switch to this resolution now? (y/n) " yn
-    case $yn in
-        [Yy]* ) switchRes || {
-                    echo -e "\nERROR switching resolution with \"xrandr\"\n"
-                    return 1
-                }; break;;
-        [Nn]* ) break;;
-        * ) echo "Please type \"y\" or \"n\"";;
-    esac
-done
-
+switchResNow
 exit 0
