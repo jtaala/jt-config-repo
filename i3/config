@@ -299,6 +299,7 @@ for_window [class="Shutter"] floating enable
 for_window [title="Color Picker"] floating enable border none
 for_window [class="(?i)Kupfer"] border none
 for_window [class="(?i)Gnome-calculator"] floating enable
+for_window [class="(?i)Gcolor3"] floating enable border none
 
 # setting up dropdown terminal (using tilix)
 # NOTE: you'll need to disable CSD and set 'Application title' to '${activeTerminalTitle}' (appearance options)
