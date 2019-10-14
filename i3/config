@@ -138,7 +138,7 @@ bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
