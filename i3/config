@@ -310,8 +310,7 @@ bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
 bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
 # setting up dropdown Bitwarden
-for_window [class="Bitwarden"] sticky enable border none
-for_window [class="Bitwarden"] move scratchpad
+for_window [title="Bitwarden"] sticky enable border none
 exec --no-startup-id /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/bitwarden com.bitwarden.desktop --no-sandbox
 bindsym $mod+o [class="Bitwarden"] scratchpad show
 bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
