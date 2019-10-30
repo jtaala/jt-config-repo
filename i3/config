@@ -157,8 +157,8 @@ bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop
 bindsym $mod+Mod1+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
 
 # split orientations
-bindsym $mod+q layout toggle split;exec notify-send 'layout toggled'
-bindsym $mod+e layout toggle split;exec notify-send 'layout toggled'
+bindsym $mod+q layout splith;exec notify-send 'horizontal layout'
+bindsym $mod+e layout splitv;exec notify-send 'vertical layout'
 bindsym $mod+Shift+e split h; exec "$con_title"
 
 # change container layout (stacked, tabbed, toggle split)
