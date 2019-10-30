@@ -29,8 +29,9 @@ ${color2}rofi (windows) - ${color}mod+Tab
 ${color2}bmenu - ${color}mod+Ctrl+b
 ${color2}kill focused - ${color}mod+Shift+q
 
-${color2}toggle split direction - ${color}mod+[q|e]
 ${color2}container layout (tabbed) - ${color}mod+w
+${color2}container layout (horiz) - ${color}mod+q
+${color2}container layout (vert) - ${color}mod+e
 ${color2}container layout (stck) - ${color}mod+s
 ${color2}child container (tabbed) - ${color}mod+Shift+w
 ${color2}child container (vert) - ${color}mod+Shift+e
