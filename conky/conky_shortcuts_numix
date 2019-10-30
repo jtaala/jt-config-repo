@@ -33,9 +33,10 @@ ${color2}container layout (tabbed) - ${color}mod+w
 ${color2}container layout (horiz) - ${color}mod+q
 ${color2}container layout (vert) - ${color}mod+e
 ${color2}container layout (stck) - ${color}mod+s
-${color2}child container (tabbed) - ${color}mod+Shift+w
-${color2}child container (vert) - ${color}mod+Shift+e
-${color2}child container (stck) - ${color}mod+Shift+s
+${color2}child container (tabbed) - ${color}mod+Alt+w
+${color2}child container (horiz) - ${color}mod+Alt+q
+${color2}child container (vert) - ${color}mod+Alt+e
+${color2}child container (stck) - ${color}mod+Alt+s
 
 ${color2}tab with next window - ${color}mod+z
 ${color2}tab with previous window - ${color}mod+Shift+z
