@@ -203,6 +203,10 @@ bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+Mod1+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
 
+# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which compton recognises in focus-exclude array) 
+bindsym $mod+Mod1+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
+bindsym $mod+Mod1+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+
 # focus the parent container
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
