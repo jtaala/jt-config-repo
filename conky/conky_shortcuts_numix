@@ -53,6 +53,7 @@ ${color2}navigate workspaces - ${color}mod+Ctrl+arrows
 ${color2}toggle floating - ${color}mod+Shift+Space
 ${color2}toggle sticky - ${color}mod+Shift+s
 ${color2}window opacity up[dn] - ${color}mod+Alt+[x|z]
+${color2}window dim disable[enable] - ${color}mod+Alt+[a|d]
 
 ${color2}exit - ${color}mod+0
 ${color2}help - ${color}mod+Shift+h
