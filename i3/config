@@ -143,12 +143,16 @@ workspace_auto_back_and_forth no
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Set $con_title (embedded script) - used in split orientations below.
-# Two options for container title_format below (comment out one).  The first one leaves the shown title as i3 deault (e.g. %title).
-# The second option uses application window title (but colored and bolded) that was selected when the container was created.
+# Three options for container title_format below (comment out one).  
+# - the first option leaves the shown title as i3 deault (e.g. %title).
+# - the second option uses application window title (but colored and bolded) that was selected when the container was created.
+# - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
 # NOTE: requires xdotool
 #
 #set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
-set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
+#set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
+set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 CHILD CONTAINER (<tt><u>\\$mod+/</u></tt> to change title)</b></span>\\", focus child
+
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
