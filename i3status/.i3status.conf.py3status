@@ -65,8 +65,8 @@ external_script {
 }
 
 whatismyip {
-	format = "   {isp}\|{city}\|{countryCode} ({ip}) "
-	icon_on = ""
+	format = " 🖧 {isp}\|{city}\|{countryCode} ({ip}) "
+	icon_on = "🖧"
 	hide_when_offline = True
 	url_geo = "http://ip-api.com/json"
 }

@@ -143,12 +143,16 @@ workspace_auto_back_and_forth no
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Set $con_title (embedded script) - used in split orientations below.
-# Two options for container title_format below (comment out one).  The first one leaves the shown title as i3 deault (e.g. %title).
-# The second option uses application window title (but colored and bolded) that was selected when the container was created.
+# Three options for container title_format below (comment out one).  
+# - the first option leaves the shown title as i3 deault (e.g. %title).
+# - the second option uses application window title (but colored and bolded) that was selected when the container was created.
+# - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
 # NOTE: requires xdotool
 #
 #set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
-set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
+#set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
+set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 CHILD CONTAINER (<tt><u>\\$mod+/</u></tt> to change title)</b></span>\\", focus child
+
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
@@ -178,6 +182,8 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Mod1+f floating enable;move position 0px 0px;resize set 1920 1080;border none
+
 bindsym $mod+space focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
 
@@ -185,7 +191,7 @@ bindsym --whole-window $mod+button8 fullscreen toggle
 bindsym $mod+bracketright exec xrandr -s 1280x720
 bindsym $mod+backslash exec xrandr -s 1920x1080
 
-# toggle tiling / floating
+# toggle tiling / floating focus
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
@@ -202,6 +208,10 @@ bindsym $mod+Mod1+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+Mod1+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
+
+# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which compton recognises in focus-exclude array) 
+bindsym $mod+Mod1+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
+bindsym $mod+Mod1+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -314,7 +324,6 @@ bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resi
 for_window [title="Bitwarden"] sticky enable border none
 exec --no-startup-id bitwarden
 bindsym $mod+o [class="Bitwarden"] scratchpad show
-bindsym $mod+Mod1+o [class="Bitwarden"] move position 0px 0px; resize set 960 500
 
 # Application shortcuts
 bindsym $mod+Return exec tilix
@@ -401,30 +410,24 @@ bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
 #}
 
 # arrow key resizing without resize mode
-bindsym $mod+Mod1+Left resize shrink width 100 px or 20 ppt
-bindsym $mod+Mod1+Down resize grow height 100 px or 20 ppt
-bindsym $mod+Mod1+Up resize shrink height 100 px or 20 ppt
-bindsym $mod+Mod1+Right resize grow width 100 px or 20 ppt
+bindsym $mod+Mod1+Left resize shrink width 100 px or 10 ppt
+bindsym $mod+Mod1+Down resize grow height 100 px or 10 ppt
+bindsym $mod+Mod1+Up resize shrink height 100 px or 10 ppt
+bindsym $mod+Mod1+Right resize grow width 100 px or 10 ppt
 
 # hkjl resize
-bindsym $mod+Mod1+h resize shrink width 100 px or 20 ppt
-bindsym $mod+Mod1+j resize grow height 100 px or 20 ppt
-bindsym $mod+Mod1+k resize shrink height 100 px or 20 ppt
-bindsym $mod+Mod1+l resize grow width 100 px or 20 ppt
+bindsym $mod+Mod1+h resize shrink width 100 px or 10 ppt
+bindsym $mod+Mod1+j resize grow height 100 px or 10 ppt
+bindsym $mod+Mod1+k resize shrink height 100 px or 10 ppt
+bindsym $mod+Mod1+l resize grow width 100 px or 10 ppt
 
-bindsym $mod+Mod1+Shift+Left resize shrink width 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+Down resize grow height 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+Up resize shrink height 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+Right resize grow width 10 px or 2 ppt
-
-# hjkl resize (small)
-bindsym $mod+Mod1+Shift+h resize shrink width 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+j resize grow height 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+k resize shrink height 10 px or 2 ppt
-bindsym $mod+Mod1+Shift+l resize grow width 10 px or 2 ppt
+# predefined sizes (90/10)
+bindsym $mod+Mod1+u resize set width 10 ppt
+bindsym $mod+Mod1+i resize set width 50 ppt
+bindsym $mod+Mod1+o resize set width 90 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+Mod1+n floating enable;sticky enable;resize set 612 343;border none
+bindsym $mod+Mod1+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
 bindsym $mod+Mod1+m floating enable;sticky enable;resize set 791 70;border none
 
 # Color palette used for the terminal ( ~/.Xresources file )
