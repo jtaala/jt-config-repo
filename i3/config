@@ -151,7 +151,7 @@ workspace_auto_back_and_forth no
 #
 #set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
 #set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
-set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 CHILD CONTAINER (<tt><u>\\$mod+/</u></tt> to change title)</b></span>\\", focus child
+set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
 
 
 # dynamic renaming of parent container
