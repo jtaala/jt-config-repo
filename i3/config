@@ -149,9 +149,9 @@ workspace_auto_back_and_forth no
 # - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
 # NOTE: requires xdotool
 #
-#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
+set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
 #set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
-set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
+#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
 
 
 # dynamic renaming of parent container
@@ -322,7 +322,7 @@ bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resi
 
 # setting up dropdown Bitwarden
 for_window [title="Bitwarden"] sticky enable border none
-exec --no-startup-id bitwarden
+exec --no-startup-id com.bitwarden.desktop
 bindsym $mod+o [class="Bitwarden"] scratchpad show
 
 # Application shortcuts
@@ -425,6 +425,8 @@ bindsym $mod+Mod1+l resize grow width 100 px or 10 ppt
 bindsym $mod+Mod1+u resize set width 30 ppt
 bindsym $mod+Mod1+i resize set width 50 ppt
 bindsym $mod+Mod1+o resize set width 70 ppt
+bindsym $mod+Mod1+Shift+u resize set width 1 ppt
+bindsym $mod+Mod1+Shift+o resize set width 99 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
