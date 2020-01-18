@@ -425,6 +425,8 @@ bindsym $mod+Mod1+l resize grow width 100 px or 10 ppt
 bindsym $mod+Mod1+u resize set width 30 ppt
 bindsym $mod+Mod1+i resize set width 50 ppt
 bindsym $mod+Mod1+o resize set width 70 ppt
+bindsym $mod+Mod1+Shift+u resize set width 1 ppt
+bindsym $mod+Mod1+Shift+o resize set width 99 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+Mod1+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
