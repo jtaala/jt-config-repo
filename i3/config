@@ -147,9 +147,10 @@ workspace_auto_back_and_forth no
 # - the first option leaves the shown title as i3 deault (e.g. %title).
 # - the second option uses application window title (but colored and bolded) that was selected when the container was created.
 # - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
-# NOTE: requires xdotool
+# NOTE1: Comment out all options to use default container title_format.
+# NOTE2: requires xdotool.
 #
-set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
+#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
 #set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
 #set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
 
@@ -169,7 +170,7 @@ bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 # child container layouts (creates a child container from current selected application)
 bindsym $mod+Mod1+w split h; layout tabbed; exec "$con_title"
 bindsym $mod+Mod1+q split h; exec "$con_title"
-bindsym $mod+Mod1+e split h; layout splitv; exec "$con_title"
+bindsym $mod+Mod1+e split v; exec "$con_title"
 bindsym $mod+Mod1+s split h; layout stacking; exec "$con_title"
 
 # special combo for horizontal split of two windows next to each other
@@ -497,11 +498,11 @@ bindsym $mod+m bar mode toggle
 
 # class                   border  backgr. text    indic.   child_border
   client.focused          $bdrcolor $acolor $txtacolor $indcolor $acolor
-  client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor $bgucolor
-  client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor $bgucolor
-  client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
-  client.placeholder      #000000 #0c0c0c $txtacolor #000000
-  client.background       #2B2C2B
+  #client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor $bgucolor
+  #client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor $bgucolor
+  #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
+  #client.placeholder      #000000 #0c0c0c $txtacolor #000000
+  #client.background       #2B2C2B
 
 #############################
 ### settings for i3-gaps: ###
