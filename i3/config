@@ -2,8 +2,9 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # MISC. SETTERS
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+# Set mod key ($mod_next=<Alt>, Mod4=<Super>)
 set $mod Mod4
+set $mod_next Mod1
 set $border_no_name border pixel 5
 set $border_normal border normal 5
 
@@ -157,9 +158,9 @@ workspace_auto_back_and_forth no
 
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
-bindsym $mod+Mod1+slash focus parent, title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>", focus child
+bindsym $mod+$mod_next+slash focus parent, title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>", focus child
 bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"split h; layout tabbed\\"; $con_title; done"
-bindsym $mod+Mod1+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
+bindsym $mod+$mod_next+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
 
 # container layouts
 bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
@@ -168,10 +169,10 @@ bindsym $mod+e layout splitv;exec notify-send 'vertical layout'
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 
 # child container layouts (creates a child container from current selected application)
-bindsym $mod+Mod1+w split h; layout tabbed; exec "$con_title"
-bindsym $mod+Mod1+q split h; exec "$con_title"
-bindsym $mod+Mod1+e split v; exec "$con_title"
-bindsym $mod+Mod1+s split h; layout stacking; exec "$con_title"
+bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"
+bindsym $mod+$mod_next+q split h; exec "$con_title"
+bindsym $mod+$mod_next+e split v; exec "$con_title"
+bindsym $mod+$mod_next+s split h; layout stacking; exec "$con_title"
 
 # special combo for horizontal split of two windows next to each other
 bindsym $mod+x split h, layout splith, focus right, move left, focus left, exec "$con_title"
@@ -183,7 +184,7 @@ bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Mod1+f floating enable;move position 0px 0px;resize set 1920 1080;border none
+bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
 
 bindsym $mod+space focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
@@ -196,23 +197,23 @@ bindsym $mod+backslash exec xrandr -s 1920x1080
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+Mod1+space focus mode_toggle
+bindsym $mod+$mod_next+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart compton)
-bindsym $mod+Mod1+z exec transset-df -a --min 0.20 --dec 0.20
-bindsym $mod+Mod1+Shift+z exec transset-df -a --min 0.1 --dec 0.1
-bindsym $mod+Mod1+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
-bindsym $mod+Mod1+x exec transset-df -a --inc 0.20 --max 0.99
-bindsym $mod+Mod1+Shift+x exec transset-df -a --inc 0.1 --max 0.99
-bindsym $mod+Mod1+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
-bindsym $mod+Mod1+c exec --no-startup-id "pkill compton; compton -b"
+bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
+bindsym $mod+$mod_next+Shift+z exec transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
+bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
+bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
+bindsym $mod+$mod_next+c exec --no-startup-id "pkill compton; compton -b"
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which compton recognises in focus-exclude array) 
-bindsym $mod+Mod1+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
-bindsym $mod+Mod1+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
+bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -253,14 +254,14 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 
 # Move focused container to workspace
-bindsym $mod+Mod1+1 move container to workspace $ws1
-bindsym $mod+Mod1+2 move container to workspace $ws2
-bindsym $mod+Mod1+3 move container to workspace $ws3
-bindsym $mod+Mod1+4 move container to workspace $ws4
-bindsym $mod+Mod1+5 move container to workspace $ws5
-bindsym $mod+Mod1+6 move container to workspace $ws6
-bindsym $mod+Mod1+7 move container to workspace $ws7
-bindsym $mod+Mod1+8 move container to workspace $ws8
+bindsym $mod+$mod_next+1 move container to workspace $ws1
+bindsym $mod+$mod_next+2 move container to workspace $ws2
+bindsym $mod+$mod_next+3 move container to workspace $ws3
+bindsym $mod+$mod_next+4 move container to workspace $ws4
+bindsym $mod+$mod_next+5 move container to workspace $ws5
+bindsym $mod+$mod_next+6 move container to workspace $ws6
+bindsym $mod+$mod_next+7 move container to workspace $ws7
+bindsym $mod+$mod_next+8 move container to workspace $ws8
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -319,7 +320,7 @@ for_window [title="dropdown-terminal"] sticky enable border none
 for_window [title="dropdown-terminal"] move scratchpad
 exec --no-startup-id tilix -t dropdown-terminal
 bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
-bindsym $mod+Mod1+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
+bindsym $mod+$mod_next+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
 # setting up dropdown Bitwarden
 for_window [title="Bitwarden"] sticky enable border none
@@ -339,7 +340,7 @@ bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym Mod1+grave exec --no-startup-id skippy-xd --activate-window-picker
+bindsym $mod_next+grave exec --no-startup-id skippy-xd --activate-window-picker
 
 # shortcuts to often used applications
 bindsym $mod+u exec pamac-manager
@@ -349,9 +350,9 @@ bindsym $mod+bracketleft exec nautilus
 bindsym $mod+Shift+bracketleft exec gksu nautilus
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
-bindsym Mod1+Shift+space exec --no-startup-id smplayer -send-action pause
-bindsym Mod1+Shift+h exec --no-startup-id smplayer -send-action rewind1
-bindsym Mod1+Shift+l exec --no-startup-id smplayer -send-action forward1
+bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
+bindsym $mod_next+Shift+h exec --no-startup-id smplayer -send-action rewind1
+bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -411,27 +412,27 @@ bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
 #}
 
 # arrow key resizing without resize mode
-bindsym $mod+Mod1+Left resize shrink width 100 px or 10 ppt
-bindsym $mod+Mod1+Down resize grow height 100 px or 10 ppt
-bindsym $mod+Mod1+Up resize shrink height 100 px or 10 ppt
-bindsym $mod+Mod1+Right resize grow width 100 px or 10 ppt
+bindsym $mod+$mod_next+Left resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Down resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Up resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Right resize grow width 100 px or 10 ppt
 
 # hkjl resize
-bindsym $mod+Mod1+h resize shrink width 100 px or 10 ppt
-bindsym $mod+Mod1+j resize grow height 100 px or 10 ppt
-bindsym $mod+Mod1+k resize shrink height 100 px or 10 ppt
-bindsym $mod+Mod1+l resize grow width 100 px or 10 ppt
+bindsym $mod+$mod_next+h resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+j resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+k resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
 
 # predefined sizes (70/30)
-bindsym $mod+Mod1+u resize set width 30 ppt
-bindsym $mod+Mod1+i resize set width 50 ppt
-bindsym $mod+Mod1+o resize set width 70 ppt
-bindsym $mod+Mod1+Shift+u resize set width 1 ppt
-bindsym $mod+Mod1+Shift+o resize set width 99 ppt
+bindsym $mod+$mod_next+u resize set width 30 ppt
+bindsym $mod+$mod_next+i resize set width 50 ppt
+bindsym $mod+$mod_next+o resize set width 70 ppt
+bindsym $mod+$mod_next+Shift+u resize set width 1 ppt
+bindsym $mod+$mod_next+Shift+o resize set width 99 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+Mod1+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
-bindsym $mod+Mod1+m floating enable;sticky enable;resize set 791 70;border none
+bindsym $mod+$mod_next+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
+bindsym $mod+$mod_next+m floating enable;sticky enable;resize set 791 70;border none
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
