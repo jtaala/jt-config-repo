@@ -1,0 +1,8 @@
+" source defaults
+so /usr/share/vim/vim82/defaults.vim
+
+" my settings
+set number
+set nowrap
+
+com! Jsonify %!python -m json.tool
