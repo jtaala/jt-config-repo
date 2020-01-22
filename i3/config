@@ -169,18 +169,8 @@ bindsym $mod+e layout splitv;exec notify-send 'vertical layout'
 bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 
 # child container layouts (creates a child container from current selected application)
-bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"
-bindsym $mod+$mod_next+q split h; exec "$con_title"
-bindsym $mod+$mod_next+e split v; exec "$con_title"
-bindsym $mod+$mod_next+s split h; layout stacking; exec "$con_title"
-
-# special combo for horizontal split of two windows next to each other
-bindsym $mod+x split h, layout splith, focus right, move left, focus left, exec "$con_title"
-bindsym $mod+Shift+x split h, layout splith, focus left, move right, focus right, exec "$con_title"
-
-# special combo for container tabbed split of two windows next to each other
-bindsym $mod+z split h, layout tabbed, focus right, move left, focus left, exec "$con_title"
-bindsym $mod+Shift+z split h, layout tabbed, focus left, move right, focus right, exec "$con_title"
+bindsym $mod+z split h; exec "$con_title"
+bindsym $mod+x split v; exec "$con_title"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
