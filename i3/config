@@ -89,7 +89,7 @@ bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,dr
 ################################################################################################
 
 exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -334,11 +334,10 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod_next+grave exec --no-startup-id skippy-xd --activate-window-picker
 
 # shortcuts to often used applications
-bindsym $mod+u exec pamac-manager
-bindsym $mod+i exec chromium
-bindsym $mod+p exec putty
-bindsym $mod+bracketleft exec nautilus
-bindsym $mod+Shift+bracketleft exec gksu nautilus
+bindsym $mod_next+u exec pamac-manager
+bindsym $mod_next+i exec chromium
+bindsym $mod_next+p exec putty
+bindsym $mod_next+bracketleft exec nautilus
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
