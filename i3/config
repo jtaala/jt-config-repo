@@ -121,10 +121,10 @@ bindsym $mod+l focus right
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
-bindsym $mod+Ctrl+h exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
-bindsym $mod+Ctrl+j exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus down; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus down\\"; fi"
-bindsym $mod+Ctrl+k exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus up; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus up\\"; fi"
-bindsym $mod+Ctrl+l exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+#bindsym $mod+Ctrl+h exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+#bindsym $mod+Ctrl+j exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus down; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus down\\"; fi"
+#bindsym $mod+Ctrl+k exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus up; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus up\\"; fi"
+#bindsym $mod+Ctrl+l exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
