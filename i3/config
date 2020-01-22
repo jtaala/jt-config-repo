@@ -171,6 +171,7 @@ bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
 # child container layouts (creates a child container from current selected application)
 bindsym $mod+z split h; exec "$con_title"
 bindsym $mod+x split v; exec "$con_title"
+bindsym $mod+c layout toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
