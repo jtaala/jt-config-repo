@@ -3,8 +3,8 @@
 
 # MISC. SETTERS
 # Set mod key ($mod_next=<Alt>, Mod4=<Super>)
-set $mod Mod4
-set $mod_next Mod1
+set $mod Mod1
+set $mod_next Mod4
 set $border_no_name border pixel 5
 set $border_normal border normal 5
 
