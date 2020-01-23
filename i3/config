@@ -32,9 +32,9 @@ for_window [class=".*"] $border_no_name
 hide_edge_borders none
 
 # change borders
-bindsym $mod+v border none
-bindsym $mod+b $border_normal
-bindsym $mod+n $border_no_name
+#bindsym $mod_next+v border none
+#bindsym $mod_next+b $border_normal
+#bindsym $mod_next+n $border_no_name
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -64,7 +64,6 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id fcitx -d
 exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
-exec_always --no-startup-id "pkill skippy-xd; skippy-xd --start-daemon"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -72,8 +71,8 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 #exec --no-startup-id kupfer
-bindsym $mod+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
-bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
+bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
@@ -331,7 +330,6 @@ bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod_next+grave exec --no-startup-id skippy-xd --activate-window-picker
 
 # shortcuts to often used applications
 bindsym $mod_next+u exec pamac-manager
