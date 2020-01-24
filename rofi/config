@@ -3,8 +3,8 @@ rofi.theme: ~/.jt-config-repo/rofi/themes/lb-numix.rasi
 
 !keyboard binding changes: tab, shift+tab to switch modes
 rofi.kb-row-tab:    
-rofi.kb-row-up:         Up,Control+p,Super+k
-rofi.kb-row-down:       Down,Control+n,Super+j
-rofi.kb-mode-next:      Tab,Super+l
-rofi.kb-mode-previous:  ISO_Left_Tab,Super+h
-rofi.kb-accept-entry:   Return,Super+Return
+rofi.kb-row-up:         Up,Control+p,Alt+k
+rofi.kb-row-down:       Down,Control+n,Alt+j
+rofi.kb-mode-next:      Tab,Alt+l
+rofi.kb-mode-previous:  ISO_Left_Tab,Alt+h
+rofi.kb-accept-entry:   Return,Alt+Return
