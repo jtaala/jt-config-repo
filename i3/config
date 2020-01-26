@@ -66,12 +66,12 @@ exec --no-startup-id fcitx -d
 exec --no-startup-id alttab -mk Super_L -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 
 # kill focused window
-bindsym $mod_next+Shift+q kill
+bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 #exec --no-startup-id kupfer
-bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
+bindsym $mod+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
 # launch categorized menu
@@ -309,7 +309,7 @@ for_window [class="(?i)Gcolor3"] floating enable border none
 for_window [title="dropdown-terminal"] sticky enable border none
 for_window [title="dropdown-terminal"] move scratchpad
 exec --no-startup-id tilix -t dropdown-terminal
-bindsym $mod_next+Shift+Return [title="dropdown-terminal"] scratchpad show
+bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
 bindsym $mod+$mod_next+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
 # setting up dropdown Bitwarden
@@ -318,13 +318,10 @@ exec --no-startup-id com.bitwarden.desktop
 bindsym $mod_next+o [class="Bitwarden"] scratchpad show
 
 # Application shortcuts
-bindsym $mod_next+Return exec tilix
-bindsym $mod_next+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod_next+t exec --no-startup-id pkill compton
-bindsym $mod_next+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod_next+Ctrl+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Return exec tilix
+bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod_next+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # shortcuts to often used applications
 bindsym $mod_next+u exec pamac-manager
