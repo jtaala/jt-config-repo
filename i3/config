@@ -175,8 +175,6 @@ bindsym $mod+c layout toggle
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
-
-bindsym $mod+space focus parent; fullscreen toggle; focus child
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching
