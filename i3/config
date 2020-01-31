@@ -106,12 +106,6 @@ bindsym $mod+F9 exec sudo xbacklight +10
 
 # focus_follows_mouse no
 
-# change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # hjkl focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
