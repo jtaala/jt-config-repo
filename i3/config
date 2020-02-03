@@ -306,7 +306,7 @@ bindsym $mod+$mod_next+Return [title="dropdown-terminal"] move position 0px 0px;
 
 # setting up dropdown Bitwarden
 for_window [title="Bitwarden"] sticky enable border none
-exec --no-startup-id com.bitwarden.desktop
+exec --no-startup-id bitwarden
 bindsym $mod_next+o [class="Bitwarden"] scratchpad show
 
 # Application shortcuts
