@@ -31,6 +31,9 @@ for_window [class=".*"] $border_no_name
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
 
+# set popup behaviour during full screen <smart|ignore|leave_fullscreen>
+popup_during_fullscreen leave_fullscreen
+
 # change borders
 #bindsym $mod_next+v border none
 #bindsym $mod_next+b $border_normal
