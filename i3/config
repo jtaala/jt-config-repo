@@ -37,7 +37,8 @@ popup_during_fullscreen leave_fullscreen
 # change borders
 #bindsym $mod_next+v border none
 #bindsym $mod_next+b $border_normal
-#bindsym $mod_next+n $border_no_name
+bindsym $mod+period $border_no_name
+bindsym $mod+$mod_next+period $border_normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
