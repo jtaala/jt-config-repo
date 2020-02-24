@@ -11,22 +11,30 @@ set $border_normal border normal 5
 # Theme colors
 # set variable for main accent color
 set $acolor #eb564d
+
 # set other colors
-set $bdrcolor #4d4949
-set $bgicolor #eb564d
+set $bgicolor #eb7e4d
 set $bgucolor #6a6868
 set $txtacolor #F9FAF9
 set $txtucolor #bdbbbb
-set $indcolor #00ff00
+set $indcolor #4deb56
+
+# class                   border  backgr. text    indic.   child_border
+client.focused          $acolor $acolor $txtacolor $indcolor $acolor
+client.focused_inactive $bgicolor $bgicolor $txtacolor $indcolor $bgicolor
+client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
+#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
+#client.placeholder      #000000 #0c0c0c $txtacolor #000000
+#client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <stacking|tabbed>
-workspace_layout tabbed
+#workspace_layout tabbed
 
 # set preferred focus_wrapping <yes|no|force>
 focus_wrapping no
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -35,8 +43,6 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-#bindsym $mod_next+v border none
-#bindsym $mod_next+b $border_normal
 bindsym $mod+period $border_no_name
 bindsym $mod+$mod_next+period $border_normal
 
@@ -51,23 +57,23 @@ floating_modifier $mod
 # Autostart applications
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id copyq
+exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 exec --no-startup-id conky -c ~/.config/conky
 exec --no-startup-id conky -c ~/.config/conky_shortcuts
+exec --no-startup-id copyq
+exec --no-startup-id fcitx -d
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec --no-startup-id fcitx -d
-exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+#exec --no-startup-id blueman-applet
 #exec --no-startup-id manjaro-hello
 #exec --no-startup-id pamac-tray
-#exec --no-startup-id blueman-applet
-#exec_always --no-startup-id sbxkb
-#exec --no-startup-id start_conky_maia
 #exec --no-startup-id start_conky_green
+#exec --no-startup-id start_conky_maia
+#exec_always --no-startup-id sbxkb
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -77,6 +83,8 @@ bindsym $mod+Shift+q kill
 #bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+d exec --no-startup-id "xfce4-appfinder"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
+
+bindsym $mod+Tab exec --no-startup-id "i3-alt-tab --prev"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
@@ -257,39 +265,40 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 
 # Open specific applications in floating mode
 for_window [class=".*"] title_format " %title"
-for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="(?i)arandr"] floating enable
+for_window [class="(?i)Gcolor3"] floating enable border pixel 1
+for_window [class="(?i)Gnome-calculator"] floating enable
+for_window [class="(?i)Kupfer"] border none
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="(?i)xfce4-appfinder"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
+for_window [class="copyq"] floating enable border pixel 1
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Manjaro-hello"] floating enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Shutter"] floating enable
 for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="copyq"] floating enable border pixel 1
-for_window [class="Shutter"] floating enable
-for_window [title="Color Picker"] floating enable border none
-for_window [class="(?i)Kupfer"] border none
-for_window [class="(?i)Gnome-calculator"] floating enable
-for_window [class="(?i)Gcolor3"] floating enable border none
+for_window [title="About Pale Moon"] floating enable
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable
+for_window [title="MuseScore: Play Panel"] floating enable
+#for_window [class="(?i)virtualbox"] floating enable border normal
 #for_window [class="GParted"] floating enable border normal
 #for_window [class="Nitrogen"] floating enable sticky enable border normal
 #for_window [class="Oblogout"] fullscreen enable
 #for_window [class="Pamac-manager"] floating enable border normal
 #for_window [class="Pavucontrol"] floating enable
 #for_window [class="Skype"] floating enable border normal
-#for_window [class="(?i)virtualbox"] floating enable border normal
+#for_window [title="Color Picker"] floating enable border none
 
 # setting up dropdown terminal (using tilix)
 # NOTE: you'll need to disable CSD and set 'Application title' to '${activeTerminalTitle}' (appearance options)
@@ -299,11 +308,6 @@ exec --no-startup-id tilix -t dropdown-terminal
 bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show
 bindsym $mod+$mod_next+Return [title="dropdown-terminal"] move position 0px 0px; resize set 1920 600
 
-# setting up dropdown Bitwarden
-for_window [title="Bitwarden"] sticky enable border none
-exec --no-startup-id bitwarden
-bindsym $mod_next+o [class="Bitwarden"] scratchpad show
-
 # Application shortcuts
 bindsym $mod+Return exec tilix
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
@@ -311,10 +315,11 @@ bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # shortcuts to often used applications
-bindsym $mod_next+u exec pamac-manager
-bindsym $mod_next+i exec chromium
-bindsym $mod_next+p exec putty
-bindsym $mod_next+bracketleft exec nautilus
+bindsym $mod_next+u exec --no-startup-id pamac-manager
+bindsym $mod_next+i exec --no-startup-id chromium
+bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
+bindsym $mod_next+p exec --no-startup-id putty
+bindsym $mod_next+bracketleft exec --no-startup-id nautilus
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
@@ -444,8 +449,7 @@ bar {
 #   tray_output primary
 #   tray_output eDP1
 
-    bindsym button4 nop
-    bindsym button5 nop
+    bindsym button4 nop bindsym button5 nop
 #   font xft:URWGothic-Book 11
     strip_workspace_numbers yes
 
@@ -466,67 +470,59 @@ bar {
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-# class                   border  backgr. text    indic.   child_border
-client.focused          $bdrcolor $acolor $txtacolor $indcolor $acolor
-#client.focused_inactive $bdrcolor $bgicolor $txtacolor $indcolor $bgucolor
-#client.unfocused        $bdrcolor $bgucolor $txtucolor $indcolor $bgucolor
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
-#client.placeholder      #000000 #0c0c0c $txtacolor #000000
-#client.background       #2B2C2B
-
 #############################
 ### settings for i3-gaps: ###
 #############################
 
-# Set inner/outer gaps
-gaps inner 6
-gaps outer -6
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+## Set inner/outer gaps
+#gaps inner 6
+#gaps outer -6
+#
+## Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+## gaps inner|outer current|all set|plus|minus <px>
+## gaps inner all set 10
+## gaps outer all plus 5
+#
+## Smart gaps (gaps used if only more than one container on the workspace)
+##smart_gaps on
+#
+## Smart borders (draw borders around container only if it is not the only container on this workspace)
+## on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+#smart_borders on
+#
+## Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+#set $mode_gaps Gaps: (o) outer, (i) inner
+#set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+#set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+#bindsym $mod+Shift+g mode "$mode_gaps"
+#
+#mode "$mode_gaps" {
+#        bindsym o      mode "$mode_gaps_outer"
+#        bindsym i      mode "$mode_gaps_inner"
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+#mode "$mode_gaps_inner" {
+#        bindsym plus  gaps inner current plus 5
+#        bindsym minus gaps inner current minus 5
+#        bindsym 0     gaps inner current set 0
+#
+#        bindsym Shift+plus  gaps inner all plus 5
+#        bindsym Shift+minus gaps inner all minus 5
+#        bindsym Shift+0     gaps inner all set 0
+#
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+#mode "$mode_gaps_outer" {
+#        bindsym plus  gaps outer current plus 5
+#        bindsym minus gaps outer current minus 5
+#        bindsym 0     gaps outer current set 0
+#
+#        bindsym Shift+plus  gaps outer all plus 5
+#        bindsym Shift+minus gaps outer all minus 5
+#        bindsym Shift+0     gaps outer all set 0
+#
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
