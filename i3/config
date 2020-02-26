@@ -177,6 +177,12 @@ bindsym $mod+z split h; exec "$con_title"
 bindsym $mod+x split v; exec "$con_title"
 bindsym $mod+c layout toggle
 
+# alternate container layout bindsyms
+bindsym $mod+$mod_next+q split h; exec "$con_title"
+bindsym $mod+$mod_next+e split v; exec "$con_title"
+bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"; exec notify-send 'tabbed layout'
+bindsym $mod+$mod_next+s split h; layout stacked; exec "$con_title"; exec notify-send 'stacked layout'
+
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
