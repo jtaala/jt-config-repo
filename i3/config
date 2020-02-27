@@ -13,7 +13,7 @@ set $border_normal border normal 5
 set $acolor #eb564d
 
 # set other colors
-set $bgicolor #eb7e4d
+set $bgicolor #00979E
 set $bgucolor #6a6868
 set $txtacolor #F9FAF9
 set $txtucolor #bdbbbb
