@@ -335,10 +335,10 @@ bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Ctrl+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Ctrl+r restart
 
 bindsym $mod_next+l exec i3exit lock
 
