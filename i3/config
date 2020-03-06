@@ -74,6 +74,7 @@ exec_always --no-startup-id fix_xcursor
 #exec --no-startup-id start_conky_green
 #exec --no-startup-id start_conky_maia
 #exec_always --no-startup-id sbxkb
+exec --no-startup-id autotiling
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -82,8 +83,6 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
-
-bindsym $mod+Tab exec --no-startup-id "i3-alt-tab --prev"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
