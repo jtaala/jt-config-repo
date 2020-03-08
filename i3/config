@@ -34,7 +34,7 @@ client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
 focus_wrapping no
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -82,8 +82,6 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
-
-bindsym $mod+Tab exec --no-startup-id "i3-alt-tab --prev"
 
 # launch categorized menu
 #bindsym $mod+c exec --no-startup-id morc_menu
