@@ -147,20 +147,21 @@ workspace_auto_back_and_forth no
 
 # Set $con_title (embedded script) - used in split orientations below.
 # Three options for container title_format below (comment out one).  
-# - the first option leaves the shown title as i3 deault (e.g. %title).
+# - the first option give a simple oblique title format (which I prefer).
 # - the second option uses application window title (but colored and bolded) that was selected when the container was created.
 # - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
 # NOTE1: Comment out all options to use default container title_format.
 # NOTE2: requires xdotool.
 #
-#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 %title</b></span>\\", focus child, title_format \\" %title\\"
+set $con_title i3-msg focus parent, title_format \\"<span font_style='oblique'><tt> <u>%title</u></tt></span>\\", focus child
+#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b>📦 %title</b></span>\\", focus child
 #set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
-#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
+#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b>📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
 
 
 # dynamic renaming of parent container
-bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> 📦 $ANSWER</b></span>\\", focus child; fi"
-bindsym $mod+$mod_next+slash focus parent, title_format "<span foreground='#FEC196'><b> 📦 %title</b></span>", focus child
+bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"$<span font_style='oblique'> <u><tt>ANSWER</tt></u></span>\\", focus child; fi"
+bindsym $mod+$mod_next+slash focus parent, title_format "<span font_style='oblique'> <u><tt>%title</tt></u></span>", focus child
 bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"split h; layout tabbed\\"; $con_title; done"
 bindsym $mod+$mod_next+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
 
@@ -267,7 +268,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] title_format " %title"
+for_window [class=".*"] title_format "<span font_style='oblique'> %title</span>"
 for_window [class="(?i)arandr"] floating enable
 for_window [class="(?i)Gcolor3"] floating enable border pixel 1
 for_window [class="(?i)Gnome-calculator"] floating enable
