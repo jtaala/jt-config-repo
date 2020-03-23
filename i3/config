@@ -160,7 +160,7 @@ set $con_title i3-msg focus parent, title_format \\"<span font_style='oblique'><
 
 
 # dynamic renaming of parent container
-bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"$<span font_style='oblique'> <u><tt>ANSWER</tt></u></span>\\", focus child; fi"
+bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span font_style='oblique'> <u><tt>$ANSWER</tt></u></span>\\", focus child; fi"
 bindsym $mod+$mod_next+slash focus parent, title_format "<span font_style='oblique'> <u><tt>%title</tt></u></span>", focus child
 bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"split h; layout tabbed\\"; $con_title; done"
 bindsym $mod+$mod_next+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
