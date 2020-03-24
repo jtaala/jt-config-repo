@@ -1,0 +1,258 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# MISC. SETTERS
+# Set mod key ($mod_next=<Alt>, Mod4=<Super>)
+set $mod Mod1
+set $mod_next Mod4
+set $border_no_name border pixel 5
+set $border_normal border normal 5
+
+# Theme colors
+# set variable for main accent color
+set $acolor #eb564d
+
+# set other colors
+set $bgicolor #00979E
+set $bgucolor #6a6868
+set $txtacolor #F9FAF9
+set $txtucolor #bdbbbb
+set $indcolor #4deb56
+
+# class                   border  backgr. text    indic.   child_border
+client.focused          $acolor $acolor $txtacolor $indcolor $acolor
+client.focused_inactive $bgicolor $bgicolor $txtacolor $indcolor $bgicolor
+client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
+#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
+#client.placeholder      #000000 #0c0c0c $txtacolor #000000
+#client.background       #2B2C2B
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+for_window [class=".*"] $border_no_name
+
+# Hide borders <none|vertical|horizontal|both|smart>
+hide_edge_borders none
+
+# set popup behaviour during full screen <smart|ignore|leave_fullscreen>
+popup_during_fullscreen leave_fullscreen
+
+# change borders
+bindsym $mod+period $border_no_name
+bindsym $mod+$mod_next+period $border_normal
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Autostart applications
+exec --no-startup-id vmware-user
+exec --no-startup-id xsetroot -solid "#00979E"
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start program launcher
+
+# start dmenu (a program launcher)
+bindsym $mod_next+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# focus_follows_mouse no
+
+# hjkl focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left 100px
+bindsym $mod+Shift+Down move down 100px
+bindsym $mod+Shift+Up move up 100px
+bindsym $mod+Shift+Right move right 100px
+
+# hjkl move
+bindsym $mod+Shift+h move left 100px
+bindsym $mod+Shift+j move down 100px
+bindsym $mod+Shift+k move up 100px
+bindsym $mod+Shift+l move right 100px
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth no
+#bindsym $mod+b workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# container layouts
+bindsym $mod+w layout tabbed
+bindsym $mod+q layout splith
+bindsym $mod+e layout splitv
+bindsym $mod+s layout stacking
+
+# child container layouts (creates a child container from current selected application)
+bindsym $mod+z split h
+bindsym $mod+x split v
+bindsym $mod+c layout toggle
+
+# alternate container layout bindsyms
+bindsym $mod+$mod_next+q split h
+bindsym $mod+$mod_next+e split v
+bindsym $mod+$mod_next+w split h; layout tabbed
+bindsym $mod+$mod_next+s split h; layout stacked
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
+bindsym --whole-window $mod+button8 fullscreen toggle
+
+# toggle tiling / floating focus
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+$mod_next+space focus mode_toggle
+
+# toggle sticky
+bindsym $mod+Ctrl+s sticky toggle; exec notify-send 'sticky windows toggled'
+
+# focus the parent container
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+Tab move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Workspace names
+# to display names or symbols instead of plain workspace numbers you can use
+# something like: set $ws1 1:mail
+#                 set $ws2 2:
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+
+# Open applications on specific workspaces
+# assign [class="Thunderbird"] $ws1
+# assign [class="Pale moon"] $ws2
+# assign [class="Pcmanfm"] $ws3
+# assign [class="Skype"] $ws5
+
+# Open specific applications in floating mode
+for_window [class=".*"] title_format " %title"
+
+# Application shortcuts
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+# shortcuts to often used applications
+bindsym $mod_next+u exec --no-startup-id pamac-manager
+bindsym $mod_next+i exec --no-startup-id chromium
+bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
+bindsym $mod_next+p exec --no-startup-id putty
+bindsym $mod_next+bracketleft exec --no-startup-id nautilus
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# reload the configuration file
+bindsym $mod+Ctrl+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Ctrl+r restart
+
+bindsym $mod_next+l exec i3exit lock
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# arrow key resizing without resize mode
+bindsym $mod+$mod_next+Left resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Down resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Up resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Right resize grow width 100 px or 10 ppt
+
+# hkjl resize
+bindsym $mod+$mod_next+h resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+j resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+k resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
+
+# Start i3bar to display a workspace bar (plus the system information i3status if available)
+bar {
+    i3bar_command i3bar
+    status_command i3status
+    position bottom
+
+## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#   tray_output primary
+#   tray_output eDP1
+
+    bindsym button4 nop bindsym button5 nop
+#   font xft:URWGothic-Book 11
+    strip_workspace_numbers yes
+
+    colors {
+        background #4a4a4a
+        statusline #F9FAF9
+        separator  #454947
+
+#                      border  backgr. text
+        focused_workspace  #F9FAF9 $acolor #F9FAF9
+        active_workspace   #595B5B #353836 #FDF6E3
+        inactive_workspace #595B5B #283339 #EEE8D5
+        binding_mode       $acolor #2C2C2C #F9FAF9
+        urgent_workspace   $acolor #FDF6E3 #E5201D
+    }
+}
+
+# hide/unhide i3status bar
+bindsym $mod+m bar mode toggle
