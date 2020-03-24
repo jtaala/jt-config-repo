@@ -45,7 +45,7 @@ floating_modifier $mod
 
 # Autostart applications
 exec --no-startup-id vmware-user
-exec --no-startup-id xsetroot -solid "#00979E"
+exec --no-startup-id xsetroot -solid "#6a6868"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -178,7 +178,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # shortcuts to often used applications
 bindsym $mod_next+u exec --no-startup-id pamac-manager
-bindsym $mod_next+i exec --no-startup-id chromium
+bindsym $mod_next+i exec --no-startup-id firefox
 bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
 bindsym $mod_next+p exec --no-startup-id putty
 bindsym $mod_next+bracketleft exec --no-startup-id nautilus
