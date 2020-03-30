@@ -130,7 +130,6 @@ bindsym $mod+Shift+l move right 100px
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Set $con_title (embedded script) - used in split orientations below.
@@ -171,8 +170,8 @@ bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"; exec notify-
 bindsym $mod+$mod_next+s split h; layout stacked; exec "$con_title"; exec notify-send 'stacked layout'
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
+bindsym $mod+f exec "i3-msg fullscreen toggle, focus child"
+bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # several 16:9 resolutions binded for quick switching

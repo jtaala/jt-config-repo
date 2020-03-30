@@ -102,8 +102,8 @@ bindsym $mod+$mod_next+w split h; layout tabbed
 bindsym $mod+$mod_next+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-bindsym $mod+$mod_next+f floating enable;move position 0px 0px;resize set 1920 1080;border none
+bindsym $mod+f exec "i3-msg fullscreen toggle, focus child"
+bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
 bindsym --whole-window $mod+button8 fullscreen toggle
 
 # toggle tiling / floating focus
