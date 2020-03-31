@@ -10,7 +10,8 @@ set $border_normal border normal 5
 
 # Theme colors
 # set variable for main accent color
-set $acolor #eb564d
+#set $acolor #eb564d
+set $acolor #d64161
 
 # set other colors
 set $bgicolor #00979E
@@ -105,7 +106,6 @@ bindsym $mod+$mod_next+s split h; layout stacked
 # toggle fullscreen mode for the focused container
 bindsym $mod+f exec "i3-msg fullscreen toggle, focus child"
 bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
-bindsym --whole-window $mod+button8 fullscreen toggle
 
 # toggle tiling / floating focus
 bindsym $mod+Shift+space floating toggle

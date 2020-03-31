@@ -11,6 +11,7 @@ set $border_normal border normal 5
 # Theme colors
 # set variable for main accent color
 set $acolor #eb564d
+#set $acolor #d64161
 
 # set other colors
 set $bgicolor #00979E
