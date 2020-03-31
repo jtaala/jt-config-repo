@@ -74,6 +74,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Return exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
