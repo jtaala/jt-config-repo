@@ -10,8 +10,8 @@ set $border_normal border normal 5
 
 # Theme colors
 # set variable for main accent color
-set $acolor #eb564d
-#set $acolor #d64161
+#set $acolor #eb564d
+set $acolor #d64161
 
 # set other colors
 set $bgicolor #00979E
@@ -378,8 +378,6 @@ bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
 bindsym $mod+$mod_next+u resize set width 30 ppt
 bindsym $mod+$mod_next+i resize set width 50 ppt
 bindsym $mod+$mod_next+o resize set width 70 ppt
-bindsym $mod+$mod_next+Shift+u resize set width 1 ppt
-bindsym $mod+$mod_next+Shift+o resize set width 99 ppt
 
 # "netflix" and "spotify" modes
 bindsym $mod+$mod_next+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none

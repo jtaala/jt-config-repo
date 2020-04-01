@@ -210,6 +210,11 @@ bindsym $mod+$mod_next+j resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
 
+# predefined sizes (70/30)
+bindsym $mod+$mod_next+u resize set width 30 ppt
+bindsym $mod+$mod_next+i resize set width 50 ppt
+bindsym $mod+$mod_next+o resize set width 70 ppt
+
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     i3bar_command i3bar
