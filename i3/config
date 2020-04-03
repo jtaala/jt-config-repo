@@ -367,12 +367,20 @@ bindsym $mod+$mod_next+Left resize shrink width 100 px or 10 ppt
 bindsym $mod+$mod_next+Down resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+Up resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Right resize grow width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+Left resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+Down resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+Up resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+Right resize grow width 50 px or 5 ppt
 
 # hkjl resize
 bindsym $mod+$mod_next+h resize shrink width 100 px or 10 ppt
 bindsym $mod+$mod_next+j resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+h resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+j resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+k resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+l resize grow width 50 px or 5 ppt
 
 # predefined sizes (70/30)
 bindsym $mod+$mod_next+u resize set width 30 ppt
