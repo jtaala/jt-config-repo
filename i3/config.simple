@@ -199,29 +199,29 @@ bindsym $mod_next+l exec i3exit lock
 bindsym $mod+0 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # arrow key resizing without resize mode
-bindsym $mod+$mod_next+Left resize shrink width 100 px or 10 ppt
-bindsym $mod+$mod_next+Down resize grow height 100 px or 10 ppt
-bindsym $mod+$mod_next+Up resize shrink height 100 px or 10 ppt
-bindsym $mod+$mod_next+Right resize grow width 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Left resize shrink width 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+Down resize grow height 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+Up resize shrink height 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+Right resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+Left resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+Down resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+Up resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+Right resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+Left resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+Down resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+Up resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+Right resize grow width 100 px or 10 ppt
 
 # hkjl resize
-bindsym $mod+$mod_next+h resize shrink width 100 px or 10 ppt
-bindsym $mod+$mod_next+j resize grow height 100 px or 10 ppt
-bindsym $mod+$mod_next+k resize shrink height 100 px or 10 ppt
-bindsym $mod+$mod_next+l resize grow width 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+h resize shrink width 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+j resize grow height 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+k resize shrink height 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+l resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+h resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+j resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+k resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+l resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+h resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+j resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+k resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+l resize grow width 100 px or 10 ppt
 
 # predefined sizes (70/30)
-bindsym $mod+$mod_next+u resize set width 30 ppt
+bindsym $mod+$mod_next+u resize set width 40 ppt
 bindsym $mod+$mod_next+i resize set width 50 ppt
-bindsym $mod+$mod_next+o resize set width 70 ppt
+bindsym $mod+$mod_next+o resize set width 60 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
