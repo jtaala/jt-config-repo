@@ -172,7 +172,7 @@ bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"; exec notify-
 bindsym $mod+$mod_next+s split h; layout stacked; exec "$con_title"; exec notify-send 'stacked layout'
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f exec "i3-msg fullscreen toggle, focus child"
+bindsym $mod+f fullscreen toggle
 bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
 bindsym --whole-window $mod+button8 fullscreen toggle
 
