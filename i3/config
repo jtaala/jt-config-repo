@@ -58,7 +58,7 @@ floating_modifier $mod
 # Autostart applications
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+#exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 exec --no-startup-id conky -c ~/.config/conky
 exec --no-startup-id conky -c ~/.config/conky_shortcuts
 exec --no-startup-id copyq
@@ -390,6 +390,21 @@ bindsym $mod+$mod_next+o resize set width 60 ppt
 # "netflix" and "spotify" modes
 bindsym $mod+$mod_next+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
 bindsym $mod+$mod_next+m floating enable;sticky enable;resize set 791 70;border none
+
+# redshift modes
+bindsym $mod_next+r mode "$mode_redshift"
+set $mode_redshift Set colour temperature: (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
+mode "$mode_redshift" {
+    bindsym r exec --no-startup-id "redshift -x", mode "default"
+    bindsym 2 exec --no-startup-id "redshift -P -O 2500", mode "default"
+    bindsym 3 exec --no-startup-id "redshift -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "redshift -P -O 4000", mode "default"
+    bindsym 5 exec --no-startup-id "redshift -P -O 5000", mode "default"
+
+    # exit mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
