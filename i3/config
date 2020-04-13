@@ -393,18 +393,21 @@ bindsym $mod+$mod_next+m floating enable;sticky enable;resize set 791 70;border 
 
 # redshift modes
 bindsym $mod_next+r mode "$mode_redshift"
-set $mode_redshift Set colour temperature: (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
+set $mode_redshift Set colour temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
+set $kill_redshift pgrep redshift | xargs kill -9;
 mode "$mode_redshift" {
-    bindsym r exec --no-startup-id "redshift -x", mode "default"
-    bindsym 2 exec --no-startup-id "redshift -P -O 2500", mode "default"
-    bindsym 3 exec --no-startup-id "redshift -P -O 3000", mode "default"
-    bindsym 4 exec --no-startup-id "redshift -P -O 4000", mode "default"
-    bindsym 5 exec --no-startup-id "redshift -P -O 5000", mode "default"
+    bindsym a exec --no-startup-id "$kill_redshift redshift -P", mode "default"
+    bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
+    bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
 
     # exit mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
