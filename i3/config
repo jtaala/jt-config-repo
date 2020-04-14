@@ -46,6 +46,7 @@ popup_during_fullscreen leave_fullscreen
 # change borders
 bindsym $mod+period $border_no_name
 bindsym $mod+$mod_next+period $border_normal
+bindsym $mod+$mod_nextShift+period border none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -388,8 +389,9 @@ bindsym $mod+$mod_next+i resize set width 50 ppt
 bindsym $mod+$mod_next+o resize set width 60 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+$mod_next+n floating enable;sticky enable;move position 1300px 708px resize set 612 343;border none
-bindsym $mod+$mod_next+m floating enable;sticky enable;resize set 791 70;border none
+bindsym $mod+$mod_next+n floating enable;sticky enable; move position 1300px 708px resize set 612 343;border none
+bindsym $mod+$mod_next+m floating enable;sticky enable; resize set 791 70;border none
+bindsym $mod+$mod_next+Shift+m resize set height 64; border none
 
 # redshift modes
 bindsym $mod_next+r mode "$mode_redshift"
