@@ -185,7 +185,7 @@ bindsym $mod+backslash exec xrandr -s 1920x1080
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+$mod_next+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
