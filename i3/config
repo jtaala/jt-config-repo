@@ -288,7 +288,7 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [title="alsamixer"] floating enable border pixel 1
 
 # Application shortcuts
-bindsym $mod+Return exec tilix
+bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
