@@ -1,0 +1,21 @@
+# Notes (see man tigrc for more info):
+#  !  Run the command in the foreground with output shown.
+#  @  Run the command in the background with no output.
+#  +  Run the command synchronously, and echo the first line of output to the status bar.
+#  ?  Prompt the user before executing the command.
+#  <  Exit Tig after executing the command.
+#  >  Re-open Tig instantly in the last displayed view after executing the command.
+
+bind generic . @git stage .
+bind generic ; ?git reset --hard
+
+bind generic = !git commit
+bind generic + ?git commit --amend
+
+bind generic \ ?git push
+bind generic | ?git push --force
+
+bind generic , >git diff %(commit)..%(head)
+
+bind generic ` !git checkout %(branch)
+bind generic M ?git merge %(branch) --no-ff
