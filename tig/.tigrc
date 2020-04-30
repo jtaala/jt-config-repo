@@ -15,6 +15,12 @@ bind generic + ?git commit --amend
 bind generic \ !git push
 bind generic | ?git push --force
 
+# It's recommended to change your git pager settings so you see a clear screen pager
+# (i.e. don't see previous diffs on screen).  You can do this for your global git
+# config by executing:
+#
+# git config --global core.pager 'less -+$LESS -R'
+#
 bind generic , >git diff %(commit)..%(head)
 
 bind generic ` !git checkout %(branch)
