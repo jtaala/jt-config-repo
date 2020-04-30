@@ -87,8 +87,8 @@ net_rate {
 }
 
 battery_level {
-	cache_timeout = 30
-	measurement_mode = "sys"
+	cache_timeout = 5
+	measurement_mode = "acpi"
 	hide_when_full = "True"
 	hide_seconds = "True"
 	blocks = ""
@@ -97,8 +97,8 @@ battery_level {
 }
 
 tztime local {
-        # format = "%Y-%m-%d %H:%M:%S"
-        format = " %d/%m %H:%M:%S"
+        format = "%Y-%m-%d %H:%M:%S"
+        #format = " %d/%m %H:%M:%S"
 }
 
 path_exists VPN {
