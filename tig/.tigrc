@@ -12,7 +12,7 @@ bind generic ; ?git reset --hard
 bind generic = !git commit
 bind generic + ?git commit --amend
 
-bind generic \ ?git push
+bind generic \ !git push
 bind generic | ?git push --force
 
 bind generic , >git diff %(commit)..%(head)
