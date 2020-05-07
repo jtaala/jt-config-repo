@@ -68,6 +68,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec_always --no-startup-id pkill compton; compton -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -266,7 +267,6 @@ for_window [class="(?i)Gnome-calculator"] floating enable
 for_window [class="(?i)Kupfer"] border none
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="(?i)arandr"] floating enable
-for_window [class="(?i)xfce4-appfinder"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
@@ -399,7 +399,7 @@ bindsym $mod+$mod_next+Shift+m resize set height 64; border none
 # redshift modes
 bindsym $mod_next+r mode "$mode_redshift"
 set $mode_redshift Set colour temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
-set $kill_redshift pgrep redshift | xargs kill -9;
+set $kill_redshift pkill -9 redshift;
 mode "$mode_redshift" {
     bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
     bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
