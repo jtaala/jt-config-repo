@@ -69,7 +69,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
-exec_always --no-startup-id pkill compton; compton -b
+exec_always --no-startup-id pkill compton; sleep 1; compton -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id optimus-manager-qt
