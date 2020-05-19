@@ -7,7 +7,7 @@
 #  >  Re-open Tig instantly in the last displayed view after executing the command.
 
 bind generic . @git stage .
-bind generic ; ?git reset --hard
+bind generic ; ?git reset --hard %(commit)
 
 bind generic = !git commit
 bind generic + ?git commit --amend
