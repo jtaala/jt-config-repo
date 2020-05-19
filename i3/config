@@ -70,7 +70,8 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id polychromatic-tray-applet
-exec_always --no-startup-id pkill compton; sleep 1; compton -b
+set $picom_start "pkill picom; sleep 1; picom -b"
+exec_always --no-startup-id $picom_start
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id optimus-manager-qt
@@ -194,16 +195,16 @@ bindsym $mod+space focus mode_toggle
 # toggle sticky
 bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
 
-# window transparency adjustment (and alias to restart compton)
+# window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
 bindsym $mod+$mod_next+Shift+z exec transset-df -a --min 0.1 --dec 0.1
 bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
 bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
-bindsym $mod+$mod_next+c exec --no-startup-id "pkill compton; compton -b"
+bindsym $mod+$mod_next+c exec --no-startup-id $picom_start
 
-# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which compton recognises in focus-exclude array) 
+# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array) 
 bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
 bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
 
@@ -302,7 +303,6 @@ for_window [title="alsamixer"] floating enable border pixel 1
 
 # Application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
