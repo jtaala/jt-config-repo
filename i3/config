@@ -161,10 +161,10 @@ bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop
 bindsym $mod+$mod_next+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
 
 # container layouts
-bindsym $mod+w layout tabbed;exec notify-send 'tabbed layout'
-bindsym $mod+q layout splith;exec notify-send 'horizontal layout'
-bindsym $mod+e layout splitv;exec notify-send 'vertical layout'
-bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
+bindsym $mod+w layout tabbed
+bindsym $mod+q layout splith
+bindsym $mod+e layout splitv
+bindsym $mod+s layout stacking
 
 # child container layouts (creates a child container from current selected application)
 bindsym $mod+z split h; exec "$con_title"
@@ -174,8 +174,8 @@ bindsym $mod+c layout toggle
 # alternate container layout bindsyms
 bindsym $mod+$mod_next+q split h; exec "$con_title"
 bindsym $mod+$mod_next+e split v; exec "$con_title"
-bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"; exec notify-send 'tabbed layout'
-bindsym $mod+$mod_next+s split h; layout stacked; exec "$con_title"; exec notify-send 'stacked layout'
+bindsym $mod+$mod_next+w split h; layout tabbed; exec "$con_title"
+bindsym $mod+$mod_next+s split h; layout stacked; exec "$con_title"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
