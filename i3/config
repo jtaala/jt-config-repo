@@ -119,7 +119,8 @@ bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 bindsym $mod+m exec "i3-msg \\"move left, focus up, move right, focus left\\""
-bindsym $mod+Shift+m exec "i3-msg \\"focus right, move left; focus up; move right\\""
+bindsym $mod+Shift+m exec "i3-msg \\"focus right, move left, focus up, move right\\""
+bindsym $mod+comma exec "i3-msg \\"focus up, move right, focus up, focus left\\""
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
