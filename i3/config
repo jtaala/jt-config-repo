@@ -463,7 +463,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+n bar mode toggle
+bindsym $mod+Control+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###
