@@ -106,7 +106,8 @@ bindsym $mod+F2 exec amixer -qc 0 set Master 2db-; exec notify-send 'volume decr
 bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-bindsym $mod+F8 exec sudo xbacklight -10
+#bindsym $mod+F8 exec sudo xbacklight -10
+bindsym $mod+F8 exec "sleep 1; xset dpms force off"
 bindsym $mod+F9 exec sudo xbacklight +10
 
 # focus_follows_mouse no
@@ -118,7 +119,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-bindsym $mod+m exec "i3-msg \\"move left; focus up; move right; focus left\\""
+bindsym $mod+m exec "i3-msg \\"move left, focus up, move right, focus left\\""
+bindsym $mod+Shift+m exec "i3-msg \\"focus right, move left, focus up, move right, focus left\\""
+bindsym $mod+comma exec "i3-msg \\"focus up, move right, focus up, focus left\\""
+bindsym $mod+Shift+comma exec "i3-msg \\"focus up, move right, focus left\\""
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
@@ -461,7 +465,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+n bar mode toggle
+bindsym $mod+Control+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###
