@@ -78,8 +78,8 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-bindsym $mod+m exec "i3-msg \\"move left, focus up, move right, focus left\\""
-bindsym $mod+Shift+m exec "i3-msg \\"focus right, move left, focus up, move right, focus left\\""
+bindsym $mod+m exec "i3-msg \\"focus left, move right, focus up, move left\\""
+bindsym $mod+Shift+m exec "i3-msg \\"move right, focus up, move left\\""
 bindsym $mod+comma exec "i3-msg \\"focus up, move right, focus up, focus left\\""
 bindsym $mod+Shift+comma exec "i3-msg \\"focus up, move right, focus left\\""
 
