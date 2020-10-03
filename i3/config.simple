@@ -82,6 +82,7 @@ bindsym $mod+m exec "i3-msg focus parent, focus right"
 bindsym $mod+comma exec "i3-msg focus up, move right, focus up, focus left"
 # NOTE: requires jq
 bindsym $mod+Shift+m exec "CURR=$(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout'); i3-msg layout stacked, move left, focus up, focus right, layout $CURR, focus parent, focus left, move right, focus left"
+bindsym $mod+Shift+n exec "CURR=$(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout'); i3-msg layout stacked, move left, focus up, move right, focus up, layout $CURR, focus parent, focus left"
 bindsym $mod+Shift+comma exec "i3-msg focus right; CURR=$(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout'); i3-msg layout stacked, move left, focus up, focus right, layout $CURR, focus parent, focus left, move right, focus left"
 
 # move focused window
