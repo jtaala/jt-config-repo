@@ -29,7 +29,7 @@ client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout stacking
+workspace_layout tabbed
 
 # set preferred focus_wrapping <yes|no|force>
 #focus_wrapping no

@@ -29,7 +29,7 @@ client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout stacking
+workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_no_name
