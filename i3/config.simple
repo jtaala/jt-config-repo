@@ -29,7 +29,7 @@ client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout stacking
+workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_no_name
@@ -78,10 +78,13 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-bindsym $mod+m exec "i3-msg \\"focus left, move right, focus up, move left\\""
-bindsym $mod+Shift+m exec "i3-msg \\"move right, focus up, move left\\""
-bindsym $mod+comma exec "i3-msg \\"focus up, move right, focus up, focus left\\""
-bindsym $mod+Shift+comma exec "i3-msg \\"focus up, move right, focus left\\""
+# NOTE: requires jq
+set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+bindsym $mod+m exec "i3-msg focus parent, focus right"
+bindsym $mod+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, move right, focus up, focus left, layout $MST"
+bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
+bindsym $mod+Shift+n exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
+bindsym $mod+Shift+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, move up, focus down, layout $STK, focus parent, focus left, layout MST"
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
@@ -96,7 +99,7 @@ bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth no
+workspace_auto_back_and_forth yes
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
@@ -142,8 +145,10 @@ bindsym $mod+Shift+Tab move scratchpad
 bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+ctrl+right workspace next
+bindsym $mod+ctrl+left workspace prev
+bindsym $mod+ctrl+l workspace next
+bindsym $mod+ctrl+h workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
