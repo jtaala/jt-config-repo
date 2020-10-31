@@ -62,8 +62,9 @@ bindsym $mod+Shift+q kill
 # start program launcher
 
 # start dmenu (a program launcher)
-bindsym $mod_next+d exec dmenu_run
-bindsym $mod_next+Return exec dmenu_run
+bindsym $mod_next+d exec dmenu_run -sb "$acolor"
+bindsym $mod_next+Return exec dmenu_run "$acolor"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
