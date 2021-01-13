@@ -137,7 +137,7 @@ bindsym $mod+Ctrl+s sticky toggle; exec notify-send 'sticky windows toggled'
 
 # focus the parent container
 bindsym $mod+a focus parent
-bindsym $mod+Shift+a focus child
+bindsym $mod+Escape focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+Tab move scratchpad
