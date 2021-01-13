@@ -79,13 +79,14 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires jq
+# NOTE: requires 'jq'
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
 bindsym $mod+m exec "i3-msg focus parent, focus left"
-bindsym $mod+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, move right, focus up, focus left, layout $MST"
 bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
-bindsym $mod+Shift+n exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
-bindsym $mod+Shift+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, move up, focus down, layout $STK, focus parent, focus left, layout MST"
+bindsym $mod+Shift+n exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST"
+#bindsym $mod+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, move right, focus up, focus left, layout $MST"
+#bindsym $mod+Shift+comma exec "MST=$get_layout; i3-msg layout stacked, focus up, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, move up, focus down, layout $STK, focus parent, focus left, layout $MST"
+
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
