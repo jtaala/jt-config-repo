@@ -10,7 +10,6 @@ set $border_normal border normal 5
 
 # Theme colors
 # set variable for main accent color
-#set $acolor #eb564d
 set $acolor #d64161
 
 # set other colors
@@ -46,7 +45,7 @@ popup_during_fullscreen leave_fullscreen
 # change borders
 bindsym $mod+period $border_no_name
 bindsym $mod+$mod_next+period $border_normal
-bindsym $mod+$mod_nextShift+period border none
+bindsym $mod+$mod_next+Shift+period border none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
