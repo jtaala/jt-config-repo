@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=eclipse
+Comment=Eclipse IDE
+Icon=/home/jay/eclipse/icon.xpm
+Exec=bash -ic "/home/jay/eclipse/eclipse"
+Terminal=false
+StartupNotify=false
+Path=
