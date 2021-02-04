@@ -1,5 +1,5 @@
 !theme location
-rofi.theme: ~/.jt-config-repo/rofi/themes/lb-custom.rasi
+rofi.theme: ~/.config/rofi/themes/lb-custom.rasi
 
 !keyboard binding changes: tab, shift+tab to switch modes
 rofi.kb-row-tab:    
