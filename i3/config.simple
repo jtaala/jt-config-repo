@@ -13,8 +13,8 @@ set $border_normal border normal 3
 set $acolor #d64161
 
 # set other colors
-set $bgicolor #6a6868
-set $bgucolor #2A3233
+set $bgicolor #525859
+set $bgucolor #323838
 set $txtacolor #F9FAF9
 set $txtucolor #bdbbbb
 set $indcolor #4deb56
@@ -83,9 +83,9 @@ bindsym $mod+l focus right
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
 bindsym $mod+m exec "i3-msg focus parent, focus left"
 bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
-bindsym $mod+Shift+n exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
 bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
 bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
+bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
 
 
 # move focused window
@@ -147,10 +147,10 @@ bindsym $mod+Shift+Tab move scratchpad
 bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+ctrl+right workspace next
-bindsym $mod+ctrl+left workspace prev
-bindsym $mod+ctrl+l workspace next
-bindsym $mod+ctrl+h workspace prev
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
