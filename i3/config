@@ -74,7 +74,9 @@ exec_always --no-startup-id $picom_start
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id optimus-manager-qt
-exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config ~/.i3/i3wsr.toml
+exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
+exec_always --no-startup-id i3-auto-layout
+exec_always --no-startup-id i3-focus-last server
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -164,7 +166,6 @@ workspace_auto_back_and_forth yes
 #set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
 #set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b>📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
 
-
 # dynamic renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change %title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span> <b><tt>$ANSWER</tt></b></span>\\", focus child; fi"
 bindsym $mod+$mod_next+slash focus parent, title_format "<span font_style='oblique'> <u><tt>%title</tt></u></span>", focus child
@@ -201,10 +202,14 @@ bindsym $mod+backslash exec xrandr -s 1920x1080
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+Tab focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
+
+# focus last window
+# requires (https://crates.io/crates/i3-focus-last)
+bindsym $mod+Tab exec i3-focus-last
 
 # window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
