@@ -1,0 +1,18 @@
+[general]
+separator = " "
+default_icon = ""
+
+[icons]
+"Brave-browser" = ""
+"Genymotion Player" = ""
+Alacritty = ""
+Pamac-manager = ""
+Signal = ""
+Slack = ""
+Termite = ""
+Thunderbird = ""
+firefox = ""
+
+[options]
+no_names = true
+remove_duplicates = false

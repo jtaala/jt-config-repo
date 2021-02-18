@@ -94,7 +94,7 @@ battery all {
         integer_battery_capacity = true
         status_chr = "⚡"
         status_bat = ""
-        status_unk = "?"
+        status_unk = ""
         status_full = ""
         low_threshold = 15
         threshold_type = time
