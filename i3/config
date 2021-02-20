@@ -75,7 +75,6 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id optimus-manager-qt
 exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
-exec_always --no-startup-id i3-auto-layout
 exec_always --no-startup-id i3-focus-last server
 
 # kill focused window
@@ -202,7 +201,7 @@ bindsym $mod+backslash exec xrandr -s 1920x1080
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
