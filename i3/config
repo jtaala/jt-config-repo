@@ -56,26 +56,27 @@ font xft:BitstreamVeraSans-Roman 11
 floating_modifier $mod
 
 # Autostart applications
+#exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
-exec --no-startup-id conky -c ~/.config/conky
-exec --no-startup-id conky -c ~/.config/conky_shortcuts
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id polychromatic-tray-applet
-set $picom_start "pkill picom; sleep 1; picom -b"
+exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id $picom_start
+exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec_always --no-startup-id conky -c ~/.config/conky
+exec_always --no-startup-id conky -c ~/.config/conky_shortcuts
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id optimus-manager-qt
-exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
 exec_always --no-startup-id i3-focus-last server
+exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
+exec_always --no-startup-id optimus-manager-qt
+exec_always --no-startup-id xfce4-power-manager
+set $picom_start "pkill picom; sleep 1; picom -b"
 
 # kill focused window
 bindsym $mod+Shift+q kill

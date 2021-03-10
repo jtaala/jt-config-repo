@@ -28,6 +28,7 @@ Vmware = ""
 "Uget-gtk" = ""
 "Font-manager" = ""
 Spotify = ""
+"Timeshift-gtk" = ""
 
 [options]
 no_names = true
