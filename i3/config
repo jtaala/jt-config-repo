@@ -69,8 +69,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
 exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
-exec_always --no-startup-id conky -c ~/.config/conky
-exec_always --no-startup-id conky -c ~/.config/conky_shortcuts
+exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id i3-focus-last server
