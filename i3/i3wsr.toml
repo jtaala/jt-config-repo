@@ -4,6 +4,7 @@ default_icon = ""
 
 [icons]
 "Brave-browser" = ""
+"Chromium-browser" = ""
 "Font-manager" = ""
 "Genymotion Player" = ""
 "Org.gnome.Nautilus" = ""
