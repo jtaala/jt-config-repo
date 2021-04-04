@@ -219,9 +219,13 @@ bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 bindsym $mod+$mod_next+c exec --no-startup-id $picom_start
 
-# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array) 
+# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
 bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
-bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+bindsym $mod+$mod_next+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+
+# window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
+bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
+bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
 
 # focus the parent container
 bindsym $mod+a focus parent
