@@ -1,0 +1,8 @@
+#!/bin/bash
+for d in $(ls -d */); do
+        echo -e "\n==> pulling $d"
+        cd $d; dc pull;
+        echo -e "==> up $d"
+        dc up -d;
+        cd ..;
+done

@@ -2,9 +2,16 @@
 separator = " "
 default_icon = ""
 
+[options]
+no_names = true
+remove_duplicates = false
+
 [icons]
+
 "Brave-browser" = ""
 "Chromium-browser" = ""
+"Daedalus Mainnet" = ""
+"Deluge-gtk" = ""
 "Font-manager" = ""
 "Genymotion Player" = ""
 "Org.gnome.Nautilus" = ""
@@ -30,9 +37,6 @@ Thunderbird = ""
 Vmware = ""
 Wfica = ""
 code-oss = ""
+mpv = ""
 okular = ""
 zoom = ""
-
-[options]
-no_names = true
-remove_duplicates = false
