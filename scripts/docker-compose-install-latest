@@ -1,0 +1,6 @@
+#!/bin/bash
+
+VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+wget https://github.com/docker/compose/releases/download/$VERSION/docker-compose-Linux-x86_64 -O docker-compose
+mv docker-compose $HOME/.local/bin
+chmod +x $HOME/.local/bin/docker-compose
