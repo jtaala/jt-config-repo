@@ -1,0 +1,10 @@
+configuration {
+	theme: "~/.config/rofi/themes/lb-custom.rasi";
+	font: "BitstreamVeraSans-Roman 16";
+	kb-accept-entry: "Return,Super+Return";
+	kb-mode-next: "Tab,Super+l";
+	kb-mode-previous: "ISO_Left_Tab,Super+h";
+	kb-row-up: "Up,Control+p,Super+k";
+	kb-row-down: "Down,Control+n,Super+j";
+	kb-row-tab: "";
+}
