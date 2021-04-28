@@ -113,16 +113,11 @@ bindsym $mod+q layout splith
 bindsym $mod+e layout splitv
 bindsym $mod+s layout stacking
 
-# child container layouts (creates a child container from current selected application)
-bindsym $mod+z split h
-bindsym $mod+x split v
-bindsym $mod+c layout toggle
-
-# alternate container layout bindsyms
-bindsym $mod+$mod_next+q split h
-bindsym $mod+$mod_next+e split v
-bindsym $mod+$mod_next+w split h; layout tabbed
-bindsym $mod+$mod_next+s split h; layout stacked
+# child container layout bindsyms (creates a child container from currently select window)
+bindsym $mod+$mod_next+q split h; focus child
+bindsym $mod+$mod_next+e split v; focus child
+bindsym $mod+$mod_next+w split h; layout tabbed; focus child 
+bindsym $mod+$mod_next+s split h; layout stacked; focus child
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
