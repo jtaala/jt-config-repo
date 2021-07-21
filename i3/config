@@ -9,29 +9,29 @@ set $border_no_name border pixel 3
 set $border_normal border normal 3
 
 # Theme colors
-# set variable for main accent color
-set $acolor #d64161
+# set variable for main accent-bg color
+set $accent-bg #d64161
 
 # set other colors
-set $bgicolor #525859
-set $bgucolor #323838
-set $txtacolor #F9FAF9
-set $txtucolor #bdbbbb
-set $indcolor #4deb56
+set $inactive-bg #1A936F
+set $unfocused-bg #323838
+set $accent-txt #F9FAF9
+set $unfocused-txt #bdbbbb
+set $indicator #4deb56
 
 # class                   border  backgr. text    indic.   child_border
-client.focused          $acolor $acolor $txtacolor $indcolor $acolor
-client.focused_inactive $bgicolor $bgicolor $txtacolor $indcolor $bgicolor
-client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
-#client.placeholder      #000000 #0c0c0c $txtacolor #000000
+client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive $inactive-bg $inactive-bg $accent-txt $indicator $inactive-bg
+client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
+#client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -442,11 +442,11 @@ bar {
         separator  #454947
 
 #                      border  backgr. text
-        focused_workspace  #F9FAF9 $acolor #F9FAF9
+        focused_workspace  #F9FAF9 $accent-bg #F9FAF9
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       $acolor #2C2C2C #F9FAF9
-        urgent_workspace   $acolor #FDF6E3 #E5201D
+        binding_mode       $accent-bg #2C2C2C #F9FAF9
+        urgent_workspace   $accent-bg #FDF6E3 #E5201D
     }
 }
 
