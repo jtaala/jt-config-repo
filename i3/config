@@ -153,23 +153,14 @@ workspace_auto_back_and_forth yes
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Set $con_title (embedded script) - used in split orientations below.
-# Three options for container title_format below (comment out one).  
-# - the first option give a simple oblique title format (which I prefer).
-# - the second option uses application window title (but colored and bolded) that was selected when the container was created.
-# - the third option simply uses "CONTAINER" window title - you can then use $mod+slash to set a custom name 
-# NOTE1: Comment out all options to use default container title_format.
-# NOTE2: requires xdotool.
-#
-#set $con_title i3-msg focus parent, title_format \\"<span font_style='oblique'><tt> <u>%title</u></tt></span>\\", focus child
-#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b>📦 %title</b></span>\\", focus child
-#set $con_title ANSWER=$(xdotool getwindowfocus getwindowname); i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b> ⮡\\"$ANSWER\\"</b></span>\\", focus child
-#set $con_title i3-msg focus parent, title_format \\"<span foreground='#FEC196'><b>📦 <tt><u>\\$mod+/</u></tt> to change container title</b></span>\\", focus child
+# Sets a simple "..." container title. You can then use $mod+slash to set a custom name.
+# NOTE: requires xdotool.
+set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
 
-# dynamic renaming of parent container
+# renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span> <b><tt>$ANSWER</tt></b></span>\\", focus child; fi"
-bindsym $mod+$mod_next+slash focus parent, title_format "<span font_style='oblique'> <u><tt>%title</tt></u></span>", focus child
-bindsym $mod+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"split h; layout tabbed\\"; $con_title; done"
-bindsym $mod+$mod_next+Ctrl+w exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; i3-msg \\"move left\\"; $con_title; done"
+# sets back to default i3 container title
+bindsym $mod+$mod_next+slash focus parent, title_format " %title", focus child
 
 # container layouts
 bindsym $mod+w layout tabbed
