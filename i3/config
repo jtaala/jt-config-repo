@@ -30,9 +30,6 @@ client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
 workspace_layout tabbed
 
-# set preferred focus_wrapping <yes|no|force>
-#focus_wrapping no
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_no_name
 
@@ -86,8 +83,6 @@ bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window
 bindsym $mod_next+Return exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
-# launch categorized menu
-#bindsym $mod+c exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -177,11 +172,6 @@ bindsym $mod+$mod_next+s split h; layout stacked; focus child; exec "$con_title"
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
-bindsym --whole-window $mod+button8 fullscreen toggle
-
-# several 16:9 resolutions binded for quick switching
-bindsym $mod+bracketright exec xrandr -s 1280x720
-bindsym $mod+backslash exec xrandr -s 1920x1080
 
 # toggle tiling / floating focus
 bindsym $mod+Shift+space floating toggle
@@ -290,8 +280,6 @@ for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Shutter"] floating disable
@@ -303,9 +291,7 @@ for_window [class="copyq"] floating enable border pixel 1
 for_window [class="octopi"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="spectacle"] floating disable
-for_window [title="About Pale Moon"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [title="MuseScore: Play Panel"] floating enable
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="(?i)^timeshift-gtk$"] floating disable
 for_window [class="(?i)^gnome-calculator$"] floating disable
@@ -435,7 +421,6 @@ mode "$mode_redshift" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
