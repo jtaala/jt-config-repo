@@ -107,8 +107,15 @@ workspace_auto_back_and_forth yes
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# dynamic renaming of parent container
+# Set $con_title (embedded script) - used in split orientations below.
+# Sets a simple "..." container title. You can then use $mod+slash to set a custom name.
+# NOTE: requires xdotool.
+set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
+
+# renaming of parent container
 bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span> <b><tt>$ANSWER</tt></b></span>\\", focus child; fi"
+# sets back to default i3 container title
+bindsym $mod+$mod_next+slash focus parent, title_format " %title", focus child
 
 # container layouts
 bindsym $mod+w layout tabbed
@@ -117,10 +124,10 @@ bindsym $mod+e layout splitv
 bindsym $mod+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+$mod_next+q split h; focus child
-bindsym $mod+$mod_next+e split v; focus child
-bindsym $mod+$mod_next+w split h; layout tabbed; focus child 
-bindsym $mod+$mod_next+s split h; layout stacked; focus child
+bindsym $mod+$mod_next+q split h; focus child; exec "$con_title"
+bindsym $mod+$mod_next+e split v; focus child; exec "$con_title"
+bindsym $mod+$mod_next+w split h; layout tabbed; focus child; exec "$con_title"
+bindsym $mod+$mod_next+s split h; layout stacked; focus child; exec "$con_title"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
