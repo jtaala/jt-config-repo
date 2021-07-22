@@ -31,7 +31,11 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
+
+# focus_wrapping <yes|no|force|workspace>
+# Legacy syntax, equivalent to "focus_wrapping force"
+focus_wrapping no
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -40,9 +44,9 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-bindsym $mod+period $border_no_name
-bindsym $mod+$mod_next+period border none
-bindsym $mod+Control+period $border_normal
+bindsym $mod+$mod_next+bracketleft $border_no_name
+bindsym $mod+$mod_next+bracketright border none
+bindsym $mod+$mod_next+backslash $border_normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -117,18 +121,18 @@ bindsym $mod+l focus right
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 # NOTE: requires 'jq'
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-bindsym $mod+m exec "i3-msg focus parent, focus left"
+#bindsym $mod+m exec "i3-msg focus parent, focus left"
 #bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
-bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
-bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
-bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
+#bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
+#bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
+#bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
-#bindsym $mod+Ctrl+h exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
 #bindsym $mod+Ctrl+j exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus down; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus down\\"; fi"
 #bindsym $mod+Ctrl+k exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus up; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus up\\"; fi"
-#bindsym $mod+Ctrl+l exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
