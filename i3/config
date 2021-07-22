@@ -13,7 +13,7 @@ set $border_normal border normal 3
 set $accent-bg #d64161
 
 # set other colors
-set $inactive-bg #1A936F
+set $inactive-bg #3b8ea5
 set $unfocused-bg #323838
 set $accent-txt #F9FAF9
 set $unfocused-txt #bdbbbb
