@@ -17,7 +17,7 @@ set $inactive-bg #3b8ea5
 set $unfocused-bg #323838
 set $accent-txt #F9FAF9
 set $unfocused-txt #bdbbbb
-set $indicator #4deb56
+set $indicator #109648
 
 # class                   border  backgr. text    indic.   child_border
 client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
@@ -31,6 +31,7 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
+for_window [class=".*"] $border_no_name
 for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
