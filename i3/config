@@ -210,7 +210,7 @@ bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove
 
 # focus the parent container
 bindsym $mod+a focus parent
-bindsym $mod+Escape focus child
+bindsym $mod+z focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+Tab move scratchpad
