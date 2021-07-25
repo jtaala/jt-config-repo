@@ -13,7 +13,7 @@ set $border_normal border normal 3
 set $accent-bg #d64161
 
 # set other colors
-set $inactive-bg #3b8ea5
+set $inactive-bg #566161
 set $unfocused-bg #323838
 set $accent-txt #F9FAF9
 set $unfocused-txt #bdbbbb
@@ -21,7 +21,7 @@ set $indicator #109648
 
 # class                   border  backgr. text    indic.   child_border
 client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive $inactive-bg $inactive-bg $accent-txt $indicator $inactive-bg
+client.focused_inactive $unfocused-bg $inactive-bg $accent-txt $indicator $inactive-bg
 client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
@@ -31,7 +31,6 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
 for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
@@ -124,8 +123,8 @@ bindsym $mod+l focus right
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
 #bindsym $mod+m exec "i3-msg focus parent, focus left"
 #bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
-#bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
-#bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
+bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
+bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
 #bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
 
 # container focusing (with fallback for case where window is direct child of workspace container)
