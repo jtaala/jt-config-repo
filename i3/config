@@ -34,7 +34,7 @@ workspace_layout tabbed
 for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
-# Legacy syntax, equivalent to "focus_wrapping force"
+# Legacy syntax: "force_focus_wrapping force"
 focus_wrapping no
 
 # Hide borders <none|vertical|horizontal|both|smart>
@@ -121,11 +121,8 @@ bindsym $mod+l focus right
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 # NOTE: requires 'jq'
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-#bindsym $mod+m exec "i3-msg focus parent, focus left"
-#bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
 bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
 bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
-#bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
