@@ -8,6 +8,9 @@ set $mod_next Mod4
 set $border_no_name border pixel 3
 set $border_normal border normal 3
 
+# set i3-input font
+set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
+
 # Theme colors
 # set variable for main accent-bg color
 set $accent-bg #d64161
@@ -31,7 +34,7 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
@@ -109,6 +112,18 @@ bindsym $mod+Shift+j move down 100px
 bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
 
+# mark and focus
+bindsym $mod+Ctrl+1 mark --add --toggle 1
+bindsym $mod+Ctrl+2 mark --add --toggle 2
+bindsym $mod+Ctrl+3 mark --add --toggle 3
+bindsym $mod+Ctrl+4 mark --add --toggle 4
+bindsym $mod+Ctrl+5 mark --add --toggle 5
+bindsym $mod+Ctrl+6 mark --add --toggle 6
+bindsym $mod+Ctrl+7 mark --add --toggle 7
+bindsym $mod+Ctrl+8 mark --add --toggle 8
+bindsym $mod+Ctrl+9 mark --add --toggle 9
+bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
+
 # mark and move
 bindsym $mod+m mark --add m
 bindsym $mod+Ctrl+m unmark m
@@ -125,7 +140,7 @@ workspace_auto_back_and_forth yes
 set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
 
 # renaming of parent container
-bindsym $mod+slash exec "i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'"
+bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'"
 # sets back to default i3 container title
 bindsym $mod+$mod_next+slash title_format " %title"
 

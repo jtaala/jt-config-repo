@@ -147,19 +147,19 @@ bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
 
 # mark and focus
-bindsym $mod+Ctrl+1 mark --add 1
-bindsym $mod+Ctrl+2 mark --add 2
-bindsym $mod+Ctrl+3 mark --add 3
-bindsym $mod+Ctrl+4 mark --add 4
-bindsym $mod+Ctrl+5 mark --add 5
-bindsym $mod+Ctrl+6 mark --add 6
-bindsym $mod+Ctrl+7 mark --add 7
-bindsym $mod+Ctrl+8 mark --add 8
-bindsym $mod+Ctrl+9 mark --add 9
+bindsym $mod+Ctrl+1 mark --add --toggle 1
+bindsym $mod+Ctrl+2 mark --add --toggle 2
+bindsym $mod+Ctrl+3 mark --add --toggle 3
+bindsym $mod+Ctrl+4 mark --add --toggle 4
+bindsym $mod+Ctrl+5 mark --add --toggle 5
+bindsym $mod+Ctrl+6 mark --add --toggle 6
+bindsym $mod+Ctrl+7 mark --add --toggle 7
+bindsym $mod+Ctrl+8 mark --add --toggle 8
+bindsym $mod+Ctrl+9 mark --add --toggle 9
 bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
 
 # mark and move
-bindsym $mod+m mark --add m
+bindsym $mod+m mark --add --toggle m
 bindsym $mod+Ctrl+m unmark m
 bindsym $mod+Shift+m [workspace="`"] move container to mark m
 
