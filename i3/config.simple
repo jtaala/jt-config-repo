@@ -14,17 +14,18 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 # Theme colors
 # set variable for main accent-bg color
 set $accent-bg #d64161
+set $accent-txt #F9FAF9
 
 # set other colors
 set $inactive-bg #566161
+set $inactive-txt #F9FAF9
 set $unfocused-bg #323838
-set $accent-txt #F9FAF9
 set $unfocused-txt #bdbbbb
 set $indicator #109648
 
 # class                   border  backgr. text    indic.   child_border
 client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive $unfocused-bg $inactive-bg $accent-txt $indicator $inactive-bg
+client.focused_inactive $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
 client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
@@ -34,7 +35,7 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
@@ -125,7 +126,7 @@ bindsym $mod+Ctrl+9 mark --add --toggle 9
 bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
 
 # mark and move
-bindsym $mod+m mark --add m
+bindsym $mod+m mark --add --toggle m
 bindsym $mod+Ctrl+m unmark m
 bindsym $mod+Shift+m [workspace="`"] move container to mark m
 
@@ -333,7 +334,7 @@ bar {
         separator  #454947
 
 #                      border  backgr. text
-        focused_workspace  #F9FAF9 $accent-bg #F9FAF9
+        focused_workspace  $accent-txt $accent-bg $accent-txt
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #283339 #EEE8D5
         binding_mode       $accent-bg #2C2C2C #F9FAF9
