@@ -141,9 +141,10 @@ workspace_auto_back_and_forth yes
 set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
 
 # renaming of parent container
-bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'"
+bindsym $mod+slash exec "i3-msg focus parent; i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'; i3-msg focus child"
+bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'"
 # sets back to default i3 container title
-bindsym $mod+$mod_next+slash title_format " %title"
+bindsym $mod+Ctrl+slash title_format " %title"
 
 # container layouts
 bindsym $mod+w layout tabbed
