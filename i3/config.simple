@@ -17,9 +17,9 @@ set $accent-bg #d64161
 set $accent-txt #F9FAF9
 
 # set other colors
-set $inactive-bg #566161
+set $inactive-bg #323838
 set $inactive-txt #F9FAF9
-set $unfocused-bg #323838
+set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
 set $indicator #109648
 
