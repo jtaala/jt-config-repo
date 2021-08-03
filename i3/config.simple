@@ -11,17 +11,22 @@ set $border_normal border normal 3
 # set i3-input font
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
-# Theme colors
-# set variable for main accent-bg color
-set $accent-bg #d64161
+# Theme options (comment/uncomment theme group)
+## Theme 1 "Paradise Pink"
+#set $accent-bg #d64161
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 2 "tmux"
+set $accent-bg #4e9a06
 set $accent-txt #F9FAF9
+set $indicator #d64161
 
 # set other colors
 set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
-set $indicator #109648
 
 # class                   border  backgr. text    indic.   child_border
 client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
