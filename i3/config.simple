@@ -138,11 +138,12 @@ workspace_auto_back_and_forth yes
 # Set $con_title (embedded script) - used in split orientations below.
 # Sets a simple "..." container title. You can then use $mod+slash to set a custom name.
 # NOTE: requires xdotool.
-set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
+set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>:</tt></b> <small><i>%title</i></small></span>\\", focus child
 
 # renaming of parent container
-bindsym $mod+slash exec "i3-msg focus parent; i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'; i3-msg focus child"
-bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b></span>\\"'"
+set $con_title_title <small><i>%title</i></small>
+bindsym $mod+slash exec "i3-msg focus parent; i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s:</tt></b> $con_title_title</span>\\"'; i3-msg focus child"
+bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b> $con_title_title</span>\\"'"
 # sets back to default i3 container title
 bindsym $mod+Ctrl+slash title_format " %title"
 
