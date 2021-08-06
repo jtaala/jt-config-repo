@@ -180,7 +180,7 @@ set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>:</tt></b> <sm
 # renaming of parent container
 set $con_title_title <small><i>%title</i></small>
 bindsym $mod+slash exec "i3-msg focus parent; i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s:</tt></b> $con_title_title</span>\\"'; i3-msg focus child"
-bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s</tt></b> $con_title_title</span>\\"'"
+bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s:</tt></b> $con_title_title</span>\\"'"
 # sets back to default i3 container title
 bindsym $mod+Ctrl+slash title_format " %title"
 
