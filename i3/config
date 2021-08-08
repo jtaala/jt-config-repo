@@ -39,8 +39,11 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
 workspace_layout tabbed
 
+# set default window title_align
+title_align center
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
@@ -169,20 +172,11 @@ bindsym $mod+Shift+m [workspace="`"] move container to mark m
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-#bindsym $mod+b workspace back_and_forth
-#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# Set $con_title (embedded script) - used in split orientations below.
-# Sets a simple "..." container title. You can then use $mod+slash to set a custom name.
-# NOTE: requires xdotool.
-set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>:</tt></b> <small><i>%title</i></small></span>\\", focus child
-
-# renaming of parent container
-set $con_title_title <small><i>%title</i></small>
-bindsym $mod+slash exec "i3-msg focus parent; i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s:</tt></b> $con_title_title</span>\\"'; i3-msg focus child"
-bindsym $mod+$mod_next+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span> <b><tt>%s:</tt></b> $con_title_title</span>\\"'"
+# renaming container
+bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span><b><tt>%s:</tt></b>%title</span>\\"'"
 # sets back to default i3 container title
-bindsym $mod+Ctrl+slash title_format " %title"
+bindsym $mod+$mod_next+slash title_format " %title"
 
 # container layouts
 bindsym $mod+w layout tabbed
@@ -191,10 +185,10 @@ bindsym $mod+e layout splitv
 bindsym $mod+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+$mod_next+q split h; focus child; exec "$con_title"
-bindsym $mod+$mod_next+e split v; focus child; exec "$con_title"
-bindsym $mod+$mod_next+w split h; layout tabbed; focus child; exec "$con_title"
-bindsym $mod+$mod_next+s split h; layout stacked; focus child; exec "$con_title"
+bindsym $mod+$mod_next+q split h
+bindsym $mod+$mod_next+e split v
+bindsym $mod+$mod_next+w split h; layout tabbed
+bindsym $mod+$mod_next+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -301,7 +295,6 @@ bindsym $mod+$mod_next+grave move container to workspace $wsx; workspace $wsx
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] title_format " %title"
 for_window [class="(?i)Gcolor3"] floating enable border pixel 1
 for_window [class="(?i)Gnome-calculator"] floating enable
 for_window [class="(?i)Kupfer"] border none
