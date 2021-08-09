@@ -8,30 +8,46 @@ set $mod_next Mod4
 set $border_no_name border pixel 3
 set $border_normal border normal 3
 
-# Theme colors
-# set variable for main accent color
-set $acolor #d64161
+# set i3-input font
+set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
+
+# Theme options (comment/uncomment theme group)
+## Theme 1 "Paradise Pink"
+#set $accent-bg #d64161
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 2 "tmux"
+set $accent-bg #4e9a06
+set $accent-txt #F9FAF9
+set $indicator #d64161
 
 # set other colors
-set $bgicolor #525859
-set $bgucolor #323838
-set $txtacolor #F9FAF9
-set $txtucolor #bdbbbb
-set $indcolor #4deb56
+set $inactive-bg #323838
+set $inactive-txt #F9FAF9
+set $unfocused-bg #566161
+set $unfocused-txt #bdbbbb
 
 # class                   border  backgr. text    indic.   child_border
-client.focused          $acolor $acolor $txtacolor $indcolor $acolor
-client.focused_inactive $bgicolor $bgicolor $txtacolor $indcolor $bgicolor
-client.unfocused        $bgucolor $bgucolor $txtucolor $indcolor $bgucolor
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indcolor
-#client.placeholder      #000000 #0c0c0c $txtacolor #000000
+client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
+client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
+#client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
 workspace_layout tabbed
 
+# set default window title_align
+title_align center
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
+
+# focus_wrapping <yes|no|force|workspace>
+# Legacy syntax: "force_focus_wrapping force"
+focus_wrapping no
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -40,9 +56,9 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-bindsym $mod+period $border_no_name
-bindsym $mod+$mod_next+period border none
-bindsym $mod+Control+period $border_normal
+bindsym $mod+$mod_next+bracketleft $border_no_name
+bindsym $mod+$mod_next+bracketright border none
+bindsym $mod+$mod_next+backslash $border_normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -64,8 +80,8 @@ bindsym $mod+Shift+q kill
 # start program launcher
 
 # start dmenu (a program launcher)
-bindsym $mod_next+d exec dmenu_run -sb "$acolor"
-bindsym $mod_next+Return exec dmenu_run "$acolor"
+bindsym $mod_next+d exec dmenu_run -sb "$accent-bg"
+bindsym $mod_next+Return exec dmenu_run "$accent-bg"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -82,13 +98,14 @@ bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 # NOTE: requires 'jq'
-set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-bindsym $mod+m exec "i3-msg focus parent, focus left"
-#bindsym $mod+Shift+m exec "STK=$get_layout; i3-msg layout stacked, move left; MST=$get_layout; i3-msg layout stacked, focus up, focus right, layout $STK, focus parent, focus left, move right, focus left, layout $MST"
-bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
-bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
-bindsym $mod+$mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus parent, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
+#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+#bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
+#bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
 
+# container focusing (with fallback for case where window is direct child of workspace container)
+# NOTE: requires xdotool
+bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
@@ -102,20 +119,30 @@ bindsym $mod+Shift+j move down 100px
 bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
 
+# mark and focus
+bindsym $mod+Ctrl+1 mark --add --toggle 1
+bindsym $mod+Ctrl+2 mark --add --toggle 2
+bindsym $mod+Ctrl+3 mark --add --toggle 3
+bindsym $mod+Ctrl+4 mark --add --toggle 4
+bindsym $mod+Ctrl+5 mark --add --toggle 5
+bindsym $mod+Ctrl+6 mark --add --toggle 6
+bindsym $mod+Ctrl+7 mark --add --toggle 7
+bindsym $mod+Ctrl+8 mark --add --toggle 8
+bindsym $mod+Ctrl+9 mark --add --toggle 9
+bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
+
+# mark and move
+bindsym $mod+m mark --add --toggle m
+bindsym $mod+Ctrl+m unmark m
+bindsym $mod+Shift+m [workspace="`"] move container to mark m
+
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-#bindsym $mod+b workspace back_and_forth
-#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# Set $con_title (embedded script) - used in split orientations below.
-# Sets a simple "..." container title. You can then use $mod+slash to set a custom name.
-# NOTE: requires xdotool.
-set $con_title i3-msg focus parent, title_format \\"<span> <b><tt>...</tt></b></span>\\", focus child
-
-# renaming of parent container
-bindsym $mod+slash exec "ANSWER=$(zenity --title=\\"i3-msg title_format\\" --text \\"Change title for parent container\\" --entry); if [ -n \\"$ANSWER\\" ]; then i3-msg focus parent, title_format \\"<span> <b><tt>$ANSWER</tt></b></span>\\", focus child; fi"
+# renaming container
+bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span><b><tt>%s:</tt></b>%title</span>\\"'"
 # sets back to default i3 container title
-bindsym $mod+$mod_next+slash focus parent, title_format " %title", focus child
+bindsym $mod+$mod_next+slash title_format " %title"
 
 # container layouts
 bindsym $mod+w layout tabbed
@@ -124,10 +151,10 @@ bindsym $mod+e layout splitv
 bindsym $mod+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+$mod_next+q split h; focus child; exec "$con_title"
-bindsym $mod+$mod_next+e split v; focus child; exec "$con_title"
-bindsym $mod+$mod_next+w split h; layout tabbed; focus child; exec "$con_title"
-bindsym $mod+$mod_next+s split h; layout stacked; focus child; exec "$con_title"
+bindsym $mod+$mod_next+q split h
+bindsym $mod+$mod_next+e split v
+bindsym $mod+$mod_next+w split h; layout tabbed
+bindsym $mod+$mod_next+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -137,14 +164,35 @@ bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+Tab focus mode_toggle
+bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+s sticky toggle; exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
+
+# focus last window
+# requires (https://crates.io/crates/i3-focus-last)
+bindsym $mod+Tab exec i3-focus-last
+
+# window transparency adjustment (and alias to restart picom)
+bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
+bindsym $mod+$mod_next+Shift+z exec transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
+bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
+bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
+bindsym $mod+$mod_next+c exec --no-startup-id $picom_start
+
+# window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
+bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
+bindsym $mod+$mod_next+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+
+# window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
+bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
+bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
 
 # focus the parent container
 bindsym $mod+a focus parent
-bindsym $mod+Escape focus child
+bindsym $mod+z focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+Tab move scratchpad
@@ -171,6 +219,7 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
+set $wsx number 0:`
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -181,6 +230,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+grave workspace $wsx
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -191,6 +241,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+grave move container to workspace $wsx
 
 # Move focused container to workspace, and switch to that workspace
 bindsym $mod+$mod_next+1 move container to workspace $ws1; workspace $ws1
@@ -201,6 +252,7 @@ bindsym $mod+$mod_next+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+$mod_next+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+$mod_next+grave move container to workspace $wsx; workspace $wsx
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -209,7 +261,6 @@ bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [class=".*"] title_format " %title"
 
 # Application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
@@ -281,70 +332,13 @@ bar {
         separator  #454947
 
 #                      border  backgr. text
-        focused_workspace  #F9FAF9 $acolor #F9FAF9
+        focused_workspace  $accent-txt $accent-bg $accent-txt
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       $acolor #2C2C2C #F9FAF9
-        urgent_workspace   $acolor #FDF6E3 #E5201D
+        binding_mode       $accent-bg #2C2C2C #F9FAF9
+        urgent_workspace   $accent-bg #FDF6E3 #E5201D
     }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+Control+b bar mode toggle
-
-#############################
-### settings for i3-gaps: ###
-#############################
-
-## Set inner/outer gaps
-#gaps inner 6
-#gaps outer -6
-#
-## Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-## gaps inner|outer current|all set|plus|minus <px>
-## gaps inner all set 10
-## gaps outer all plus 5
-#
-## Smart gaps (gaps used if only more than one container on the workspace)
-##smart_gaps on
-#
-## Smart borders (draw borders around container only if it is not the only container on this workspace)
-## on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-#smart_borders on
-#
-## Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-#set $mode_gaps Gaps: (o) outer, (i) inner
-#set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#bindsym $mod+Shift+g mode "$mode_gaps"
-#
-#mode "$mode_gaps" {
-#        bindsym o      mode "$mode_gaps_outer"
-#        bindsym i      mode "$mode_gaps_inner"
-#        bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#}
-#mode "$mode_gaps_inner" {
-#        bindsym plus  gaps inner current plus 5
-#        bindsym minus gaps inner current minus 5
-#        bindsym 0     gaps inner current set 0
-#
-#        bindsym Shift+plus  gaps inner all plus 5
-#        bindsym Shift+minus gaps inner all minus 5
-#        bindsym Shift+0     gaps inner all set 0
-#
-#        bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#}
-#mode "$mode_gaps_outer" {
-#        bindsym plus  gaps outer current plus 5
-#        bindsym minus gaps outer current minus 5
-#        bindsym 0     gaps outer current set 0
-#
-#        bindsym Shift+plus  gaps outer all plus 5
-#        bindsym Shift+minus gaps outer all minus 5
-#        bindsym Shift+0     gaps outer all set 0
-#
-#        bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#}
