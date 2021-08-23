@@ -189,6 +189,18 @@ bindsym $mod+q layout splith
 bindsym $mod+e layout splitv
 bindsym $mod+s layout stacking
 
+# stack-peek keys
+# NOTE: requires 'jq'
+# disable repeat on x key
+exec_always --no-startup-id xset -r 53
+set $get_conid $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes[0].id')
+set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+bindsym $mod+x exec --no-startup-id "echo layout=$get_layout$'\n'conid=$get_conid > /tmp/i3peek; i3-msg layout stacked"
+bindsym --release $mod+x exec --no-startup-id "source /tmp/i3peek; i3-msg [con_id=\\"$conid\\"] layout $layout"
+
+bindsym $mod+r exec --no-startup-id "xset r on";
+bindsym $mod+Shift+r exec --no-startup-id "xset r off";
+
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+$mod_next+q split h
 bindsym $mod+$mod_next+e split v
