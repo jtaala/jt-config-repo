@@ -18,9 +18,14 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 2 "tmux"
-set $accent-bg #4e9a06
+#set $accent-bg #4e9a06
+#set $accent-txt #F9FAF9
+#set $indicator #d64161
+
+# Theme 3 "plurple"
+set $accent-bg #8f5f95
 set $accent-txt #F9FAF9
-set $indicator #d64161
+set $indicator #109648
 
 # set other colors
 set $inactive-bg #323838
@@ -37,7 +42,7 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout tabbed
+workspace_layout stacking
 
 # set default window title_align
 title_align center
