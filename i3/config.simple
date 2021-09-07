@@ -79,6 +79,10 @@ exec_always --no-startup-id i3wsr --config ~/.config/i3/i3wsr.toml
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id vmware-user-suid-wrapper
 
+# picom (compositor)
+bindsym $mod+c exec --no-startup-id $picom_start
+bindsym $mod+$mod_next+c exec --no-startup-id "killall picom"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -180,7 +184,6 @@ bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible
 bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
-bindsym $mod+$mod_next+c exec --no-startup-id $picom_start
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
 bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'

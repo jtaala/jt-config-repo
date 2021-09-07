@@ -66,7 +66,7 @@ bindsym $mod+$mod_next+bracketright border none
 bindsym $mod+$mod_next+backslash $border_normal
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
-bindsym $mod+backslash exec "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
+bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -98,6 +98,10 @@ exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
 exec_always --no-startup-id optimus-manager-qt
 exec_always --no-startup-id xfce4-power-manager
 
+# picom (compositor)
+bindsym $mod+c exec --no-startup-id $picom_start
+bindsym $mod+$mod_next+c exec --no-startup-id "killall picom"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -113,6 +117,7 @@ bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,wind
 ################################################################################################
 
 exec --no-startup-id volumeicon
+bindsym $mod+$mod_next+v exec --no-startup-id "killall volumeicon; sleep 1; volumeicon"
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -217,7 +222,6 @@ bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible
 bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
 bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
-bindsym $mod+BackSpace exec --no-startup-id $picom_start
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
 bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
