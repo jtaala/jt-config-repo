@@ -147,10 +147,17 @@ bindsym $mod+l focus right
 #bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
 #bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
 
+# simple master-stack moving
+bindsym $mod+comma move left, focus right
+bindsym $mod+period move right, focus left
+# move to next / previous workspaces
+bindsym $mod+Shift+period move window workspace prev
+bindsym $mod+Shift+comma move window workspace next
+
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
-bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
-bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+#bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+#bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
@@ -240,11 +247,9 @@ bindsym $mod+Shift+Tab move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-#navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Ctrl+l workspace next
+# navigate workspaces next / previous
 bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+l workspace next
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
