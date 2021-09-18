@@ -142,17 +142,16 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires 'jq'
-#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-#bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, move left, focus parent, focus right, layout $STK, focus parent, focus left"
-#bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, move right, focus parent, focus left, layout $MST, focus parent, focus right"
+# NOTE: requires 'xdotool' and 'jq'
+bindsym $mod+period focus parent, focus right, focus child
+bindsym $mod+comma focus parent, focus left, focus child
+set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
+bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK"
 
 # simple master-stack moving
-bindsym $mod+comma move left, focus right
-bindsym $mod+period move right, focus left
-# move to next / previous workspaces
-bindsym $mod+Shift+period move window workspace prev
-bindsym $mod+Shift+comma move window workspace next
+#bindsym $mod+Shift+comma move left, focus right
+#bindsym $mod+Shift+period move right, focus left
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
