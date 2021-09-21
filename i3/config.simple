@@ -42,7 +42,7 @@ client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $u
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout stacking
+workspace_layout tabbed
 
 # set default window title_align
 title_align center
