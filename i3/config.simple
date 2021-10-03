@@ -106,14 +106,15 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires 'xdotool' and 'jq'
+# NOTE: requires 'jq'
 bindsym $mod+period focus parent, focus right, focus child
 bindsym $mod+comma focus parent, focus left, focus child
 set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-bindsym $mod+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST"
-bindsym $mod+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK"
-bindsym $mod_next+Shift+period exec "MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST"
-bindsym $mod_next+Shift+comma exec "STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK"
+set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
+bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
+bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
+bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
+bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
 
 # simple master-stack moving
 #bindsym $mod+Shift+comma move left, focus right
