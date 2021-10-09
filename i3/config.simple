@@ -230,7 +230,7 @@ set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
 set $wsg number 0:`
-set $wsm number 9:mcache
+set $wsm number 9:m
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -268,7 +268,7 @@ bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 
 # move all windows on workspace M to current container
-bindsym $mod+Ctrl+m [workspace="mcache"] move container to workspace current
+bindsym $mod+Ctrl+m [workspace="m"] move container to workspace current
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
