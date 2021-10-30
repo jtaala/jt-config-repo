@@ -79,12 +79,12 @@ floating_modifier $mod
 
 # Autostart applications
 #exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+exec --no-startup-id xsetroot -solid "#6a6868"
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id polychromatic-tray-applet
 exec --no-startup-id xautolock -time 10 -locker blurlock
@@ -342,7 +342,7 @@ for_window [class="(?i)^workspacesclient$"] floating disable
 
 # Application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym Print exec --no-startup-id i3-scrot
+bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # shortcuts to often used applications
