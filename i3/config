@@ -48,7 +48,7 @@ workspace_layout tabbed
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
@@ -79,24 +79,20 @@ floating_modifier $mod
 
 # Autostart applications
 #exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
-exec --no-startup-id xsetroot -solid "#6a6868"
+# needs xorg-xsetroot installed
+exec --no-startup-id xsetroot -solid "#1d1d1d"
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
 exec --no-startup-id nm-applet
-exec --no-startup-id polychromatic-tray-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
 exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id i3-focus-last server
 exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
-exec_always --no-startup-id optimus-manager-qt
 exec_always --no-startup-id xfce4-power-manager
 
 # picom (compositor)

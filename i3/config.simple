@@ -48,7 +48,7 @@ workspace_layout tabbed
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
