@@ -27,6 +27,11 @@ set $accent-bg #8f5f95
 set $accent-txt #F9FAF9
 set $indicator #109648
 
+# Theme 4 "green"
+#set $accent-bg #28d37d
+#set $accent-txt #363636
+#set $indicator #109648
+
 # set other colors
 set $inactive-bg #323838
 set $inactive-txt #F9FAF9
