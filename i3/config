@@ -138,20 +138,28 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# wasd focus
+bindsym $mod+w focus up
+bindsym $mod+a focus left
+bindsym $mod+s focus down
+bindsym $mod+d focus right
+
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 # NOTE: requires 'jq'
-bindsym $mod+period focus parent, focus right, focus child
-bindsym $mod+comma focus parent, focus left, focus child
-set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
-bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
-bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
+#bindsym $mod+period focus parent, focus right, focus child
+#bindsym $mod+comma focus parent, focus left, focus child
+#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+#set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
+#bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
+#bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
+#bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
+#bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
 
 # simple master-stack moving
-#bindsym $mod+Shift+comma move left, focus right
-#bindsym $mod+Shift+period move right, focus left
+bindsym $mod+z move left
+bindsym $mod+Shift+z move left, focus right
+bindsym $mod+x move right
+bindsym $mod+Shift+x move right, focus left
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
@@ -169,6 +177,12 @@ bindsym $mod+Shift+h move left 100px
 bindsym $mod+Shift+j move down 100px
 bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
+
+# wasd move
+bindsym $mod+Shift+w move up 100px
+bindsym $mod+Shift+a move left 100px
+bindsym $mod+Shift+s move down 100px
+bindsym $mod+Shift+d move right 100px
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
@@ -191,10 +205,10 @@ bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'ti
 bindsym $mod+$mod_next+slash title_format " %title"
 
 # container layouts
-bindsym $mod+w layout tabbed
-bindsym $mod+q layout splith
-bindsym $mod+e layout splitv
-bindsym $mod+s layout stacking
+bindsym $mod_next+w layout tabbed
+bindsym $mod_next+q layout splith
+bindsym $mod_next+e layout splitv
+bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+$mod_next+q split h
@@ -236,8 +250,8 @@ bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -f INVERT_FLA
 bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
 
 # focus the parent container
-bindsym $mod+a focus parent
-bindsym $mod+z focus child
+bindsym $mod+q focus parent
+bindsym $mod+e focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+Tab move scratchpad
