@@ -101,8 +101,8 @@ exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
 exec_always --no-startup-id xfce4-power-manager
 
 # picom (compositor)
-bindsym $mod+c exec --no-startup-id $picom_start
-bindsym $mod+$mod_next+c exec --no-startup-id "killall picom"
+bindsym $mod+t exec --no-startup-id $picom_start
+bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -282,7 +282,7 @@ set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
 set $wsg number 0:`
-set $wsm number 9:m
+set $wsc number 9:cache
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -294,7 +294,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+grave workspace $wsg
-bindsym $mod+m workspace $wsm
+#bindsym $mod+c workspace $wsc
 
 # Move focused container to workspace
 bindsym $mod+Shift+grave move container to workspace $wsg
@@ -306,7 +306,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+m move container to workspace $wsm
+bindsym $mod+c move container to workspace $wsc
 
 # Move focused container to workspace, and switch to that workspace
 bindsym $mod+$mod_next+grave move container to workspace $wsg; workspace $wsg
@@ -319,8 +319,8 @@ bindsym $mod+$mod_next+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 
-# move all windows on workspace M to current container
-bindsym $mod+Ctrl+m [workspace="m"] move container to workspace current
+# move all windows on workspace cache to current container
+bindsym $mod+Ctrl+c [workspace="c"] move container to workspace current
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -376,7 +376,7 @@ bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Ctrl+c reload
+bindsym $mod+Ctrl+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Ctrl+r restart
