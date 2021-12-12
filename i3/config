@@ -111,6 +111,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -sort -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod+Escape exec "i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -216,10 +217,10 @@ bindsym $mod_next+e layout splitv
 bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod_next+ctrl+q split h
-bindsym $mod_next+ctrl+e split v
-bindsym $mod_next+ctrl+w split h; layout tabbed
-bindsym $mod_next+ctrl+s split h; layout stacked
+bindsym $mod+ctrl+q split h
+bindsym $mod+ctrl+e split v
+bindsym $mod+ctrl+w split h; layout tabbed
+bindsym $mod+ctrl+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -232,7 +233,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+f sticky toggle;exec notify-send 'sticky windows toggled'
 
 # focus last window
 # requires (https://crates.io/crates/i3-focus-last)
@@ -369,6 +370,8 @@ bindsym $mod_next+bracketleft exec --no-startup-id nautilus
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
+bindsym $mod_next+Shift+a exec --no-startup-id smplayer -send-action rewind1
+bindsym $mod_next+Shift+d exec --no-startup-id smplayer -send-action forward1
 bindsym $mod_next+Shift+h exec --no-startup-id smplayer -send-action rewind1
 bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 
