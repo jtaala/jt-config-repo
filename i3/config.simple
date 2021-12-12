@@ -106,18 +106,20 @@ bindsym $mod+l focus right
 
 # master-stack keybinding (moves stack window to master and current master back to stack window)
 # NOTE: requires 'jq'
-bindsym $mod+period focus parent, focus right, focus child
-bindsym $mod+comma focus parent, focus left, focus child
-set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
-bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
-bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
+#bindsym $mod+period focus parent, focus right, focus child
+#bindsym $mod+comma focus parent, focus left, focus child
+#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
+#set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
+#bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
+#bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
+#bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
+#bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
 
 # simple master-stack moving
-#bindsym $mod+Shift+comma move left, focus right
-#bindsym $mod+Shift+period move right, focus left
+bindsym $mod+z move left
+bindsym $mod+Shift+z move left, focus right
+bindsym $mod+x move right
+bindsym $mod+Shift+x move right, focus left
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
@@ -135,6 +137,12 @@ bindsym $mod+Shift+h move left 100px
 bindsym $mod+Shift+j move down 100px
 bindsym $mod+Shift+k move up 100px
 bindsym $mod+Shift+l move right 100px
+
+# wasd move
+bindsym $mod+Shift+w move up 100px
+bindsym $mod+Shift+a move left 100px
+bindsym $mod+Shift+s move down 100px
+bindsym $mod+Shift+d move right 100px
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
@@ -157,16 +165,16 @@ bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'ti
 bindsym $mod+$mod_next+slash title_format " %title"
 
 # container layouts
-bindsym $mod+w layout tabbed
-bindsym $mod+q layout splith
-bindsym $mod+e layout splitv
-bindsym $mod+s layout stacking
+bindsym $mod_next+w layout tabbed
+bindsym $mod_next+q layout splith
+bindsym $mod_next+e layout splitv
+bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+$mod_next+q split h
-bindsym $mod+$mod_next+e split v
-bindsym $mod+$mod_next+w split h; layout tabbed
-bindsym $mod+$mod_next+s split h; layout stacked
+bindsym $mod+ctrl+q split h
+bindsym $mod+ctrl+e split v
+bindsym $mod+ctrl+w split h; layout tabbed
+bindsym $mod+ctrl+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -179,7 +187,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+f sticky toggle;exec notify-send 'sticky windows toggled'
 
 # focus last window
 # requires (https://crates.io/crates/i3-focus-last)
@@ -194,16 +202,16 @@ bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
 bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
-bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
-bindsym $mod+$mod_next+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+bindsym $mod+ctrl+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
+bindsym $mod+ctrl+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
 
 # window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
-bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
-bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
+bindsym $mod+ctrl+i exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
+bindsym $mod+ctrl+Shift+i exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
 
 # focus the parent container
-bindsym $mod+a focus parent
-bindsym $mod+z focus child
+bindsym $mod+q focus parent
+bindsym $mod+e focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+Tab move scratchpad
@@ -229,7 +237,7 @@ set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
 set $wsg number 0:`
-set $wsm number 9:m
+set $wsc number 9:cache
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -241,7 +249,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+grave workspace $wsg
-bindsym $mod+m workspace $wsm
+#bindsym $mod+c workspace $wsc
 
 # Move focused container to workspace
 bindsym $mod+Shift+grave move container to workspace $wsg
@@ -253,7 +261,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+m move container to workspace $wsm
+bindsym $mod+c move container to workspace $wsc
 
 # Move focused container to workspace, and switch to that workspace
 bindsym $mod+$mod_next+grave move container to workspace $wsg; workspace $wsg
@@ -266,8 +274,8 @@ bindsym $mod+$mod_next+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 
-# move all windows on workspace M to current container
-bindsym $mod+Ctrl+m [workspace="m"] move container to workspace current
+# move all windows on workspace cache to current container
+bindsym $mod+Ctrl+c [workspace="c"] move container to workspace current
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -292,7 +300,7 @@ bindsym $mod_next+bracketleft exec --no-startup-id thunar
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Ctrl+c reload
+bindsym $mod+Ctrl+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Ctrl+r restart

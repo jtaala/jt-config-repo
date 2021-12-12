@@ -109,9 +109,9 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -sort -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod+Escape exec "i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
+bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod+Escape exec "i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
