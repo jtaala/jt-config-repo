@@ -114,8 +114,8 @@ bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,wind
 
 # instant layout
 # REQUIRES XDOTOOL
-set $centre_mouse "WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H"
-bindsym $mod+Escape exec "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
+set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
+bindsym $mod+grave exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
 
 
 ################################################################################################
@@ -287,7 +287,6 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
-set $wsg number 0:`
 set $wsc number 9:cache
 
 # switch to workspace
@@ -299,11 +298,9 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-bindsym $mod+grave workspace $wsg
 #bindsym $mod+c workspace $wsc
 
 # Move focused container to workspace
-bindsym $mod+Shift+grave move container to workspace $wsg
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -315,7 +312,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+c move container to workspace $wsc
 
 # Move focused container to workspace, and switch to that workspace
-bindsym $mod+$mod_next+grave move container to workspace $wsg; workspace $wsg
 bindsym $mod+$mod_next+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+$mod_next+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+$mod_next+3 move container to workspace $ws3; workspace $ws3
