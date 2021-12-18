@@ -94,13 +94,14 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
 exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id optimus-manager-qt
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 exec_always --no-startup-id i3-focus-last server
 exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
-exec_always --no-startup-id xfce4-power-manager
 
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
