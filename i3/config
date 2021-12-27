@@ -12,24 +12,30 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-## Theme 1 "Paradise Pink"
+## Theme 1 "paradise pink"
 #set $accent-bg #d64161
 #set $accent-txt #F9FAF9
+##set $accent-txt #363636
 #set $indicator #109648
 
 # Theme 2 "tmux"
-#set $accent-bg #4e9a06
-#set $accent-txt #F9FAF9
-#set $indicator #d64161
-
-# Theme 3 "plurple"
-set $accent-bg #8f5f95
+set $accent-bg #4e9a06
 set $accent-txt #F9FAF9
-set $indicator #109648
+set $indicator #d64161
 
-# Theme 4 "green"
-#set $accent-bg #28d37d
-#set $accent-txt #363636
+# Theme 3 "french lilac"
+#set $accent-bg #8f5f95
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 4 "cardinal"
+#set $accent-bg #ba263f
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 5 "illuminating emerald"
+#set $accent-bg #00916e
+#set $accent-txt #F9FAF9
 #set $indicator #109648
 
 # set other colors
@@ -101,7 +107,7 @@ set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 exec_always --no-startup-id i3-focus-last server
-exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
+#exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
 
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
@@ -214,9 +220,9 @@ bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con
 workspace_auto_back_and_forth yes
 
 # renaming container
-bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span><b><tt>%s:</tt></b>%title</span>\\"'"
+bindsym $mod+slash exec $namechildcon
 # sets back to default i3 container title
-bindsym $mod+$mod_next+slash title_format " %title"
+bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
 
 # container layouts
 bindsym $mod_next+w layout tabbed
@@ -225,10 +231,11 @@ bindsym $mod_next+e layout splitv
 bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+ctrl+q split h
-bindsym $mod+ctrl+e split v
-bindsym $mod+ctrl+w split h; layout tabbed
-bindsym $mod+ctrl+s split h; layout stacked
+set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
+bindsym $mod+ctrl+q split h; exec $namechildcon
+bindsym $mod+ctrl+e split v; exec $namechildcon
+bindsym $mod+ctrl+w split h; layout tabbed; exec $namechildcon 
+bindsym $mod+ctrl+s split h; layout stacked; exec $namechildcon
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
