@@ -19,9 +19,9 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 2 "tmux"
-set $accent-bg #4e9a06
-set $accent-txt #F9FAF9
-set $indicator #d64161
+#set $accent-bg #4e9a06
+#set $accent-txt #F9FAF9
+#set $indicator #d64161
 
 # Theme 3 "french lilac"
 #set $accent-bg #8f5f95
@@ -34,20 +34,21 @@ set $indicator #d64161
 #set $indicator #109648
 
 # Theme 5 "illuminating emerald"
-#set $accent-bg #00916e
-#set $accent-txt #F9FAF9
-#set $indicator #109648
+set $accent-bg #00916e
+set $accent-txt #F9FAF9
+set $indicator #109648
 
 # set other colors
 set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
+set $borders-all #000000
 
-# class                   border  backgr. text    indic.   child_border
-client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
-client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+# class                  border       backgr.    text        indic.     child_border
+client.focused           $borders-all $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive  $borders-all $inactive-bg $inactive-txt $indicator $inactive-bg
+client.unfocused         $borders-all $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
@@ -59,7 +60,7 @@ workspace_layout tabbed
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 for_window [class=".*"] title_window_icon on
 for_window [class=".*"] title_window_icon padding 3px
 
