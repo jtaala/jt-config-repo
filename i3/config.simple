@@ -12,9 +12,10 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-## Theme 1 "Paradise Pink"
+## Theme 1 "paradise pink"
 #set $accent-bg #d64161
 #set $accent-txt #F9FAF9
+##set $accent-txt #363636
 #set $indicator #109648
 
 # Theme 2 "tmux"
@@ -22,8 +23,18 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $accent-txt #F9FAF9
 #set $indicator #d64161
 
-# Theme 3 "plurple"
-set $accent-bg #8f5f95
+# Theme 3 "french lilac"
+#set $accent-bg #8f5f95
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 4 "cardinal"
+#set $accent-bg #ba263f
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 5 "illuminating emerald"
+set $accent-bg #00916e
 set $accent-txt #F9FAF9
 set $indicator #109648
 
@@ -32,11 +43,12 @@ set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
+set $borders-all #000000
 
-# class                   border  backgr. text    indic.   child_border
-client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
-client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+# class                  border       backgr.    text        indic.     child_border
+client.focused           $borders-all $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive  $borders-all $inactive-bg $inactive-txt $indicator $inactive-bg
+client.unfocused         $borders-all $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
@@ -48,7 +60,7 @@ workspace_layout tabbed
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_no_name
+for_window [class=".*"] $border_normal
 for_window [class=".*"] title_window_icon on
 for_window [class=".*"] title_window_icon padding 3px
 
@@ -81,8 +93,8 @@ exec_always --no-startup-id i3wsr --config ~/.config/i3/i3wsr.toml
 exec_always --no-startup-id vmware-user-suid-wrapper
 
 # picom (compositor)
-bindsym $mod+c exec --no-startup-id $picom_start
-bindsym $mod+$mod_next+c exec --no-startup-id "killall picom"
+bindsym $mod+t exec --no-startup-id $picom_start
+bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -90,7 +102,21 @@ bindsym $mod+Shift+q kill
 # instant layout
 # REQUIRES XDOTOOL
 set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
-bindsym $mod+grave exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
+bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
+
+
+################################################################################################
+## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+################################################################################################
+
+exec --no-startup-id volumeicon
+bindsym $mod+$mod_next+v exec --no-startup-id "killall volumeicon; sleep 1; volumeicon"
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
+
+################################################################################################
 
 # start dmenu (a program launcher)
 bindsym $mod_next+d exec dmenu_run -sb "$accent-bg"
@@ -171,9 +197,9 @@ bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con
 workspace_auto_back_and_forth yes
 
 # renaming container
-bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span><b><tt>%s:</tt></b>%title</span>\\"'"
+bindsym $mod+slash exec $namechildcon
 # sets back to default i3 container title
-bindsym $mod+$mod_next+slash title_format " %title"
+bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
 
 # container layouts
 bindsym $mod_next+w layout tabbed
@@ -182,9 +208,11 @@ bindsym $mod_next+e layout splitv
 bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
+set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
 bindsym $mod+ctrl+q split h
 bindsym $mod+ctrl+e split v
-bindsym $mod+ctrl+w split h; layout tabbed
+bindsym $mod+ctrl+w split h; layout tabbed 
+bindsym $mod+c split h; layout tabbed 
 bindsym $mod+ctrl+s split h; layout stacked
 
 # toggle fullscreen mode for the focused container
@@ -239,6 +267,7 @@ bindsym $mod+Ctrl+l workspace next
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
+set $wsg number 0:`
 set $ws1 number 1:1
 set $ws2 number 2:2
 set $ws3 number 3:3
@@ -247,9 +276,9 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
-set $wsc number 9:cache
 
 # switch to workspace
+bindsym $mod+Ctrl+grave workspace $wsg
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -258,9 +287,9 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-#bindsym $mod+c workspace $wsc
 
 # Move focused container to workspace
+bindsym $mod+grave move container to workspace $wsg
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -269,7 +298,6 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+c move container to workspace $wsc
 
 # Move focused container to workspace, and switch to that workspace
 bindsym $mod+$mod_next+1 move container to workspace $ws1; workspace $ws1
@@ -282,7 +310,7 @@ bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 
 # move all windows on workspace cache to current container
-bindsym $mod+Ctrl+c [workspace="c"] move container to workspace current
+bindsym $mod+$mod_next+grave [workspace="`"] move container to workspace current
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
