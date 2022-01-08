@@ -54,7 +54,7 @@ client.unfocused         $borders-all $unfocused-bg $unfocused-txt $indicator $u
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout tabbed
+workspace_layout tabbed reverse
 
 # set default window title_align
 title_align center
@@ -176,34 +176,32 @@ bindsym $mod+d focus right
 #bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
 #bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
 
-# simple master-stack moving
-bindsym $mod+z move left
-bindsym $mod+Shift+z move left, focus right
-bindsym $mod+x move right
-bindsym $mod+Shift+x move right, focus left
-
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
 #bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
 #bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
+# convenience move
+bindsym $mod+z move left, layout fill_order reverse
+bindsym $mod+x move right, layout fill_order reverse
+
 # move focused window
-bindsym $mod+Shift+Left move left 100px
-bindsym $mod+Shift+Down move down 100px
-bindsym $mod+Shift+Up move up 100px
-bindsym $mod+Shift+Right move right 100px
+bindsym $mod+Shift+Left move left 100px, layout fill_order reverse
+bindsym $mod+Shift+Down move down 100px, layout fill_order reverse
+bindsym $mod+Shift+Up move up 100px, layout fill_order reverse
+bindsym $mod+Shift+Right move right 100px, layout fill_order reverse
 
 # hjkl move
-bindsym $mod+Shift+h move left 100px
-bindsym $mod+Shift+j move down 100px
-bindsym $mod+Shift+k move up 100px
-bindsym $mod+Shift+l move right 100px
+bindsym $mod+Shift+h move left 100px, layout fill_order reverse
+bindsym $mod+Shift+j move down 100px, layout fill_order reverse
+bindsym $mod+Shift+k move up 100px, layout fill_order reverse
+bindsym $mod+Shift+l move right 100px, layout fill_order reverse
 
 # wasd move
-bindsym $mod+Shift+w move up 100px
-bindsym $mod+Shift+a move left 100px
-bindsym $mod+Shift+s move down 100px
-bindsym $mod+Shift+d move right 100px
+bindsym $mod+Shift+w move up 100px, layout fill_order reverse
+bindsym $mod+Shift+a move left 100px, layout fill_order reverse
+bindsym $mod+Shift+s move down 100px, layout fill_order reverse
+bindsym $mod+Shift+d move right 100px, layout fill_order reverse
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
@@ -226,18 +224,18 @@ bindsym $mod+slash exec $namechildcon
 bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
 
 # container layouts
-bindsym $mod_next+w layout tabbed
-bindsym $mod_next+q layout splith
-bindsym $mod_next+e layout splitv
-bindsym $mod_next+s layout stacking
+bindsym $mod_next+w layout tabbed reverse
+bindsym $mod_next+q layout splith reverse
+bindsym $mod_next+e layout splitv reverse
+bindsym $mod_next+s layout stacking reverse
 
 # child container layout bindsyms (creates a child container from currently select window)
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
-bindsym $mod+ctrl+q split h
-bindsym $mod+ctrl+e split v
-bindsym $mod+ctrl+w split h; layout tabbed 
-bindsym $mod+c split h; layout tabbed 
-bindsym $mod+ctrl+s split h; layout stacked
+bindsym $mod+ctrl+q split h reverse
+bindsym $mod+ctrl+e split v reverse
+bindsym $mod+ctrl+w split h; layout tabbed reverse
+bindsym $mod+c split h; layout tabbed reverse
+bindsym $mod+ctrl+s split h; layout stacked reverse  
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
