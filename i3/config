@@ -43,7 +43,7 @@ set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
-set $borders-all #000000
+set $borders-all #35393c
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $borders-all $accent-bg $accent-txt $indicator $accent-bg
