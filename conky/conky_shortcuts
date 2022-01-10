@@ -2,8 +2,8 @@ conky.config = {
 	alignment = 'bottom_left',
 	background = true,
 	cpu_avg_samples = 2,
-	default_color = '00916e',
-	color2 = 'F9FAF9',
+	default_color = '566161',
+	color2 = 'd3d3d3',
 	double_buffer = true,
 	font = 'Bitstream Vera Sans:size=8',
 	draw_shades = false,
@@ -22,9 +22,9 @@ ${color2}mod = ${color}<alt>
 ${color2}mod_next = ${color}<super>
 
 ${color2}open new terminal - ${color}mod+Enter
+${color2}open package-manager - ${color}mod_next+u
 ${color2}open browser - ${color}mod_next+i
-${color2}open pamac-manager - ${color}mod_next+u
-${color2}open bitwarden-desktop - ${color}mod_next+o
+${color2}open appfinder - ${color}mod_next+o
 ${color2}open putty - ${color}mod_next+p
 
 ${color2}rofi (launcher) - ${color}mod_next+d
@@ -35,20 +35,21 @@ ${color2}container layout (tabbed) - ${color}mod+w
 ${color2}container layout (horiz) - ${color}mod+q
 ${color2}container layout (vert) - ${color}mod+e
 ${color2}container layout (stck) - ${color}mod+s
-${color2}split container (horiz) - ${color}mod+z
-${color2}split container (vert) - ${color}mod+x
-${color2}toggle container type - ${color}mod+c
+${color2}split container (tabbed) - ${color}mod+c
 
-${color2}focus windows - ${color}mod+[hjkl]
+${color2}focus windows - ${color}mod+[hjkl|wasd]
+${color2}move windows - ${color}mod+shift+[hjkl|wasd]
+${color2}move right - ${color}mod+x
+${color2}move left - ${color}mod+z
 
 ${color2}switch to workspace 1-8 - ${color}mod+1-8
 ${color2}send to workspace 1-8 - ${color}mod+Alt+1-8
-${color2}navigate workspaces - ${color}mod+Ctrl+arrows
+${color2}navigate workspaces - ${color}mod+Ctrl+[hjkl|wasd]
 
 ${color2}toggle floating - ${color}mod+Shift+Space
-${color2}toggle sticky - ${color}mod+Cntrl+s
+${color2}toggle sticky - ${color}mod+Cntrl+v
 ${color2}window opacity up[dn] - ${color}mod+Alt+[x|z]
-${color2}window dim disable[enable] - ${color}mod+Alt+[a|d]
+${color2}window dim disable[enable] - ${color}mod+ctrl+shift+a
 
 ${color2}exit - ${color}mod+0
 ]]
