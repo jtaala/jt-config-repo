@@ -34,8 +34,13 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 5 "illuminating emerald"
-set $accent-bg #00916e
-set $accent-txt #F9FAF9
+#set $accent-bg #00916e
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 6 "light gray"
+set $accent-bg #D3D3D3
+set $accent-txt #000000
 set $indicator #109648
 
 # set other colors
