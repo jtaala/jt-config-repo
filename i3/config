@@ -43,12 +43,11 @@ set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
-set $borders-all #35393c
 
 # class                  border       backgr.    text        indic.     child_border
-client.focused           $borders-all $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive  $borders-all $inactive-bg $inactive-txt $indicator $inactive-bg
-client.unfocused         $borders-all $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive  $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
+client.unfocused         $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
@@ -75,9 +74,9 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-bindsym $mod+$mod_next+bracketleft $border_no_name
-bindsym $mod+$mod_next+bracketright border none
-bindsym $mod+$mod_next+backslash $border_normal
+bindsym $mod+$mod_next+b $border_normal
+bindsym $mod+Shift+b $border_no_name
+bindsym $mod+Ctrl+b border none
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
 bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
@@ -248,7 +247,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+f sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+v sticky toggle;exec notify-send 'sticky windows toggled'
 
 # focus last window
 # requires (https://crates.io/crates/i3-focus-last)
@@ -298,6 +297,7 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
+exec --no-startup-id workspace 1
 
 # switch to workspace
 bindsym $mod+Ctrl+grave workspace $wsg
@@ -523,7 +523,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+Control+b bar mode toggle
+bindsym $mod+Control+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###
