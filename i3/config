@@ -34,8 +34,13 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 5 "illuminating emerald"
-set $accent-bg #00916e
-set $accent-txt #F9FAF9
+#set $accent-bg #00916e
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 6 "light gray"
+set $accent-bg #D3D3D3
+set $accent-txt #000000
 set $indicator #109648
 
 # set other colors
@@ -43,12 +48,11 @@ set $inactive-bg #323838
 set $inactive-txt #F9FAF9
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
-set $borders-all #35393c
 
 # class                  border       backgr.    text        indic.     child_border
-client.focused           $borders-all $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive  $borders-all $inactive-bg $inactive-txt $indicator $inactive-bg
-client.unfocused         $borders-all $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive  $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
+client.unfocused         $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
 #client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
@@ -75,9 +79,9 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-bindsym $mod+$mod_next+bracketleft $border_no_name
-bindsym $mod+$mod_next+bracketright border none
-bindsym $mod+$mod_next+backslash $border_normal
+bindsym $mod+$mod_next+b $border_normal
+bindsym $mod+Shift+b $border_no_name
+bindsym $mod+Ctrl+b border none
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
 bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
@@ -176,16 +180,14 @@ bindsym $mod+d focus right
 #bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
 #bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
 
-# simple master-stack moving
-bindsym $mod+z move left
-bindsym $mod+Shift+z move left, focus right
-bindsym $mod+x move right
-bindsym $mod+Shift+x move right, focus left
-
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
 #bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
 #bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+
+# convenience move
+bindsym $mod+z move left
+bindsym $mod+x move right
 
 # move focused window
 bindsym $mod+Shift+Left move left 100px
@@ -235,9 +237,9 @@ bindsym $mod_next+s layout stacking
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
 bindsym $mod+ctrl+q split h
 bindsym $mod+ctrl+e split v
-bindsym $mod+ctrl+w split h; layout tabbed 
-bindsym $mod+c split h; layout tabbed 
-bindsym $mod+ctrl+s split h; layout stacked
+bindsym $mod+ctrl+w split h; layout tabbed
+bindsym $mod+c split h; layout tabbed
+bindsym $mod+ctrl+s split h; layout stacked  
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -250,7 +252,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+f sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+v sticky toggle;exec notify-send 'sticky windows toggled'
 
 # focus last window
 # requires (https://crates.io/crates/i3-focus-last)
@@ -300,6 +302,7 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
+exec --no-startup-id workspace 1
 
 # switch to workspace
 bindsym $mod+Ctrl+grave workspace $wsg
@@ -525,7 +528,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+Control+b bar mode toggle
+bindsym $mod+Control+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###
