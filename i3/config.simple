@@ -15,7 +15,6 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 ## Theme 1 "paradise pink"
 #set $accent-bg #d64161
 #set $accent-txt #F9FAF9
-##set $accent-txt #363636
 #set $indicator #109648
 
 # Theme 2 "tmux"
@@ -40,15 +39,14 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 
 # Theme 6 "light gray"
 set $accent-bg #D3D3D3
-set $accent-txt #000000
+set $accent-txt #363636
 set $indicator #109648
 
 # set other colors
-set $inactive-bg #323838
-set $inactive-txt #F9FAF9
+set $inactive-bg #3A4141
+set $inactive-txt #bdbbbb
 set $unfocused-bg #566161
 set $unfocused-txt #bdbbbb
-set $borders-all #000000
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
