@@ -185,26 +185,26 @@ bindsym $mod+d focus right
 #bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # convenience move
-bindsym $mod+z move left, layout fill_order reverse
-bindsym $mod+x move right, layout fill_order reverse
+bindsym $mod+z move left
+bindsym $mod+x move right
 
 # move focused window
-bindsym $mod+Shift+Left move left 100px, layout fill_order reverse
-bindsym $mod+Shift+Down move down 100px, layout fill_order reverse
-bindsym $mod+Shift+Up move up 100px, layout fill_order reverse
-bindsym $mod+Shift+Right move right 100px, layout fill_order reverse
+bindsym $mod+Shift+Left move left 100px
+bindsym $mod+Shift+Down move down 100px
+bindsym $mod+Shift+Up move up 100px
+bindsym $mod+Shift+Right move right 100px
 
 # hjkl move
-bindsym $mod+Shift+h move left 100px, layout fill_order reverse
-bindsym $mod+Shift+j move down 100px, layout fill_order reverse
-bindsym $mod+Shift+k move up 100px, layout fill_order reverse
-bindsym $mod+Shift+l move right 100px, layout fill_order reverse
+bindsym $mod+Shift+h move left 100px
+bindsym $mod+Shift+j move down 100px
+bindsym $mod+Shift+k move up 100px
+bindsym $mod+Shift+l move right 100px
 
 # wasd move
-bindsym $mod+Shift+w move up 100px, layout fill_order reverse
-bindsym $mod+Shift+a move left 100px, layout fill_order reverse
-bindsym $mod+Shift+s move down 100px, layout fill_order reverse
-bindsym $mod+Shift+d move right 100px, layout fill_order reverse
+bindsym $mod+Shift+w move up 100px
+bindsym $mod+Shift+a move left 100px
+bindsym $mod+Shift+s move down 100px
+bindsym $mod+Shift+d move right 100px
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
