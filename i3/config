@@ -231,14 +231,14 @@ bindsym $mod_next+w layout tabbed reverse
 bindsym $mod_next+q layout splith reverse
 bindsym $mod_next+e layout splitv reverse
 bindsym $mod_next+s layout stacking reverse
+bindsym $mod_next+Shift+w layout tabbed, layout fill_order default
+bindsym $mod_next+Shift+q layout splith, layout fill_order default
+bindsym $mod_next+Shift+e layout splitv, layout fill_order default
+bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
-bindsym $mod+ctrl+q split h reverse
-bindsym $mod+ctrl+e split v reverse
-bindsym $mod+ctrl+w split h; layout tabbed reverse
 bindsym $mod+c split h; layout tabbed reverse
-bindsym $mod+ctrl+s split h; layout stacked reverse  
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
