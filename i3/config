@@ -222,6 +222,7 @@ bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con
 workspace_auto_back_and_forth yes
 
 # renaming container
+set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
 bindsym $mod+slash exec $namechildcon
 # sets back to default i3 container title
 bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
@@ -237,7 +238,6 @@ bindsym $mod_next+Shift+e layout splitv, layout fill_order default
 bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
-set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
 bindsym $mod+c split h; layout tabbed reverse
 
 # toggle fullscreen mode for the focused container
