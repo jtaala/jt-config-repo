@@ -83,7 +83,7 @@ bindsym $mod+Shift+b $border_no_name
 bindsym $mod+Ctrl+b border none
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
-bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
+bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240; xrandr --output eDP-1 --mode 2560x1440 --rate 240"
 bindsym $mod+BackSpace exec --no-startup-id source ~/.xprofile
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -301,10 +301,8 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
-exec --no-startup-id workspace 1
 
 # switch to workspace
-bindsym $mod+Ctrl+grave workspace $wsg
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -313,6 +311,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+Ctrl+grave workspace $wsg
 
 # Move focused container to workspace
 bindsym $mod+grave move container to workspace $wsg
