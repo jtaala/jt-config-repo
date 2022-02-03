@@ -17,9 +17,9 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $accent-txt #F9FAF9
 #set $indicator #109648
 
-# Theme 2 "tmux"
-#set $accent-bg #4e9a06
-#set $accent-txt #F9FAF9
+# Theme 2 "sheen green"
+#set $accent-bg #8ae234
+#set $accent-txt #363636
 #set $indicator #d64161
 
 # Theme 3 "french lilac"
@@ -38,7 +38,12 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 6 "light gray"
-set $accent-bg #D3D3D3
+#set $accent-bg #D3D3D3
+#set $accent-txt #363636
+#set $indicator #109648
+
+# Theme 6 "yellow green"
+set $accent-bg #8ac926
 set $accent-txt #363636
 set $indicator #109648
 
