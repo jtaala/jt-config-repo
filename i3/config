@@ -17,9 +17,9 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $accent-txt #F9FAF9
 #set $indicator #109648
 
-# Theme 2 "tmux"
-#set $accent-bg #4e9a06
-#set $accent-txt #F9FAF9
+# Theme 2 "sheen green"
+#set $accent-bg #8ae234
+#set $accent-txt #363636
 #set $indicator #d64161
 
 # Theme 3 "french lilac"
@@ -38,7 +38,12 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 6 "light gray"
-set $accent-bg #D3D3D3
+#set $accent-bg #D3D3D3
+#set $accent-txt #363636
+#set $indicator #109648
+
+# Theme 6 "yellow green"
+set $accent-bg #8ac926
 set $accent-txt #363636
 set $indicator #109648
 
@@ -46,7 +51,7 @@ set $indicator #109648
 set $inactive-bg #3A4141
 set $inactive-txt #bdbbbb
 set $unfocused-bg #566161
-set $unfocused-txt #bdbbbb
+set $unfocused-txt #939f9f
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
@@ -83,7 +88,7 @@ bindsym $mod+Shift+b $border_no_name
 bindsym $mod+Ctrl+b border none
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
-bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
+bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240; xrandr --output eDP-1 --mode 2560x1440 --rate 240"
 bindsym $mod+BackSpace exec --no-startup-id source ~/.xprofile
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -234,7 +239,8 @@ bindsym $mod_next+e layout splitv
 bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+c split h; layout tabbed
+bindsym $mod+c split h, layout splitv
+bindsym $mod+Shift+c split h, layout tabbed
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -297,10 +303,8 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
-exec --no-startup-id workspace 1
 
 # switch to workspace
-bindsym $mod+Ctrl+grave workspace $wsg
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -309,6 +313,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+Ctrl+grave workspace $wsg
 
 # Move focused container to workspace
 bindsym $mod+grave move container to workspace $wsg
@@ -366,6 +371,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="(?i)^timeshift-gtk$"] floating disable
 for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
+for_window [class="(?i)^zoom$"] floating disable
 
 # Application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal

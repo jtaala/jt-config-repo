@@ -46,7 +46,7 @@ set $indicator #109648
 set $inactive-bg #3A4141
 set $inactive-txt #bdbbbb
 set $unfocused-bg #566161
-set $unfocused-txt #bdbbbb
+set $unfocused-txt #939f9f
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
@@ -210,7 +210,8 @@ bindsym $mod_next+e layout splitv
 bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+c split h; layout tabbed
+bindsym $mod+c split h, layout splitv
+bindsym $mod+Shift+c split h, layout tabbed
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -273,10 +274,8 @@ set $ws5 number 5:5
 set $ws6 number 6:6
 set $ws7 number 7:7
 set $ws8 number 8:8
-exec --no-startup-id workspace 1
 
 # switch to workspace
-bindsym $mod+Ctrl+grave workspace $wsg
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -285,6 +284,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+Ctrl+grave workspace $wsg
 
 # Move focused container to workspace
 bindsym $mod+grave move container to workspace $wsg
@@ -352,6 +352,16 @@ bindsym $mod+$mod_next+Shift+Left resize shrink width 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+Down resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+Up resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+Right resize grow width 100 px or 10 ppt
+
+# wasd key resizing without resize mode
+bindsym $mod+$mod_next+a resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+s resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+w resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+d resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+a resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+s resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+w resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+d resize grow width 100 px or 10 ppt
 
 # hkjl resize
 bindsym $mod+$mod_next+h resize shrink width 50 px or 5 ppt
