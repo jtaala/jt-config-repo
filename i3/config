@@ -12,10 +12,10 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-## Theme 1 "paradise pink"
-#set $accent-bg #d64161
-#set $accent-txt #F9FAF9
-#set $indicator #109648
+# Theme 1 "paradise pink"
+set $accent-bg #d64161
+set $accent-txt #F9FAF9
+set $indicator #109648
 
 # Theme 2 "sheen green"
 #set $accent-bg #8ae234
@@ -43,9 +43,9 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 6 "yellow green"
-set $accent-bg #8ac926
-set $accent-txt #363636
-set $indicator #109648
+#set $accent-bg #8ac926
+#set $accent-txt #363636
+#set $indicator #109648
 
 # set other colors
 set $inactive-bg #3A4141
@@ -221,7 +221,7 @@ bindsym $mod+Ctrl+6 mark --add --toggle 6
 bindsym $mod+Ctrl+7 mark --add --toggle 7
 bindsym $mod+Ctrl+8 mark --add --toggle 8
 bindsym $mod+Ctrl+9 mark --add --toggle 9
-bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
+bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'; i3-msg focus child"
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
