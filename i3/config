@@ -220,7 +220,7 @@ bindsym $mod+Shift+d move right 100px
 
 # move all windows on workspace cache to mark STK
 bindsym $mod+grave move container to workspace $wsg
-bindsym $mod+Shift+grave [workspace="`"] move container to workspace current
+bindsym $mod+$mod_next+grave [workspace="`"] move container to workspace current
 bindsym $mod+Tab [con_mark="STK"] focus, focus child
 bindsym $mod+Shift+Tab mark ., [con_mark="."] move window to mark STK, unmark .
 bindsym $mod+$mod_next+Tab focus parent, mark --add --toggle STK, focus child
