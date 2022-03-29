@@ -12,10 +12,10 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-## Theme 1 "paradise pink"
-#set $accent-bg #d64161
-#set $accent-txt #F9FAF9
-#set $indicator #109648
+# Theme 1 "paradise pink"
+set $accent-bg #d64161
+set $accent-txt #F9FAF9
+set $indicator #109648
 
 # Theme 2 "sheen green"
 #set $accent-bg #8ae234
@@ -43,9 +43,9 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 #set $indicator #109648
 
 # Theme 6 "yellow green"
-set $accent-bg #8ac926
-set $accent-txt #363636
-set $indicator #109648
+#set $accent-bg #8ac926
+#set $accent-txt #363636
+#set $indicator #109648
 
 # set other colors
 set $inactive-bg #3A4141
@@ -97,7 +97,6 @@ floating_modifier $mod
 
 # Autostart applications
 exec --no-startup-id xsetroot -solid "#6a6868"
-exec_always --no-startup-id i3wsr --config ~/.config/i3/i3wsr.toml
 exec_always --no-startup-id vmware-user-suid-wrapper
 
 # picom (compositor)
@@ -149,17 +148,6 @@ bindsym $mod+a focus left
 bindsym $mod+s focus down
 bindsym $mod+d focus right
 
-# master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires 'jq'
-#bindsym $mod+period focus parent, focus right, focus child
-#bindsym $mod+comma focus parent, focus left, focus child
-#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-#set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
-#bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
-#bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
-#bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
-#bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
-
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
 #bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
@@ -188,11 +176,11 @@ bindsym $mod+Shift+s move down 100px
 bindsym $mod+Shift+d move right 100px
 
 # move the currently focused window to the scratchpad
-#bindsym $mod+Shift+Tab move scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+minus scratchpad show
+bindsym $mod+minus scratchpad show
 
 # move all windows on workspace cache to mark STK
 bindsym $mod+grave move container to workspace $wsg
@@ -248,10 +236,6 @@ bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+v sticky toggle;exec notify-send 'sticky windows toggled'
-
-# focus last window
-# requires (https://crates.io/crates/i3-focus-last)
-#bindsym $mod+Tab exec i3-focus-last
 
 # window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
