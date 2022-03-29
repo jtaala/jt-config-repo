@@ -102,21 +102,19 @@ floating_modifier $mod
 # Autostart applications
 #exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 # needs xorg-xsetroot installed
-exec --no-startup-id xsetroot -solid "#1d1d1d"
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id optimus-manager-qt
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xsetroot -solid "#1d1d1d"
+exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
-exec_always --no-startup-id i3-focus-last server
-#exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
 
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
@@ -173,17 +171,6 @@ bindsym $mod+a focus left
 bindsym $mod+s focus down
 bindsym $mod+d focus right
 
-# master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires 'jq'
-#bindsym $mod+period focus parent, focus right, focus child
-#bindsym $mod+comma focus parent, focus left, focus child
-#set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-#set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
-#bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
-#bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
-#bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
-#bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
-
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
 #bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
@@ -212,11 +199,11 @@ bindsym $mod+Shift+s move down 100px
 bindsym $mod+Shift+d move right 100px
 
 # move the currently focused window to the scratchpad
-#bindsym $mod+Shift+Tab move scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+minus scratchpad show
+bindsym $mod+minus scratchpad show
 
 # move all windows on workspace cache to mark STK
 bindsym $mod+grave move container to workspace $wsg
@@ -268,10 +255,6 @@ bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Ctrl+v sticky toggle;exec notify-send 'sticky windows toggled'
-
-# focus last window
-# requires (https://crates.io/crates/i3-focus-last)
-#bindsym $mod+Tab exec i3-focus-last
 
 # window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
@@ -377,16 +360,18 @@ for_window [class="(?i)^workspacesclient$"] floating disable
 for_window [class="(?i)^zoom$"] floating disable
 
 # Application shortcuts
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym Print exec --no-startup-id flameshot gui
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-# shortcuts to often used applications
 bindsym $mod_next+u exec --no-startup-id pamac-manager
 bindsym $mod_next+i exec --no-startup-id brave
 bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
 bindsym $mod_next+p exec --no-startup-id putty
 bindsym $mod_next+bracketleft exec --no-startup-id nautilus
+# type clipboard contents (required xdotool and xclip)
+bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 0.5; /usr/bin/xdotool type --delay 100 \\"$(xclip -o)\\""
+
+# shortcuts to often used applications
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
@@ -427,10 +412,6 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-# Lock screen
-bindsym $mod+Home exec --no-startup-id i3exit lock, mode "default"
-bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
 
 ## Resize window (you can also use the mouse for that)
 #bindsym $mod+r mode "resize"
