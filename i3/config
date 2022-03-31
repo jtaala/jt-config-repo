@@ -366,7 +366,7 @@ bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
 bindsym $mod_next+p exec --no-startup-id putty
 bindsym $mod_next+bracketleft exec --no-startup-id nautilus
 # type clipboard contents (required xdotool and xclip)
-bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 0.5; /usr/bin/xdotool type --delay 100 \\"$(xclip -o)\\""
+bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 1; /usr/bin/xdotool type --delay 100 \\"$(xclip -o)\\""
 
 # shortcuts to often used applications
 bindsym $mod+Return exec i3-sensible-terminal
