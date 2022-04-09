@@ -118,16 +118,16 @@ bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --lis
 
 exec --no-startup-id volumeicon
 bindsym $mod+$mod_next+v exec --no-startup-id "killall volumeicon; sleep 1; volumeicon"
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#bindsym $mod+Ctrl+m exec --no-startup-id terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
 # start dmenu (a program launcher)
-bindsym $mod_next+d exec dmenu_run -sb "$accent-bg"
-bindsym $mod_next+Return exec dmenu_run "$accent-bg"
+bindsym $mod_next+d exec --no-startup-id dmenu_run -sb "$accent-bg"
+bindsym $mod_next+Return exec --no-startup-id dmenu_run "$accent-bg"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -150,8 +150,8 @@ bindsym $mod+d focus right
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
-#bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
-#bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+#bindsym $mod+comma exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+#bindsym $mod+period exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # convenience move
 bindsym $mod+z move left
@@ -199,14 +199,14 @@ bindsym $mod+Ctrl+6 mark --add --toggle 6
 bindsym $mod+Ctrl+7 mark --add --toggle 7
 bindsym $mod+Ctrl+8 mark --add --toggle 8
 bindsym $mod+Ctrl+9 mark --add --toggle 9
-bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'; i3-msg focus child"
+bindsym $mod+g exec --no-startup-id "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'; i3-msg focus child"
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 
 # renaming container
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
-bindsym $mod+slash exec $namechildcon
+bindsym $mod+slash exec --no-startup-id $namechildcon
 # sets back to default i3 container title
 bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
 
@@ -222,11 +222,11 @@ bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+c split h, layout splitv
-bindsym $mod+Shift+c split h, layout tabbed reverse
+bindsym $mod+$mod_next+c split h, layout stacking reverse
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
+bindsym $mod+shift+f exec --no-startup-id "i3-msg focus parent, fullscreen toggle, focus child"
 
 # toggle tiling / floating focus
 bindsym $mod+Shift+space floating toggle
@@ -235,23 +235,23 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+v sticky toggle;exec notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+v sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart picom)
-bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
-bindsym $mod+$mod_next+Shift+z exec transset-df -a --min 0.1 --dec 0.1
-bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
-bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
-bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
-bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
+bindsym $mod+$mod_next+z exec --no-startup-id transset-df -a --min 0.20 --dec 0.20
+bindsym $mod+$mod_next+Shift+z exec --no-startup-id transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+$mod_next+Ctrl+z exec --no-startup-id "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
+bindsym $mod+$mod_next+x exec --no-startup-id transset-df -a --inc 0.20 --max 0.99
+bindsym $mod+$mod_next+Shift+x exec --no-startup-id transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+$mod_next+Ctrl+x exec --no-startup-id "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
-bindsym $mod+ctrl+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
-bindsym $mod+ctrl+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+bindsym $mod+ctrl+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec --no-startup-id notify-send 'anti-dim set on window'
+bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec --no-startup-id notify-send 'dim set on window'
 
 # window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
-bindsym $mod+ctrl+i exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
-bindsym $mod+ctrl+Shift+i exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
+bindsym $mod+ctrl+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
+bindsym $mod+ctrl+Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
 
 # focus the parent container
 bindsym $mod+q focus parent
@@ -315,7 +315,7 @@ bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 # Open specific applications in floating mode
 
 # Application shortcuts
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # shortcuts to often used applications
@@ -334,10 +334,10 @@ bindsym $mod+Ctrl+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Ctrl+r restart
 
-bindsym $mod_next+l exec i3exit lock
+bindsym $mod_next+l exec --no-startup-id i3exit lock
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+0 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+0 exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # arrow key resizing without resize mode
 bindsym $mod+$mod_next+Left resize shrink width 50 px or 5 ppt
