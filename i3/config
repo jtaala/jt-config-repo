@@ -270,7 +270,7 @@ bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewind
 
 # window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
 bindsym $mod+$mod_next+i exec --no-startup-id xrandr-invert-colors
-bindsym $mod+ctrl+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
+bindsym $mod+ctrl+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
 bindsym $mod+ctrl+Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
 
 # focus the parent container
