@@ -14,14 +14,19 @@ set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"
 # Theme options (comment/uncomment theme group)
 # Theme 5 "fluorescent blue"
 set $accent-bg #07eded
+set $indicator #f81212
 # Theme 5 "french pink"
 #set $accent-bg #f57a9d
+#set $indicator #109648
 # Theme 1 "paradise pink"
 #set $accent-bg #eb5ca3
+#set $indicator #109648
 # Theme 2 "sheen green"
 #set $accent-bg #8ae234
+#set $indicator #109648
 # Theme 5 "ocean green"
 #set $accent-bg #53ca9d
+#set $indicator #109648
 
 # set other colors
 set $accent-txt #000000
@@ -29,7 +34,6 @@ set $inactive-bg #000000
 set $inactive-txt #bdbbbb
 set $unfocused-bg #000000
 set $unfocused-txt #939f9f
-set $indicator #109648
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
@@ -247,9 +251,9 @@ bindsym $mod+ctrl+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -f
 bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec --no-startup-id notify-send 'dim set on window'
 
 # window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
-bindsym $mod+$mod_next+i exec --no-startup-id xrandr-invert-colors
-bindsym $mod+ctrl+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
-bindsym $mod+ctrl+Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
+bindsym $mod+ctrl+i exec --no-startup-id xrandr-invert-colors
+bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
+bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
 
 # focus the parent container
 bindsym $mod+q focus parent
