@@ -18,14 +18,27 @@ set $indicator #f81212
 # Theme 5 "french pink"
 #set $accent-bg #f57a9d
 #set $indicator #109648
+
 # Theme 1 "paradise pink"
 #set $accent-bg #eb5ca3
 #set $indicator #109648
 # Theme 2 "sheen green"
 #set $accent-bg #8ae234
 #set $indicator #109648
-# Theme 5 "ocean green"
-#set $accent-bg #53ca9d
+
+# Theme 5 "illuminating emerald"
+#set $accent-bg #00916e
+#set $accent-txt #F9FAF9
+#set $indicator #109648
+
+# Theme 6 "light gray"
+#set $accent-bg #D3D3D3
+#set $accent-txt #363636
+#set $indicator #109648
+
+# Theme 6 "yellow green"
+#set $accent-bg #8ac926
+#set $accent-txt #363636
 #set $indicator #109648
 
 # set other colors
@@ -39,7 +52,7 @@ set $unfocused-txt #939f9f
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
 client.focused_inactive  $inactive-bg $inactive-bg $accent-bg $indicator $inactive-bg
 client.unfocused         $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
+client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
 
@@ -236,7 +249,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+v sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+s sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec --no-startup-id transset-df -a --min 0.20 --dec 0.20
