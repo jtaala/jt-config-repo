@@ -12,24 +12,18 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-# Theme 1 "paradise pink"
-set $accent-bg #d64161
-set $accent-txt #F9FAF9
-set $indicator #109648
-
-# Theme 2 "sheen green"
-#set $accent-bg #8ae234
-#set $accent-txt #363636
-#set $indicator #d64161
-
-# Theme 3 "french lilac"
-#set $accent-bg #8f5f95
-#set $accent-txt #F9FAF9
+# Theme 5 "fluorescent blue"
+set $accent-bg #07eded
+set $indicator #f81212
+# Theme 5 "french pink"
+#set $accent-bg #f57a9d
 #set $indicator #109648
 
-# Theme 4 "cardinal"
-#set $accent-bg #ba263f
-#set $accent-txt #F9FAF9
+# Theme 1 "paradise pink"
+#set $accent-bg #eb5ca3
+#set $indicator #109648
+# Theme 2 "sheen green"
+#set $accent-bg #8ae234
 #set $indicator #109648
 
 # Theme 5 "illuminating emerald"
@@ -48,16 +42,17 @@ set $indicator #109648
 #set $indicator #109648
 
 # set other colors
-set $inactive-bg #3A4141
+set $accent-txt #000000
+set $inactive-bg #000000
 set $inactive-txt #bdbbbb
-set $unfocused-bg #566161
+set $unfocused-bg #000000
 set $unfocused-txt #939f9f
 
 # class                  border       backgr.    text        indic.     child_border
 client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive  $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
+client.focused_inactive  $inactive-bg $inactive-bg $accent-bg $indicator $inactive-bg
 client.unfocused         $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
+client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
 
@@ -235,7 +230,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+v sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
+bindsym $mod+Ctrl+s sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart picom)
 bindsym $mod+$mod_next+z exec --no-startup-id transset-df -a --min 0.20 --dec 0.20
@@ -249,9 +244,10 @@ bindsym $mod+$mod_next+Ctrl+x exec --no-startup-id "WINDOWS=$(xdotool search --a
 bindsym $mod+ctrl+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec --no-startup-id notify-send 'anti-dim set on window'
 bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec --no-startup-id notify-send 'dim set on window'
 
-# window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
-bindsym $mod+ctrl+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
-bindsym $mod+ctrl+Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
+# window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
+bindsym $mod+ctrl+i exec --no-startup-id xrandr-invert-colors
+bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
+bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
 
 # focus the parent container
 bindsym $mod+q focus parent
@@ -389,9 +385,12 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        background #4a4a4a
-        statusline #F9FAF9
-        separator  #454947
+        #background #4a4a4a
+        background #000000
+        #statusline #F9FAF9
+        statusline $accent-bg
+        #separator  #454947
+        separator  $accent-bg
 
 #                      border  backgr. text
         focused_workspace  $accent-txt $accent-bg $accent-txt
