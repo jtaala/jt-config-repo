@@ -356,6 +356,7 @@ for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
 for_window [class="(?i)^zoom$"] floating disable
 for_window [title="Question"] floating enable
+for_window [title="(?i)bitwarden"] floating enable
 
 # Application shortcuts
 bindsym $mod_next+u exec --no-startup-id pamac-manager
