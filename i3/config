@@ -203,9 +203,10 @@ bindsym $mod+minus scratchpad show
 
 # move window to mark (by workspace)
 # requires jq
-bindsym $mod+Tab exec --no-startup-id "wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num'); i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
-bindsym $mod+Shift+Tab exec --no-startup-id "wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num'); mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
-bindsym $mod+$mod_next+Tab exec --no-startup-id "wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num'); i3-msg \\"focus parent, mark --add --toggle $wn, focus child\\"
+set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
+bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
+bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
+bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
