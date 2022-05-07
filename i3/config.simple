@@ -177,12 +177,12 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-# move all windows on workspace cache to mark STK
-bindsym $mod+grave move container to workspace $wsg
-bindsym $mod+$mod_next+grave [workspace="`"] move container to workspace current
-bindsym $mod+Tab [con_mark="STK"] focus, focus child
-bindsym $mod+Shift+Tab mark ., [con_mark="."] move window to mark STK, unmark .
-bindsym $mod+$mod_next+Tab focus parent, mark --add --toggle STK, focus child
+# move window to mark (by workspace)
+# requires jq
+set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
+bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
+bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
+bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
@@ -217,7 +217,6 @@ bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+c split h, layout splitv
-bindsym $mod+$mod_next+c split h, layout stacking reverse
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -302,6 +301,10 @@ bindsym $mod+$mod_next+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
 
+# Move to wsg workspace
+bindsym $mod+grave move container to workspace $wsg
+bindsym $mod+$mod_next+grave [workspace="`"] move container to workspace current
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -365,10 +368,6 @@ bindsym $mod+$mod_next+Shift+j resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+l resize grow width 100 px or 10 ppt
 
-# predefined sizes (70/30)
-bindsym $mod+$mod_next+u resize set width 40 ppt
-bindsym $mod+$mod_next+i resize set width 50 ppt
-bindsym $mod+$mod_next+o resize set width 60 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
