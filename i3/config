@@ -122,7 +122,7 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -sort -kb-row-up \\"A
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
 
 # instant layout
 # REQUIRES XDOTOOL
@@ -206,7 +206,7 @@ bindsym $mod+minus scratchpad show
 set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
 bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
 bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
-bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"focus parent, mark --add --toggle $wn, focus child\\"
+bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
 bindsym $mod+Ctrl+1 mark --add --toggle 1
@@ -241,7 +241,6 @@ bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+c split h, layout splitv
-bindsym $mod+$mod_next+c split h, layout stacking reverse
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
