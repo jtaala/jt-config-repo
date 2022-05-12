@@ -206,6 +206,7 @@ bindsym $mod+minus scratchpad show
 set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
 bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
 bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
+bindsym $mod+$mod_next+Escape exec --no-startup-id "$setwn i3-msg \\"[workspace=__focused__] move window to mark $wn\\"
 bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
@@ -358,7 +359,6 @@ for_window [class="(?i)^timeshift-gtk$"] floating disable
 for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
 for_window [class="(?i)^zoom$"] floating disable
-for_window [title="Question"] floating enable
 for_window [title="(?i)bitwarden"] floating enable
 
 # Application shortcuts
