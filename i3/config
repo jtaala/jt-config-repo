@@ -125,10 +125,9 @@ bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
 
 # instant layout
-# REQUIRES XDOTOOL
-set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
-bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
-
+# REQUIRES i3-instant-layout and XDOTOOL
+#set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
+#bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -206,7 +205,7 @@ bindsym $mod+minus scratchpad show
 set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
 bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
 bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
-bindsym $mod+$mod_next+Escape exec --no-startup-id "$setwn i3-msg \\"[workspace=__focused__] move window to mark $wn\\"
+bindsym $mod+Escape exec --no-startup-id "$setwn i3-msg \\"[workspace=__focused__] move window to mark $wn\\"
 bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
