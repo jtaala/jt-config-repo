@@ -12,17 +12,19 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-# Theme 5 "fluorescent blue"
+# Theme 1 "fluorescent blue"
 set $accent-bg #07eded
 set $indicator #f81212
-# Theme 5 "french pink"
+
+# Theme 2 "french pink"
 #set $accent-bg #f57a9d
 #set $indicator #109648
 
-# Theme 1 "paradise pink"
+# Theme 3 "paradise pink"
 #set $accent-bg #eb5ca3
 #set $indicator #109648
-# Theme 2 "sheen green"
+
+# Theme 4 "sheen green"
 #set $accent-bg #8ae234
 #set $indicator #109648
 
@@ -36,7 +38,7 @@ set $indicator #f81212
 #set $accent-txt #363636
 #set $indicator #109648
 
-# Theme 6 "yellow green"
+# Theme 7 "yellow green"
 #set $accent-bg #8ac926
 #set $accent-txt #363636
 #set $indicator #109648
@@ -101,12 +103,6 @@ bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# instant layout
-# REQUIRES XDOTOOL
-set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
-bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
-
-
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -153,22 +149,21 @@ bindsym $mod+z move left
 bindsym $mod+x move right
 
 # move focused window
-bindsym $mod+Shift+Left move left 100px
-bindsym $mod+Shift+Down move down 100px
-bindsym $mod+Shift+Up move up 100px
-bindsym $mod+Shift+Right move right 100px
+bindsym $mod+Shift+h move left 50px
+bindsym $mod+Shift+j move down 50px
+bindsym $mod+Shift+k move up 50px
+bindsym $mod+Shift+l move right 50px
 
-# hjkl move
-bindsym $mod+Shift+h move left 100px
-bindsym $mod+Shift+j move down 100px
-bindsym $mod+Shift+k move up 100px
-bindsym $mod+Shift+l move right 100px
+bindsym $mod+Ctrl+Shift+h move left 1px
+bindsym $mod+Ctrl+Shift+j move down 1px
+bindsym $mod+Ctrl+Shift+k move up 1px
+bindsym $mod+Ctrl+Shift+l move right 1px
 
 # wasd move
-bindsym $mod+Shift+w move up 100px
-bindsym $mod+Shift+a move left 100px
-bindsym $mod+Shift+s move down 100px
-bindsym $mod+Shift+d move right 100px
+bindsym $mod+Shift+w move up 50px
+bindsym $mod+Shift+a move left 50px
+bindsym $mod+Shift+s move down 50px
+bindsym $mod+Shift+d move right 50px
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -182,6 +177,7 @@ bindsym $mod+minus scratchpad show
 set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
 bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
 bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
+bindsym $mod+Escape exec --no-startup-id "$setwn i3-msg \\"[workspace=__focused__] move window to mark $wn\\"
 bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
 
 # mark and focus
@@ -245,8 +241,8 @@ bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewind
 
 # window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
 bindsym $mod+ctrl+i exec --no-startup-id xrandr-invert-colors
-bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
-bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
+bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; 
+bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG;
 
 # focus the parent container
 bindsym $mod+q focus parent
@@ -338,15 +334,6 @@ bindsym $mod_next+l exec --no-startup-id i3exit lock
 # exit i3 (logs you out of your X session)
 bindsym $mod+0 exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# arrow key resizing without resize mode
-bindsym $mod+$mod_next+Left resize shrink width 50 px or 5 ppt
-bindsym $mod+$mod_next+Down resize grow height 50 px or 5 ppt
-bindsym $mod+$mod_next+Up resize shrink height 50 px or 5 ppt
-bindsym $mod+$mod_next+Right resize grow width 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+Left resize shrink width 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Down resize grow height 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Up resize shrink height 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Right resize grow width 100 px or 10 ppt
 
 # wasd key resizing without resize mode
 bindsym $mod+$mod_next+a resize shrink width 50 px or 5 ppt

@@ -12,17 +12,19 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-# Theme 5 "fluorescent blue"
+# Theme 1 "fluorescent blue"
 set $accent-bg #07eded
 set $indicator #f81212
-# Theme 5 "french pink"
+
+# Theme 2 "french pink"
 #set $accent-bg #f57a9d
 #set $indicator #109648
 
-# Theme 1 "paradise pink"
+# Theme 3 "paradise pink"
 #set $accent-bg #eb5ca3
 #set $indicator #109648
-# Theme 2 "sheen green"
+
+# Theme 4 "sheen green"
 #set $accent-bg #8ae234
 #set $indicator #109648
 
@@ -36,7 +38,7 @@ set $indicator #f81212
 #set $accent-txt #363636
 #set $indicator #109648
 
-# Theme 6 "yellow green"
+# Theme 7 "yellow green"
 #set $accent-bg #8ac926
 #set $accent-txt #363636
 #set $indicator #109648
@@ -138,7 +140,7 @@ bindsym $mod+$mod_next+v exec --no-startup-id "killall volumeicon; sleep 1; volu
 #bindsym $mod+Ctrl+m exec --no-startup-id terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
@@ -176,22 +178,21 @@ bindsym $mod+z move left
 bindsym $mod+x move right
 
 # move focused window
-bindsym $mod+Shift+Left move left 100px
-bindsym $mod+Shift+Down move down 100px
-bindsym $mod+Shift+Up move up 100px
-bindsym $mod+Shift+Right move right 100px
+bindsym $mod+Shift+h move left 50px
+bindsym $mod+Shift+j move down 50px
+bindsym $mod+Shift+k move up 50px
+bindsym $mod+Shift+l move right 50px
 
-# hjkl move
-bindsym $mod+Shift+h move left 100px
-bindsym $mod+Shift+j move down 100px
-bindsym $mod+Shift+k move up 100px
-bindsym $mod+Shift+l move right 100px
+bindsym $mod+Ctrl+Shift+h move left 1px
+bindsym $mod+Ctrl+Shift+j move down 1px
+bindsym $mod+Ctrl+Shift+k move up 1px
+bindsym $mod+Ctrl+Shift+l move right 1px
 
 # wasd move
-bindsym $mod+Shift+w move up 100px
-bindsym $mod+Shift+a move left 100px
-bindsym $mod+Shift+s move down 100px
-bindsym $mod+Shift+d move right 100px
+bindsym $mod+Shift+w move up 50px
+bindsym $mod+Shift+a move left 50px
+bindsym $mod+Shift+s move down 50px
+bindsym $mod+Shift+d move right 50px
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -269,8 +270,8 @@ bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewind
 
 # window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
 bindsym $mod+ctrl+i exec --no-startup-id xrandr-invert-colors
-bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec --no-startup-id notify-send 'invert set on window'
-bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec --no-startup-id notify-send 'invert removed on window'
+bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; 
+bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG;
 
 # focus the parent container
 bindsym $mod+q focus parent
@@ -363,6 +364,7 @@ for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
 for_window [class="(?i)^zoom$"] floating disable
 for_window [title="(?i)bitwarden"] floating enable
+for_window [class="(?i)nvidia-settings"] floating enable
 
 # Application shortcuts
 bindsym $mod_next+u exec --no-startup-id pamac-manager
