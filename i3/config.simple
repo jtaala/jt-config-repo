@@ -281,7 +281,7 @@ bindsym $mod_next+5 workspace $ws5
 bindsym $mod_next+6 workspace $ws6
 bindsym $mod_next+7 workspace $ws7
 bindsym $mod_next+8 workspace $ws8
-bindsym $mod_next+Ctrl+grave workspace $wsg
+bindsym $mod_next+grave workspace $wsg
 
 # Move focused container to workspace
 bindsym $mod_next+Shift+1 move container to workspace $ws1

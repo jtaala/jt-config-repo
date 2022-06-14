@@ -310,7 +310,7 @@ bindsym $mod_next+5 workspace $ws5
 bindsym $mod_next+6 workspace $ws6
 bindsym $mod_next+7 workspace $ws7
 bindsym $mod_next+8 workspace $ws8
-bindsym $mod_next+Ctrl+grave workspace $wsg
+bindsym $mod_next+grave workspace $wsg
 
 # Move focused container to workspace
 bindsym $mod_next+Shift+1 move container to workspace $ws1
@@ -384,7 +384,7 @@ bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 1; /usr/bin/xdotool type -
 # shortcuts to often used applications
 bindsym $mod_next+Return exec --no-startup-id i3-sensible-terminal
 bindsym Print exec --no-startup-id flameshot gui
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod_next+Ctrl+x --release exec --no-startup-id xkill
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
