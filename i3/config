@@ -65,9 +65,15 @@ workspace_layout tabbed
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-for_window [class=".*"] $border_normal
+for_window [class=".*"] $border_no_name
 for_window [class=".*"] title_window_icon on
 for_window [class=".*"] title_window_icon padding 3px
+
+# i3-overview (https://github.com/milgra/i3-overview)
+for_window [class="i3-overview"] floating enable
+for_window [class="i3-overview"] sticky enable
+no_focus [class="i3-overview"]
+exec --no-startup-id i3-overview
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
@@ -112,7 +118,7 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec --no-startup-id yes | xsm --restore
+#exec --no-startup-id yes | xsm --restore
 
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
@@ -123,8 +129,8 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi drun,window -show drun -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
 
 # instant layout
 # REQUIRES i3-instant-layout and XDOTOOL
@@ -150,9 +156,10 @@ bindsym $mod+F2 exec --no-startup-id amixer -qc 0 set Master 2db-; exec notify-s
 bindsym $mod+F3 exec --no-startup-id amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-#bindsym $mod+F8 exec sudo xbacklight -10
-bindsym $mod+F8 exec --no-startup-id "sleep 1; xset dpms force off"
-bindsym $mod+F9 exec --no-startup-id sudo xbacklight +10
+bindsym $mod_next+F8 exec --no-startup-id "sleep 1; xset dpms force off"
+# requires acpilight 
+bindsym $mod+F8 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -dec 5 -fps 60
+bindsym $mod+F9 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -inc 5 -fps 60
 
 # focus_follows_mouse no
 
@@ -274,8 +281,8 @@ bindsym $mod+q focus parent
 bindsym $mod+e focus child
 
 # navigate workspaces next / previous
-bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+Ctrl+l workspace next
+bindsym $mod_next+Ctrl+h workspace prev
+bindsym $mod_next+Ctrl+l workspace next
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -292,25 +299,25 @@ set $ws7 number 7:7
 set $ws8 number 8:8
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+Ctrl+grave workspace $wsg
+bindsym $mod_next+1 workspace $ws1
+bindsym $mod_next+2 workspace $ws2
+bindsym $mod_next+3 workspace $ws3
+bindsym $mod_next+4 workspace $ws4
+bindsym $mod_next+5 workspace $ws5
+bindsym $mod_next+6 workspace $ws6
+bindsym $mod_next+7 workspace $ws7
+bindsym $mod_next+8 workspace $ws8
+bindsym $mod_next+grave workspace $wsg
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod_next+Shift+1 move container to workspace $ws1
+bindsym $mod_next+Shift+2 move container to workspace $ws2
+bindsym $mod_next+Shift+3 move container to workspace $ws3
+bindsym $mod_next+Shift+4 move container to workspace $ws4
+bindsym $mod_next+Shift+5 move container to workspace $ws5
+bindsym $mod_next+Shift+6 move container to workspace $ws6
+bindsym $mod_next+Shift+7 move container to workspace $ws7
+bindsym $mod_next+Shift+8 move container to workspace $ws8
 
 # Move focused container to workspace, and switch to that workspace
 bindsym $mod+$mod_next+1 move container to workspace $ws1; workspace $ws1
@@ -372,9 +379,9 @@ bindsym $mod_next+bracketleft exec --no-startup-id nautilus
 bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 1; /usr/bin/xdotool type --delay 100 \\"$(xclip -o)\\""
 
 # shortcuts to often used applications
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod_next+Return exec --no-startup-id i3-sensible-terminal
 bindsym Print exec --no-startup-id flameshot gui
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod_next+Ctrl+x --release exec --no-startup-id xkill
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
