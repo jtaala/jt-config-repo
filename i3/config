@@ -118,7 +118,7 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec --no-startup-id yes | xsm --restore
+#exec --no-startup-id yes | xsm --restore
 
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
@@ -129,8 +129,8 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show windowcd -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi drun,window -show drun -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
 
 # instant layout
 # REQUIRES i3-instant-layout and XDOTOOL
@@ -156,9 +156,10 @@ bindsym $mod+F2 exec --no-startup-id amixer -qc 0 set Master 2db-; exec notify-s
 bindsym $mod+F3 exec --no-startup-id amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-#bindsym $mod+F8 exec sudo xbacklight -10
-bindsym $mod+F8 exec --no-startup-id "sleep 1; xset dpms force off"
-bindsym $mod+F9 exec --no-startup-id sudo xbacklight +10
+bindsym $mod_next+F8 exec --no-startup-id "sleep 1; xset dpms force off"
+# requires acpilight 
+bindsym $mod+F8 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -dec 5 -fps 60
+bindsym $mod+F9 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -inc 5 -fps 60
 
 # focus_follows_mouse no
 
