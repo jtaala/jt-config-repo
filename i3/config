@@ -303,13 +303,14 @@ bindsym $mod+$mod_next+Tab move container to workspace back_and_forth; workspace
 # switch to workspace
 bindsym $mod+1 workspace prev
 bindsym $mod+2 workspace next
-bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -l 2 -P "Goto Workspace: " -F 'workspace %s'
+bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -P "Goto Workspace: " -l 2 -F 'workspace number "%s"'
+bindsym $mod+4 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
 
 # new iterative workspaces
 set $workspace_dynamic $(($(i3-msg -t get_workspaces | tr , '\n' | grep '\\"num\\":' | cut -d : -f 2 | sort -rn | head -1) + 1))
 bindsym $mod+grave exec --no-startup-id "i3-msg workspace $workspace_dynamic"
 bindsym $mod+Shift+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic"
-bindsym $mod+$mod_next+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic, workspace $workspace_dynamic"
+bindsym $mod+$mod_next+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic, workspace number $workspace_dynamic"
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace prev
@@ -492,7 +493,7 @@ bar {
 
     bindsym button4 nop bindsym button5 nop
 #   font xft:URWGothic-Book 11
-    strip_workspace_numbers yes
+    strip_workspace_numbers no
 
     colors {
         #background #4a4a4a
