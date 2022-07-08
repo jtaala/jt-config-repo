@@ -467,8 +467,8 @@ bindsym $mod+$mod_next+Shift+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+l resize grow width 100 px or 10 ppt
 
 # "netflix" and "spotify" modes
-bindsym $mod+$mod_next+n floating enable;sticky enable; move position 1300px 708px resize set 612 343;border none
-bindsym $mod+$mod_next+m floating enable;sticky enable; move position 1123px 983px resize set 791 70;border none
+bindsym $mod+$mod_next+n floating enable;sticky enable; move position 1632px 864px resize set 912 543; border none
+bindsym $mod+$mod_next+m floating enable;sticky enable; move position 1123px 983px resize set 791 70; border none
 bindsym $mod+$mod_next+Shift+m resize set height 64; border none
 
 # redshift modes
