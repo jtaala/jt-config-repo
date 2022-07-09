@@ -69,11 +69,11 @@ for_window [class=".*"] $border_no_name
 for_window [class=".*"] title_window_icon on
 for_window [class=".*"] title_window_icon padding 3px
 
-# i3-overview (https://github.com/milgra/i3-overview)
-for_window [class="i3-overview"] floating enable
-for_window [class="i3-overview"] sticky enable
-no_focus [class="i3-overview"]
-exec --no-startup-id i3-overview
+## i3-overview (https://github.com/milgra/i3-overview)
+#for_window [class="i3-overview"] floating enable
+#for_window [class="i3-overview"] sticky enable
+#no_focus [class="i3-overview"]
+#exec --no-startup-id i3-overview
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
