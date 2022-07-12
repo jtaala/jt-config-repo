@@ -282,10 +282,6 @@ bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) 
 bindsym $mod+q focus parent
 bindsym $mod+e focus child
 
-# navigate workspaces next / previous
-bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+Ctrl+l workspace next
-
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
@@ -299,6 +295,10 @@ bindsym $mod+Ctrl+l workspace next
 #set $ws7 number 7
 #set $ws8 number 8
 
+# navigate workspaces next / previous
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+l workspace next
+
 # switching back and forth
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
@@ -310,7 +310,7 @@ bindsym $mod+2 workspace next
 bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -F 'workspace number "%s"'
 bindsym $mod+Ctrl+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
 bindsym $mod+Shift+3 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace: " -F 'move container to workspace number "%s"'
-bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with Workspace: \\" -F 'move container to workspace number \\"%s\\", workspace number \\"%s\\"'"
+bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with Workspace: \\" -F 'move container to workspace \\"%s\\", workspace \\"%s\\"'"
 bindsym $mod+4 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
 
 # new iterative workspaces
