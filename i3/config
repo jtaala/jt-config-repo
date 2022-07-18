@@ -59,7 +59,7 @@ client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout tabbed
+workspace_layout tabbed reverse
 
 # set default window title_align
 title_align center
@@ -181,7 +181,9 @@ bindsym $mod+d focus right
 
 # convenience move
 bindsym $mod+z move left
+bindsym $mod+Shift+z move left; layout fill_order default
 bindsym $mod+x move right
+bindsym $mod+Shift+x move right; layout fill_order reverse
 
 # move focused window
 bindsym $mod+Shift+h move left 50px
