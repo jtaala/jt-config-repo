@@ -59,7 +59,7 @@ client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout tabbed
+workspace_layout tabbed reverse
 
 # set default window title_align
 title_align center
@@ -152,7 +152,9 @@ bindsym $mod+d focus right
 
 # convenience move
 bindsym $mod+z move left
+bindsym $mod+Shift+z move left; layout fill_order default
 bindsym $mod+x move right
+bindsym $mod+Shift+x move right; layout fill_order reverse
 
 # move focused window
 bindsym $mod+Shift+h move left 50px
@@ -278,10 +280,10 @@ bindsym $mod+$mod_next+Tab move container to workspace back_and_forth; workspace
 # switch to workspace
 bindsym $mod+1 workspace prev
 bindsym $mod+2 workspace next
-bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -F 'workspace number "%s"'
+bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -l 2 -F 'workspace number "%s"'
 bindsym $mod+Ctrl+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
-bindsym $mod+Shift+3 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace: " -F 'move container to workspace number "%s"'
-bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (number): \\" -F 'move container to workspace number \\"%s\\", workspace number \\"%s\\"'"
+bindsym $mod+Shift+3 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (number): " -l 2  -F 'move container to workspace number "%s"'
+bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (number): \\" -l 2  -F 'move container to workspace number \\"%s\\", workspace number \\"%s\\"'"
 bindsym $mod+$mod_next+Shift+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (name): \\" -F 'move container to workspace \\"%s\\", workspace \\"%s\\"'"
 bindsym $mod+4 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
 
