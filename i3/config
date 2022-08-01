@@ -284,27 +284,48 @@ bindsym $mod+e focus child
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-#set $ws1 number 1
-#set $ws2 number 2
-#set $ws3 number 3
-#set $ws4 number 4
-#set $ws5 number 5
-#set $ws6 number 6
-#set $ws7 number 7
-#set $ws8 number 8
+set $ws1 number 1
+set $ws2 number 2
+set $ws3 number 3
+set $ws4 number 4
+set $ws5 number 5
+set $ws6 number 6
+set $ws7 number 7
+set $ws8 number 8
+set $ws9 number 9
 
-# navigate workspaces next / previous
-bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+Ctrl+l workspace next
+# numbered workspace bindsyms 
+bindsym $mod_next+1 workspace $ws1
+bindsym $mod_next+2 workspace $ws2
+bindsym $mod_next+3 workspace $ws3
+bindsym $mod_next+4 workspace $ws4
+bindsym $mod_next+5 workspace $ws5
+bindsym $mod_next+6 workspace $ws6
+bindsym $mod_next+7 workspace $ws7
+bindsym $mod_next+8 workspace $ws8
+bindsym $mod_next+9 workspace $ws9
+bindsym $mod_next+Shift+1 move container to workspace $ws1
+bindsym $mod_next+Shift+2 move container to workspace $ws2
+bindsym $mod_next+Shift+3 move container to workspace $ws3
+bindsym $mod_next+Shift+4 move container to workspace $ws4
+bindsym $mod_next+Shift+5 move container to workspace $ws5
+bindsym $mod_next+Shift+6 move container to workspace $ws6
+bindsym $mod_next+Shift+7 move container to workspace $ws7
+bindsym $mod_next+Shift+8 move container to workspace $ws8
+bindsym $mod_next+Shift+9 move container to workspace $ws9
 
 # switching back and forth
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
 bindsym $mod+$mod_next+Tab move container to workspace back_and_forth; workspace back_and_forth
 
-# switch to workspace
+# dynamic workspace operations
 bindsym $mod+1 workspace prev
 bindsym $mod+2 workspace next
+bindsym $mod+Shift+1 move container to workspace prev
+bindsym $mod+Shift+2 move container to workspace next
+bindsym $mod+$mod_next+1 move container to workspace prev; workspace next
+bindsym $mod+$mod_next+2 move container to workspace prev; workspace next
 bindsym $mod+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -l 2 -F 'workspace number "%s"'
 bindsym $mod+Ctrl+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
 bindsym $mod+Shift+3 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (number): " -l 2  -F 'move container to workspace number "%s"'
@@ -312,23 +333,11 @@ bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Mo
 bindsym $mod+$mod_next+Shift+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (name): \\" -F 'move container to workspace \\"%s\\", workspace \\"%s\\"'"
 bindsym $mod+4 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
 
-# new iterative workspaces
+# iterative workspace operations
 set $workspace_dynamic $(($(i3-msg -t get_workspaces | tr , '\n' | grep '\\"num\\":' | cut -d : -f 2 | sort -rn | head -1) + 1))
 bindsym $mod+grave exec --no-startup-id "i3-msg workspace $workspace_dynamic"
 bindsym $mod+Shift+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic"
 bindsym $mod+$mod_next+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic, workspace number $workspace_dynamic"
-
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace prev
-bindsym $mod+Shift+2 move container to workspace next
-
-# Move focused container to workspace, and switch to that workspace
-bindsym $mod+$mod_next+1 move container to workspace prev; workspace next
-bindsym $mod+$mod_next+2 move container to workspace prev; workspace next
-
-# Move to wsg workspace
-#bindsym $mod+grave move container to workspace $wsg
-#bindsym $mod+$mod_next+grave [workspace="`"] move container to workspace current
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
