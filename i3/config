@@ -368,7 +368,7 @@ for_window [class="(?i)^timeshift-gtk$"] floating disable
 for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
 for_window [class="(?i)^zoom$"] floating disable
-for_window [title="(?i)bitwarden"] floating enable
+for_window [class="(?i)bitwarden"] floating enable
 for_window [class="(?i)nvidia-settings"] floating enable
 
 # Application shortcuts
