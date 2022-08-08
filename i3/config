@@ -324,14 +324,13 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth
 bindsym $mod+$mod_next+Tab move container to workspace back_and_forth; workspace back_and_forth
 
 # dynamic workspace operations
-bindsym $mod_next+1 workspace prev
-bindsym $mod_next+2 workspace next
-bindsym $mod_next+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -l 2 -F 'workspace number "%s"'
-bindsym $mod_next+Ctrl+3 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
-bindsym $mod_next+Shift+3 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (number): " -l 2  -F 'move container to workspace number "%s"'
-bindsym $mod+$mod_next+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (number): \\" -l 2  -F 'move container to workspace number \\"%s\\", workspace number \\"%s\\"'"
-bindsym $mod+$mod_next+Shift+3 exec --no-startup-id "i3-input -f $i3inputfont -P \\"Move with (name): \\" -F 'move container to workspace \\"%s\\", workspace \\"%s\\"'"
-bindsym $mod_next+4 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
+bindsym $mod_next+a workspace prev
+bindsym $mod_next+d workspace next
+bindsym $mod_next+1 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -l 2 -F 'workspace number "%s"'
+bindsym $mod_next+2 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
+bindsym $mod_next+Shift+1 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (number): " -l 2  -F 'move container to workspace number "%s"'
+bindsym $mod_next+Shift+2 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (name): " -F 'move container to workspace "%s"'
+bindsym $mod_next+3 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
 
 # iterative workspace operations
 set $workspace_dynamic $(($(i3-msg -t get_workspaces | tr , '\n' | grep '\\"num\\":' | cut -d : -f 2 | sort -rn | head -1) + 1))
