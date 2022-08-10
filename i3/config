@@ -249,6 +249,7 @@ bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
 bindsym $mod+c split h, layout splitv
+bindsym $mod+$mod_next+c split h, layout tabbed reverse
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
