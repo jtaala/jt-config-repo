@@ -80,7 +80,7 @@ for_window [class=".*"] title_window_icon padding 3px
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
-focus_wrapping no
+focus_wrapping yes
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
