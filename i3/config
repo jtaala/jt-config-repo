@@ -12,47 +12,77 @@ set $border_normal border normal 3
 set $i3inputfont \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\"  
 
 # Theme options (comment/uncomment theme group)
-## Theme 1 "Paradise Pink"
-#set $accent-bg #d64161
+# Theme 1 "fluorescent blue"
+set $accent-bg #07eded
+set $indicator #f81212
+
+# Theme 2 "french pink"
+#set $accent-bg #f57a9d
+#set $indicator #109648
+
+# Theme 3 "paradise pink"
+#set $accent-bg #eb5ca3
+#set $indicator #109648
+
+# Theme 4 "sheen green"
+#set $accent-bg #8ae234
+#set $indicator #109648
+
+# Theme 5 "illuminating emerald"
+#set $accent-bg #00916e
 #set $accent-txt #F9FAF9
 #set $indicator #109648
 
-# Theme 2 "tmux"
-#set $accent-bg #4e9a06
-#set $accent-txt #F9FAF9
-#set $indicator #d64161
+# Theme 6 "light gray"
+#set $accent-bg #D3D3D3
+#set $accent-txt #363636
+#set $indicator #109648
 
-# Theme 3 "plurple"
-set $accent-bg #8f5f95
-set $accent-txt #F9FAF9
-set $indicator #109648
+# Theme 7 "yellow green"
+#set $accent-bg #8ac926
+#set $accent-txt #363636
+#set $indicator #109648
 
 # set other colors
-set $inactive-bg #323838
-set $inactive-txt #F9FAF9
-set $unfocused-bg #566161
-set $unfocused-txt #bdbbbb
+set $accent-txt #000000
+set $inactive-bg #000000
+set $inactive-txt #bdbbbb
+set $unfocused-bg #000000
+set $unfocused-txt #939f9f
 
-# class                   border  backgr. text    indic.   child_border
-client.focused          $accent-bg $accent-bg $accent-txt $indicator $accent-bg
-client.focused_inactive $inactive-bg $inactive-bg $inactive-txt $indicator $inactive-bg
-client.unfocused        $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
-#client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
+# class                  border       backgr.    text        indic.     child_border
+client.focused           $accent-bg $accent-bg $accent-txt $indicator $accent-bg
+client.focused_inactive  $inactive-bg $inactive-bg $accent-bg $indicator $inactive-bg
+client.unfocused         $unfocused-bg $unfocused-bg $unfocused-txt $indicator $unfocused-bg
+client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 #client.placeholder      #000000 #0c0c0c $accent-txt #000000
 #client.background       #2B2C2B
 
 # set default desktop layout (default is tiling) <default|stacking|tabbed>
-workspace_layout tabbed
+workspace_layout tabbed reverse
+
+# set my quick tabbed/stacked toggle
+bindsym $mod+e layout toggle tabbed stacked
 
 # set default window title_align
 title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_normal
+for_window [class=".*"] title_window_icon on
+for_window [class=".*"] title_window_icon padding 3px
+
+## i3-overview (https://github.com/milgra/i3-overview)
+#for_window [class="i3-overview"] floating enable
+#for_window [class="i3-overview"] sticky enable
+#no_focus [class="i3-overview"]
+#exec --no-startup-id i3-overview
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
-focus_wrapping no
+focus_wrapping yes
+# parent focus switch (useful for master/stack switching)
+bindsym $mod+r focus parent; focus left
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -61,55 +91,55 @@ hide_edge_borders none
 popup_during_fullscreen leave_fullscreen
 
 # change borders
-bindsym $mod+$mod_next+bracketleft $border_no_name
-bindsym $mod+$mod_next+bracketright border none
-bindsym $mod+$mod_next+backslash $border_normal
+bindsym $mod+$mod_next+b $border_normal
+bindsym $mod+Shift+b $border_no_name
+bindsym $mod+Ctrl+b border none
 
 # xrandr set to default res (needed if unplug monitor and can't see screen)
-bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240"
+bindsym $mod+backslash exec --no-startup-id "xrandr --output eDP-1-1 --mode 2560x1440 --rate 240; xrandr --output eDP-1 --mode 2560x1440 --rate 240"
 bindsym $mod+BackSpace exec --no-startup-id source ~/.xprofile
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:DejaVu Sans 10
+font pango:DejaVu Sans 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # Autostart applications
 #exec --no-startup-id alttab -pk h -nk l -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
+# needs hsetroot installed
+exec_always --no-startup-id hsetroot -solid "#000000"
 exec --no-startup-id "pkill -9 redshift; redshift -P -t 5000:4000"
 exec --no-startup-id "xkbset exp =m; xkbset m"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec --no-startup-id copyq
 exec --no-startup-id fcitx -d
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
-exec --no-startup-id polychromatic-tray-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id optimus-manager-qt
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
-exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id i3-focus-last server
-exec_always --no-startup-id i3wsr --config ~/.i3/i3wsr.toml
-exec_always --no-startup-id optimus-manager-qt
-exec_always --no-startup-id xfce4-power-manager
+#exec --no-startup-id yes | xsm --restore
 
 # picom (compositor)
-bindsym $mod+c exec --no-startup-id $picom_start
-bindsym $mod+$mod_next+c exec --no-startup-id "killall picom"
+bindsym $mod+t exec --no-startup-id $picom_start
+bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -scroll-method 1 -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"DejaVu Sans Mono 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; } window { height: 80%; }'"
+
+# instant layout
+# REQUIRES i3-instant-layout and XDOTOOL
+#set $centre_mouse WINDOW=$(xdotool getactivewindow); eval `xdotool getwindowgeometry --shell $WINDOW`; W=`expr $WIDTH / 2`; H=`expr $HEIGHT / 2`; xdotool mousemove --window $WINDOW $W $H
+#bindsym $mod+Escape exec --no-startup-id "$centre_mouse; i3-instant-layout --list | rofi -show-icons -sort -kb-row-up \\"Alt+k\\" -kb-row-down \\"Alt+j\\" -theme lb -theme-str '* { font: \\"Sans 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; }' -dmenu -i | i3-instant-layout -
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -117,22 +147,23 @@ bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,wind
 
 exec --no-startup-id volumeicon
 bindsym $mod+$mod_next+v exec --no-startup-id "killall volumeicon; sleep 1; volumeicon"
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#bindsym $mod+Ctrl+m exec --no-startup-id terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
 # Increase/decrease sink volume 1
-bindsym $mod+F1 exec amixer -qD pulse set Master toggle; exec notify-send 'sound toggled'
-bindsym $mod+F2 exec amixer -qc 0 set Master 2db-; exec notify-send 'volume decreased'
-bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
+bindsym $mod+F1 exec --no-startup-id amixer -qD pulse set Master toggle; exec notify-send 'sound toggled'
+bindsym $mod+F2 exec --no-startup-id amixer -qc 0 set Master 2db-; exec notify-send 'volume decreased'
+bindsym $mod+F3 exec --no-startup-id amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
 
 # Screen brightness controls
-#bindsym $mod+F8 exec sudo xbacklight -10
-bindsym $mod+F8 exec "sleep 1; xset dpms force off"
-bindsym $mod+F9 exec sudo xbacklight +10
+bindsym $mod_next+F8 exec --no-startup-id "sleep 1; xset dpms force off"
+# requires acpilight 
+bindsym $mod+F8 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -dec 5 -fps 60
+bindsym $mod+F9 exec --no-startup-id sudo xbacklight -ctrl intel_backlight -inc 5 -fps 60
 
 # focus_follows_mouse no
 
@@ -142,73 +173,90 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# master-stack keybinding (moves stack window to master and current master back to stack window)
-# NOTE: requires 'jq'
-bindsym $mod+period focus parent, focus right, focus child
-bindsym $mod+comma focus parent, focus left, focus child
-set $get_layout $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout')
-set $count_children $(i3-msg -t get_tree | jq -r 'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).nodes' | jq length)
-bindsym $mod+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, layout $MST, focus parent, focus right, layout $STK; fi"
-bindsym $mod_next+Shift+period exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then MST=$get_layout; i3-msg layout stacked, focus right; STK=$get_layout; i3-msg layout stacked, focus left, move right, focus up, layout $STK, focus parent, focus left, layout $MST; fi"
-bindsym $mod_next+Shift+comma exec "COUNT=$count_children; if [ \\"$COUNT\\" -gt 1 ]; then STK=$get_layout; i3-msg layout stacked, focus left; MST=$get_layout; i3-msg layout stacked, focus right, move left, focus up, layout $MST, focus parent, focus right, layout $STK; fi"
-
-# simple master-stack moving
-#bindsym $mod+Shift+comma move left, focus right
-#bindsym $mod+Shift+period move right, focus left
+# wasd focus
+bindsym $mod+w focus up
+bindsym $mod+a focus left
+bindsym $mod+s focus down
+bindsym $mod+d focus right
 
 # container focusing (with fallback for case where window is direct child of workspace container)
 # NOTE: requires xdotool
-#bindsym $mod+comma exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
-#bindsym $mod+period exec "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+#bindsym $mod+comma exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus left\\"; fi"
+#bindsym $mod+period exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus right; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
+
+# convenience move
+bindsym $mod+z move left
+bindsym $mod+Shift+z move left; layout fill_order default
+bindsym $mod+x move right
+bindsym $mod+Shift+x move right; layout fill_order reverse
 
 # move focused window
-bindsym $mod+Shift+Left move left 100px
-bindsym $mod+Shift+Down move down 100px
-bindsym $mod+Shift+Up move up 100px
-bindsym $mod+Shift+Right move right 100px
+bindsym $mod+Shift+h move left 50px
+bindsym $mod+Shift+j move down 50px
+bindsym $mod+Shift+k move up 50px
+bindsym $mod+Shift+l move right 50px
 
-# hjkl move
-bindsym $mod+Shift+h move left 100px
-bindsym $mod+Shift+j move down 100px
-bindsym $mod+Shift+k move up 100px
-bindsym $mod+Shift+l move right 100px
+bindsym $mod+Ctrl+Shift+h move left 1px
+bindsym $mod+Ctrl+Shift+j move down 1px
+bindsym $mod+Ctrl+Shift+k move up 1px
+bindsym $mod+Ctrl+Shift+l move right 1px
 
-# mark and focus
-bindsym $mod+Ctrl+1 mark --add --toggle 1
-bindsym $mod+Ctrl+2 mark --add --toggle 2
-bindsym $mod+Ctrl+3 mark --add --toggle 3
-bindsym $mod+Ctrl+4 mark --add --toggle 4
-bindsym $mod+Ctrl+5 mark --add --toggle 5
-bindsym $mod+Ctrl+6 mark --add --toggle 6
-bindsym $mod+Ctrl+7 mark --add --toggle 7
-bindsym $mod+Ctrl+8 mark --add --toggle 8
-bindsym $mod+Ctrl+9 mark --add --toggle 9
-bindsym $mod+g exec "i3-input -f $i3inputfont -l 1 -P \\"Goto Mark: \\" -F '[con_mark=\\"%s\\"] focus'"
+# wasd move
+bindsym $mod+Shift+w move up 50px
+bindsym $mod+Shift+a move left 50px
+bindsym $mod+Shift+s move down 50px
+bindsym $mod+Shift+d move right 50px
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# move window to mark (by workspace)
+# requires jq
+#set $setwn wn=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).num');
+#bindsym $mod+Tab exec --no-startup-id "$setwn i3-msg \\"[con_mark=\\"$wn\\"] focus, focus child\\""
+#bindsym $mod+Shift+Tab exec --no-startup-id "$setwn mwn=$(echo \\"m$wn\\"); i3-msg \\"mark $mwn, [con_mark=\\"$mwn\\"] move window to mark $wn, unmark $mwn\\"
+#bindsym $mod+Escape exec --no-startup-id "$setwn i3-msg \\"[workspace=__focused__] move window to mark $wn\\"
+#bindsym $mod+$mod_next+Tab exec --no-startup-id "$setwn i3-msg \\"split h, layout stacking reverse, focus parent, mark --add --toggle $wn, focus child\\"
+
+## mark and focus
+#bindsym $mod+Ctrl+1 mark --add --toggle 1
+#bindsym $mod+Ctrl+2 mark --add --toggle 2
+#bindsym $mod+Ctrl+3 mark --add --toggle 3
+#bindsym $mod+Ctrl+4 mark --add --toggle 4
+#bindsym $mod+Ctrl+5 mark --add --toggle 5
+#bindsym $mod+Ctrl+6 mark --add --toggle 6
+#bindsym $mod+Ctrl+7 mark --add --toggle 7
+#bindsym $mod+Ctrl+8 mark --add --toggle 8
+#bindsym $mod+Ctrl+9 mark --add --toggle 9
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 
 # renaming container
-bindsym $mod+slash exec "i3-input -f $i3inputfont -P \\"Change Title: \\" -F 'title_format \\"<span><b><tt>%s:</tt></b>%title</span>\\"'"
+set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
+bindsym $mod+slash exec --no-startup-id $namechildcon
 # sets back to default i3 container title
-bindsym $mod+$mod_next+slash title_format " %title"
+bindsym $mod+$mod_next+slash focus parent; title_format " %title"; focus child
 
 # container layouts
-bindsym $mod+w layout tabbed
-bindsym $mod+q layout splith
-bindsym $mod+e layout splitv
-bindsym $mod+s layout stacking
+bindsym $mod_next+w layout tabbed
+bindsym $mod_next+q layout splith
+bindsym $mod_next+e layout splitv
+bindsym $mod_next+s layout stacking
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+$mod_next+q split h
-bindsym $mod+$mod_next+e split v
-bindsym $mod+$mod_next+w split h; layout tabbed
-bindsym $mod+$mod_next+s split h; layout stacked
+bindsym $mod+c split h, layout splitv
+bindsym $mod+$mod_next+c split h, layout tabbed reverse
+bindsym $mod+$mod_next+z focus left; move right
+bindsym $mod+$mod_next+x focus right; move left
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym $mod+shift+f exec "i3-msg focus parent, fullscreen toggle, focus child"
+bindsym $mod+shift+f exec --no-startup-id "i3-msg focus parent, fullscreen toggle, focus child"
 
 # toggle tiling / floating focus
 bindsym $mod+Shift+space floating toggle
@@ -217,59 +265,44 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Ctrl+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Ctrl+s sticky toggle;exec notify-send 'sticky windows toggled'
-
-# focus last window
-# requires (https://crates.io/crates/i3-focus-last)
-bindsym $mod+Tab exec i3-focus-last
+bindsym $mod+Ctrl+s sticky toggle;exec --no-startup-id notify-send 'sticky windows toggled'
 
 # window transparency adjustment (and alias to restart picom)
-bindsym $mod+$mod_next+z exec transset-df -a --min 0.20 --dec 0.20
-bindsym $mod+$mod_next+Shift+z exec transset-df -a --min 0.1 --dec 0.1
-bindsym $mod+$mod_next+Ctrl+z exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
-bindsym $mod+$mod_next+x exec transset-df -a --inc 0.20 --max 0.99
-bindsym $mod+$mod_next+Shift+x exec transset-df -a --inc 0.1 --max 0.99
-bindsym $mod+$mod_next+Ctrl+x exec "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
+bindsym $mod+$mod_next+F8 exec --no-startup-id transset-df -a --min 0.20 --dec 0.20
+bindsym $mod+$mod_next+Shift+F8 exec --no-startup-id transset-df -a --min 0.1 --dec 0.1
+bindsym $mod+$mod_next+Ctrl+F8 exec --no-startup-id "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --min 0.20 --dec 0.20; done"
+bindsym $mod+$mod_next+F9 exec --no-startup-id transset-df -a --inc 0.20 --max 0.99
+bindsym $mod+$mod_next+Shift+F9 exec --no-startup-id transset-df -a --inc 0.1 --max 0.99
+bindsym $mod+$mod_next+Ctrl+F9 exec --no-startup-id "WINDOWS=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) \\"\\" 2>/dev/null); for window in $WINDOWS; do xdotool windowactivate $window; transset-df -a --inc 0.20 --max 0.99; done"
 
 # window dimming enable or disable (uses xdotool and xprop to set a anti-dim flag, which picom recognises in focus-exclude array)
-bindsym $mod+$mod_next+a exec xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec notify-send 'anti-dim set on window'
-bindsym $mod+$mod_next+Shift+a exec xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec notify-send 'dim set on window'
+bindsym $mod+ctrl+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -f ANTIDIM_FLAG 8c -set ANTIDIM_FLAG 1; exec --no-startup-id notify-send 'anti-dim set on window'
+bindsym $mod+ctrl+Shift+a exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove ANTIDIM_FLAG; exec --no-startup-id notify-send 'dim set on window'
 
-# window colour inversion (uses xdotool and xprop to set an invert flag, which picom recognises in invert-color-include array)
-bindsym $mod+$mod_next+d exec xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; exec notify-send 'invert set on window'
-bindsym $mod+$mod_next+Shift+d exec xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG; exec notify-send 'invert removed on window'
+# window colour inversion (uses xrandr-invert-colors, xdotool, and xprop to set an invert flag, which picom recognises in invert-color-include array)
+bindsym $mod+ctrl+i exec --no-startup-id xrandr-invert-colors
+bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -f INVERT_FLAG 8c -set INVERT_FLAG 1; 
+bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG;
 
 # focus the parent container
-bindsym $mod+a focus parent
-bindsym $mod+z focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+Tab move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-
-# navigate workspaces next / previous
-bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+Ctrl+l workspace next
+bindsym $mod+q focus parent
+bindsym $mod+Escape focus child
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 number 1:1
-set $ws2 number 2:2
-set $ws3 number 3:3
-set $ws4 number 4:4
-set $ws5 number 5:5
-set $ws6 number 6:6
-set $ws7 number 7:7
-set $ws8 number 8:8
-set $wsg number 0:`
-set $wsm number 9:m
+set $ws1 number 1
+set $ws2 number 2
+set $ws3 number 3
+set $ws4 number 4
+set $ws5 number 5
+set $ws6 number 6
+set $ws7 number 7
+set $ws8 number 8
+set $ws9 number 9
 
-# switch to workspace
+# numbered workspace bindsyms 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -278,11 +311,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-bindsym $mod+grave workspace $wsg
-bindsym $mod+m workspace $wsm
-
-# Move focused container to workspace
-bindsym $mod+Shift+grave move container to workspace $wsg
+bindsym $mod+9 workspace $ws9
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -291,21 +320,36 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+m move container to workspace $wsm
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+$mod_next+1 move container to workspace $ws1, workspace $ws1
+bindsym $mod+$mod_next+2 move container to workspace $ws2, workspace $ws2
+bindsym $mod+$mod_next+3 move container to workspace $ws3, workspace $ws3
+bindsym $mod+$mod_next+4 move container to workspace $ws4, workspace $ws4
+bindsym $mod+$mod_next+5 move container to workspace $ws5, workspace $ws5
+bindsym $mod+$mod_next+6 move container to workspace $ws6, workspace $ws6
+bindsym $mod+$mod_next+7 move container to workspace $ws7, workspace $ws7
+bindsym $mod+$mod_next+8 move container to workspace $ws8, workspace $ws8
+bindsym $mod+$mod_next+9 move container to workspace $ws9, workspace $ws9
 
-# Move focused container to workspace, and switch to that workspace
-bindsym $mod+$mod_next+grave move container to workspace $wsg; workspace $wsg
-bindsym $mod+$mod_next+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+$mod_next+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+$mod_next+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+$mod_next+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+$mod_next+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+$mod_next+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+$mod_next+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+$mod_next+8 move container to workspace $ws8; workspace $ws8
+# switching back and forth
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+bindsym $mod+$mod_next+Tab move container to workspace back_and_forth; workspace back_and_forth
 
-# move all windows on workspace M to current container
-bindsym $mod+Ctrl+m [workspace="m"] move container to workspace current
+# dynamic workspace operations
+bindsym $mod_next+a workspace prev
+bindsym $mod_next+d workspace next
+bindsym $mod_next+1 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (number): " -l 2 -F 'workspace number "%s"'
+bindsym $mod_next+2 exec --no-startup-id i3-input -f $i3inputfont -P "Go to Workspace (name): " -F 'workspace "%s"'
+bindsym $mod_next+Shift+1 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (number): " -l 2  -F 'move container to workspace number "%s"'
+bindsym $mod_next+Shift+2 exec --no-startup-id i3-input -f $i3inputfont -P "Move to Workspace (name): " -F 'move container to workspace "%s"'
+bindsym $mod_next+3 exec --no-startup-id i3-input -f $i3inputfont -P "Rename Workspace: " -F 'rename workspace to "%s"'
+
+# iterative workspace operations
+set $workspace_dynamic $(($(i3-msg -t get_workspaces | tr , '\n' | grep '\\"num\\":' | cut -d : -f 2 | sort -rn | head -1) + 1))
+bindsym $mod+grave exec --no-startup-id "i3-msg workspace $workspace_dynamic"
+bindsym $mod+Shift+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic"
+bindsym $mod+$mod_next+grave exec --no-startup-id "i3-msg move container to workspace $workspace_dynamic, workspace number $workspace_dynamic"
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -339,21 +383,28 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="(?i)^timeshift-gtk$"] floating disable
 for_window [class="(?i)^gnome-calculator$"] floating disable
 for_window [class="(?i)^workspacesclient$"] floating disable
+for_window [class="(?i)^zoom$"] floating disable
+for_window [class="(?i)bitwarden"] floating enable
+for_window [class="(?i)nvidia-settings"] floating enable
 
 # Application shortcuts
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-# shortcuts to often used applications
 bindsym $mod_next+u exec --no-startup-id pamac-manager
 bindsym $mod_next+i exec --no-startup-id brave
 bindsym $mod_next+o exec --no-startup-id xfce4-appfinder
 bindsym $mod_next+p exec --no-startup-id putty
 bindsym $mod_next+bracketleft exec --no-startup-id nautilus
+# type clipboard contents (required xdotool and xclip)
+bindsym $mod+Shift+Ctrl+v exec --no-startup-id "sleep 1; /usr/bin/xdotool type --delay 100 \\"$(xclip -o)\\""
+
+# shortcuts to often used applications
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod_next+Ctrl+x --release exec --no-startup-id xkill
 
 #sm-player shortcuts (e.g. for use if send smplayer to scratchpad)
 bindsym $mod_next+Shift+space exec --no-startup-id smplayer -send-action pause
+bindsym $mod_next+Shift+a exec --no-startup-id smplayer -send-action rewind1
+bindsym $mod_next+Shift+d exec --no-startup-id smplayer -send-action forward1
 bindsym $mod_next+Shift+h exec --no-startup-id smplayer -send-action rewind1
 bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 
@@ -361,15 +412,15 @@ bindsym $mod_next+Shift+l exec --no-startup-id smplayer -send-action forward1
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Ctrl+c reload
+bindsym $mod+Ctrl+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Ctrl+r restart
 
-bindsym $mod_next+l exec i3exit lock
+bindsym $mod_next+l exec --no-startup-id i3exit lock
 
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -379,20 +430,17 @@ mode "$mode_system" {
     bindsym Shift+s exec --no-startup-id "systemctl suspend", mode "default"
     bindsym s exec --no-startup-id "i3exit lock; systemctl suspend", mode "default"
     bindsym u exec --no-startup-id "i3exit switch_user", mode "default"
-    bindsym e exec --no-startup-id "i3exit logout", mode "default"
+    # requires xsm (xsession-manager)
+    bindsym e exec --no-startup-id "yes | xsm --save; i3exit logout", mode "default"
     bindsym h exec --no-startup-id "systemctl hibernate", mode "default"
     bindsym Shift+h exec --no-startup-id "i3exit lock; systemctl hibernate", mode "default"
-    bindsym r exec --no-startup-id "i3exit reboot", mode "default"
-    bindsym d exec --no-startup-id "i3exit shutdown", mode "default"
+    bindsym r exec --no-startup-id "yes | xsm --save; i3exit reboot", mode "default"
+    bindsym d exec --no-startup-id "yes | xsm --save; i3exit shutdown", mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-# Lock screen
-bindsym $mod+Home exec --no-startup-id i3exit lock, mode "default"
-bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
 
 ## Resize window (you can also use the mouse for that)
 #bindsym $mod+r mode "resize"
@@ -418,15 +466,15 @@ bindsym $mod+F12 exec --no-startup-id i3exit suspend, mode "default"
         #bindsym Escape mode "default"
 #}
 
-# arrow key resizing without resize mode
-bindsym $mod+$mod_next+Left resize shrink width 50 px or 5 ppt
-bindsym $mod+$mod_next+Down resize grow height 50 px or 5 ppt
-bindsym $mod+$mod_next+Up resize shrink height 50 px or 5 ppt
-bindsym $mod+$mod_next+Right resize grow width 50 px or 5 ppt
-bindsym $mod+$mod_next+Shift+Left resize shrink width 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Down resize grow height 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Up resize shrink height 100 px or 10 ppt
-bindsym $mod+$mod_next+Shift+Right resize grow width 100 px or 10 ppt
+# wasd key resizing without resize mode
+bindsym $mod+$mod_next+a resize shrink width 50 px or 5 ppt
+bindsym $mod+$mod_next+s resize grow height 50 px or 5 ppt
+bindsym $mod+$mod_next+w resize shrink height 50 px or 5 ppt
+bindsym $mod+$mod_next+d resize grow width 50 px or 5 ppt
+bindsym $mod+$mod_next+Shift+a resize shrink width 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+s resize grow height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+w resize shrink height 100 px or 10 ppt
+bindsym $mod+$mod_next+Shift+d resize grow width 100 px or 10 ppt
 
 # hkjl resize
 bindsym $mod+$mod_next+h resize shrink width 50 px or 5 ppt
@@ -438,14 +486,9 @@ bindsym $mod+$mod_next+Shift+j resize grow height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+l resize grow width 100 px or 10 ppt
 
-# predefined sizes (70/30)
-bindsym $mod+$mod_next+u resize set width 40 ppt
-bindsym $mod+$mod_next+i resize set width 50 ppt
-bindsym $mod+$mod_next+o resize set width 60 ppt
-
 # "netflix" and "spotify" modes
-bindsym $mod+$mod_next+n floating enable;sticky enable; move position 1300px 708px resize set 612 343;border none
-bindsym $mod+$mod_next+m floating enable;sticky enable; move position 1123px 983px resize set 791 70;border none
+bindsym $mod+$mod_next+n floating enable;sticky enable; move position 1632px 864px resize set 912 543; border none
+bindsym $mod+$mod_next+m floating enable;sticky enable; move position 1123px 983px resize set 791 70; border none
 bindsym $mod+$mod_next+Shift+m resize set height 64; border none
 
 # redshift modes
@@ -477,12 +520,15 @@ bar {
 
     bindsym button4 nop bindsym button5 nop
 #   font xft:URWGothic-Book 11
-    strip_workspace_numbers yes
+    strip_workspace_numbers no
 
     colors {
-        background #4a4a4a
-        statusline #F9FAF9
-        separator  #454947
+        #background #4a4a4a
+        background #000000
+        #statusline #F9FAF9
+        statusline $accent-bg
+        #separator  #454947
+        separator  $accent-bg
 
 #                      border  backgr. text
         focused_workspace  $accent-txt $accent-bg $accent-txt
@@ -494,7 +540,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+Control+b bar mode toggle
+bindsym $mod+Control+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###

@@ -1,5 +1,5 @@
 " source defaults
-so /usr/share/vim/vim82/defaults.vim
+so /usr/share/vim/vim90/defaults.vim
 
 " my settings
 set number
