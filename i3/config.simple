@@ -80,9 +80,10 @@ for_window [class=".*"] title_window_icon padding 3px
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
-focus_wrapping yes
-# parent focus switch (useful for master/stack switching)
-bindsym $mod+r focus parent; focus left
+focus_wrapping no
+# parent focus switch (useful for master/stack switching) - has fallback for no focus_wrapping
+# required xdotool
+bindsym $mod+r exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus right\\"; fi"
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
