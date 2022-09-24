@@ -80,9 +80,10 @@ for_window [class=".*"] title_window_icon padding 3px
 
 # focus_wrapping <yes|no|force|workspace>
 # Legacy syntax: "force_focus_wrapping force"
-focus_wrapping yes
-# parent focus switch (useful for master/stack switching)
-bindsym $mod+r focus parent; focus left
+focus_wrapping no
+# parent focus switch (useful for master/stack switching) - has fallback for no focus_wrapping
+# required xdotool
+bindsym $mod+r exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus parent; focus right\\"; fi"
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
@@ -134,7 +135,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -scroll-method 1 -kb-row-tab \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"DejaVu Sans Mono 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; } window { height: 80%; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -scroll-method 1 -kb-element-next \\"\\" -kb-element-next \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"DejaVu Sans Mono 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; } window { height: 80%; }'"
 
 # instant layout
 # REQUIRES i3-instant-layout and XDOTOOL
@@ -189,6 +190,8 @@ bindsym $mod+z move left
 bindsym $mod+Shift+z move left; layout fill_order default
 bindsym $mod+x move right
 bindsym $mod+Shift+x move right; layout fill_order reverse
+bindsym $mod+Ctrl+z move left; focus right
+bindsym $mod+Ctrl+x move right; focus left
 
 # move focused window
 bindsym $mod+Shift+h move left 50px
