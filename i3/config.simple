@@ -63,7 +63,6 @@ workspace_layout tabbed reverse
 
 # set my quick tabbed/stacked toggle
 bindsym $mod+e layout toggle tabbed stacked
-bindsym $mod+$mod_next+e layout fill_order toggle
 
 # set default window title_align
 title_align center
