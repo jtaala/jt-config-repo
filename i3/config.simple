@@ -63,6 +63,7 @@ workspace_layout tabbed reverse
 
 # set my quick tabbed/stacked toggle
 bindsym $mod+e layout toggle tabbed stacked
+bindsym $mod+$mod_next+e layout fill_order toggle
 
 # set default window title_align
 title_align center
@@ -159,9 +160,7 @@ bindsym $mod+d focus right
 
 # convenience move
 bindsym $mod+z move left
-bindsym $mod+Shift+z move left; layout fill_order default
 bindsym $mod+x move right
-bindsym $mod+Shift+x move right; layout fill_order reverse
 bindsym $mod+Ctrl+z move left; focus right
 bindsym $mod+Ctrl+x move right; focus left
 
