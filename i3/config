@@ -286,8 +286,8 @@ bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindo
 bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG;
 
 # focus the parent container
-bindsym $mod+q focus parent
-bindsym $mod+Escape focus child
+bindsym $mod+Escape focus parent
+bindsym $mod+$mod_next+Escape focus child
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
