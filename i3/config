@@ -62,7 +62,6 @@ client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 workspace_layout tabbed reverse
 
 # set my quick tabbed/stacked toggle
-bindsym $mod+q layout fill_order toggle
 bindsym $mod+e layout toggle tabbed stacked
 
 # set default window title_align
