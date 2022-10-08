@@ -125,6 +125,7 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
+exec_always --no-startup-id killall tint2 && sleep 0.5; tint2
 #exec --no-startup-id yes | xsm --restore
 
 # picom (compositor)
@@ -514,36 +515,36 @@ mode "$mode_redshift" {
     bindsym Escape mode "default"
 }
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-    i3bar_command i3bar
-    status_command py3status -c ~/.i3status.conf
-    position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#   tray_output primary
-#   tray_output eDP1
-
-    bindsym button4 nop bindsym button5 nop
-#   font xft:URWGothic-Book 11
-    strip_workspace_numbers no
-
-    colors {
-        #background #4a4a4a
-        background #000000
-        #statusline #F9FAF9
-        statusline $accent-bg
-        #separator  #454947
-        separator  $accent-bg
-
-#                      border  backgr. text
-        focused_workspace  $accent-txt $accent-bg $accent-txt
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       $accent-bg #2C2C2C #F9FAF9
-        urgent_workspace   $accent-bg #FDF6E3 #E5201D
-    }
-}
+## Start i3bar to display a workspace bar (plus the system information i3status if available)
+#bar {
+#    i3bar_command i3bar
+#    status_command py3status -c ~/.i3status.conf
+#    position bottom
+#
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+##   tray_output primary
+##   tray_output eDP1
+#
+#    bindsym button4 nop bindsym button5 nop
+##   font xft:URWGothic-Book 11
+#    strip_workspace_numbers no
+#
+#    colors {
+#        #background #4a4a4a
+#        background #000000
+#        #statusline #F9FAF9
+#        statusline $accent-bg
+#        #separator  #454947
+#        separator  $accent-bg
+#
+##                      border  backgr. text
+#        focused_workspace  $accent-txt $accent-bg $accent-txt
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #283339 #EEE8D5
+#        binding_mode       $accent-bg #2C2C2C #F9FAF9
+#        urgent_workspace   $accent-bg #FDF6E3 #E5201D
+#    }
+#}
 
 # hide/unhide i3status bar
 bindsym $mod+Control+m bar mode toggle
