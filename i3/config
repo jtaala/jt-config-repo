@@ -136,7 +136,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi window,drun -show window -scroll-method 1 -kb-element-next \\"\\" -kb-element-next \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"DejaVu Sans Mono 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; } window { height: 80%; }'"
+bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi drun,window -show drun -scroll-method 1 -kb-element-next \\"\\" -kb-element-next \\"\\" -kb-mode-next \\"Tab\\" -kb-row-up \\"Super+k\\" -kb-row-down \\"Super+j\\" -theme lb -theme-str '* { font: \\"DejaVu Sans Mono 16\\"; foreground: #ffffff; border-color: $accent-bg; separatorcolor: $accent-bg; selected-normal-background: $accent-bg; } window { height: 80%; }'"
 
 # instant layout
 # REQUIRES i3-instant-layout and XDOTOOL
