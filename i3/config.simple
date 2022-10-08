@@ -208,7 +208,7 @@ bindsym $mod+minus scratchpad show
 #bindsym $mod+Ctrl+9 mark --add --toggle 9
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 # renaming container
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
