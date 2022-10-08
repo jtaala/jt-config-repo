@@ -125,7 +125,7 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
-exec_always --no-startup-id killall tint2 && sleep 0.5; tint2
+exec --no-startup-id tint2
 #exec --no-startup-id yes | xsm --restore
 
 # picom (compositor)
