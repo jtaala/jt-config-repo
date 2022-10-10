@@ -70,8 +70,8 @@ title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_normal
-for_window [class=".*"] title_window_icon on
-for_window [class=".*"] title_window_icon padding 3px
+for_window [class=".*"] title_window_icon off
+#for_window [class=".*"] title_window_icon padding 3px
 
 ## i3-overview (https://github.com/milgra/i3-overview)
 #for_window [class="i3-overview"] floating enable
@@ -112,6 +112,17 @@ exec_always --no-startup-id vmware-user-suid-wrapper
 # picom (compositor)
 bindsym $mod+t exec --no-startup-id $picom_start
 bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
+
+# tint2 configuration (needs tint2 package)
+exec --no-startup-id tint2
+# subscribe to urgent event and set _NET_WM_STATE_DEMANDS_ATTENTION (for tint2)
+exec_always --no-startup-id i3-msg -t subscribe -m '[ "window" ]' | jq --unbuffered -Mrc '. | select(.change == "urgent" and .container.urgent == true and .container.focused == false) | .container.window' | xargs -I{} xprop -id {} -f _NET_WM_STATE 32a -set _NET_WM_STATE _NET_WM_STATE_DEMANDS_ATTENTION
+# subscribe to urgent event being selected  and set _NET_WM_STATE_FOCUSED (for tint2)
+exec_always --no-startup-id i3-msg -t subscribe -m '[ "window" ]' | jq --unbuffered -Mrc '. | select(.change == "urgent" and .container.focused == true) | .container.window' | xargs -I{} xprop -id {} -f _NET_WM_STATE 32a -set _NET_WM_STATE _NET_WM_STATE_FOCUSED
+
+# never steal focus
+focus_on_window_activation urgent
+bindsym $mod+period [urgent=latest] focus
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -208,7 +219,7 @@ bindsym $mod+minus scratchpad show
 #bindsym $mod+Ctrl+9 mark --add --toggle 9
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth no
+workspace_auto_back_and_forth yes
 
 # renaming container
 set $namechildcon "i3-msg focus parent; i3-input -f \\"-*-*-*-*-*-*-24-*-*-*-*-*-*-*\\" -P \\"Name child container: \\" -F 'title_format \\"<span><b>%s</b>%title</span>\\"'; i3-msg focus child"
@@ -384,36 +395,36 @@ bindsym $mod+$mod_next+Shift+k resize shrink height 100 px or 10 ppt
 bindsym $mod+$mod_next+Shift+l resize grow width 100 px or 10 ppt
 
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-    i3bar_command i3bar
-    status_command i3status
-    position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#   tray_output primary
-#   tray_output eDP1
-
-    bindsym button4 nop bindsym button5 nop
-#   font xft:URWGothic-Book 11
-    strip_workspace_numbers no
-
-    colors {
-        #background #4a4a4a
-        background #000000
-        #statusline #F9FAF9
-        statusline $accent-bg
-        #separator  #454947
-        separator  $accent-bg
-
-#                      border  backgr. text
-        focused_workspace  $accent-txt $accent-bg $accent-txt
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       $accent-bg #2C2C2C #F9FAF9
-        urgent_workspace   $accent-bg #FDF6E3 #E5201D
-    }
-}
+## Start i3bar to display a workspace bar (plus the system information i3status if available)
+#bar {
+#    i3bar_command i3bar
+#    status_command py3status -c ~/.i3status.conf
+#    position bottom
+#
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+##   tray_output primary
+##   tray_output eDP1
+#
+#    bindsym button4 nop bindsym button5 nop
+##   font xft:URWGothic-Book 11
+#    strip_workspace_numbers no
+#
+#    colors {
+#        #background #4a4a4a
+#        background #000000
+#        #statusline #F9FAF9
+#        statusline $accent-bg
+#        #separator  #454947
+#        separator  $accent-bg
+#
+##                      border  backgr. text
+#        focused_workspace  $accent-txt $accent-bg $accent-txt
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #283339 #EEE8D5
+#        binding_mode       $accent-bg #2C2C2C #F9FAF9
+#        urgent_workspace   $accent-bg #FDF6E3 #E5201D
+#    }
+#}
 
 # hide/unhide i3status bar
 bindsym $mod+Control+m bar mode toggle
