@@ -522,6 +522,15 @@ mode "$mode_redshift" {
     bindsym Escape mode "default"
 }
 
+bar {
+    i3bar_command i3bar
+    position top
+    mode hide
+    modifier none
+    workspace_buttons no
+    tray_output none
+}
+
 ## Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
 #    i3bar_command i3bar
