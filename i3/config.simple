@@ -70,8 +70,8 @@ title_align center
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class=".*"] $border_normal
-for_window [class=".*"] title_window_icon off
-#for_window [class=".*"] title_window_icon padding 3px
+for_window [class=".*"] title_window_icon on
+for_window [class=".*"] title_window_icon padding 3px
 
 ## i3-overview (https://github.com/milgra/i3-overview)
 #for_window [class="i3-overview"] floating enable
@@ -238,7 +238,7 @@ bindsym $mod_next+Shift+e layout splitv, layout fill_order default
 bindsym $mod_next+Shift+s layout stacking, layout fill_order default
 
 # child container layout bindsyms (creates a child container from currently select window)
-bindsym $mod+c split h, layout splitv
+bindsym $mod+c split h, layout splitv, focus parent, $border_no_name, focus child
 bindsym $mod+$mod_next+c split h, layout tabbed reverse
 bindsym $mod+$mod_next+z focus left; move right
 bindsym $mod+$mod_next+x focus right; move left
