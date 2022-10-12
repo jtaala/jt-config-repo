@@ -62,8 +62,8 @@ client.urgent           #CB4B16 #FDF6E3 #CB4B16 $indicator
 workspace_layout tabbed reverse
 
 # set my quick tabbed/stacked toggle
-bindsym $mod+q layout fill_order toggle
 bindsym $mod+e layout toggle tabbed stacked
+bindsym $mod+$mod_next+e layout fill_order toggle
 
 # set default window title_align
 title_align center
@@ -263,8 +263,8 @@ bindsym $mod+$mod_next+i exec --no-startup-id xprop -id $(xdotool getactivewindo
 bindsym $mod++Shift+i exec --no-startup-id xprop -id $(xdotool getactivewindow) -remove INVERT_FLAG;
 
 # focus the parent container
-bindsym $mod+Escape focus parent
-bindsym $mod+$mod_next+Escape focus child
+bindsym $mod+q focus parent
+bindsym $mod+Escape focus child
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
