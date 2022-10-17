@@ -122,7 +122,7 @@ exec --no-startup-id fcitx -d
 exec --no-startup-id nm-applet
 exec --no-startup-id optimus-manager-qt
 exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id "pkill conky; sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts"
+exec_always --no-startup-id pkill conky && sleep 0.5; conky -c ~/.config/conky; conky -c ~/.config/conky_shortcuts
 set $picom_start "pkill picom; sleep 1; picom -b"
 exec_always --no-startup-id $picom_start
 #exec --no-startup-id yes | xsm --restore
@@ -132,7 +132,8 @@ bindsym $mod+t exec --no-startup-id $picom_start
 bindsym $mod+ctrl+t exec --no-startup-id "killall picom"
 
 # tint2 configuration (needs tint2 package)
-exec --no-startup-id tint2
+exec_always --no-startup-id killall tint2 && sleep 0.5; tint2
+for_window [class="(?i)^tint2conf$"] floating disable
 # subscribe to urgent event and set _NET_WM_STATE_DEMANDS_ATTENTION (for tint2)
 exec_always --no-startup-id i3-msg -t subscribe -m '[ "window" ]' | jq --unbuffered -Mrc '. | select(.change == "urgent" and .container.urgent == true and .container.focused == false) | .container.window' | xargs -I{} xprop -id {} -f _NET_WM_STATE 32a -set _NET_WM_STATE _NET_WM_STATE_DEMANDS_ATTENTION
 # subscribe to urgent event being selected  and set _NET_WM_STATE_FOCUSED (for tint2)
