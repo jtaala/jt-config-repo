@@ -84,7 +84,8 @@ for_window [class=".*"] title_window_icon padding 3px
 focus_wrapping no
 # parent focus switch (useful for master/stack switching) - has fallback for no focus_wrapping
 # required xdotool
-bindsym $mod+r exec --no-startup-id "WINDOW=$(xdotool getactivewindow); i3-msg \\"focus parent; focus left; focus child\\"; NEW_WINDOW=$(xdotool getactivewindow); if [ \\"$NEW_WINDOW\\" -eq \\"$WINDOW\\" ]; then i3-msg \\"focus parent; focus right\\"; fi"
+set $focusroot x=$(xdotool getwindowfocus getwindowname); while [ \\"$x\\" != \\"i3\\" ]; do i3-msg \\"focus parent\\"; x=$(xdotool getwindowfocus getwindowname); done
+bindsym $mod+r exec --no-startup-id "WINDOW=$(xdotool getactivewindow); $focusroot; i3-msg \\"focus child, focus left\\"; x=$(xdotool getwindowfocus getwindowname); if [ \\"$x\\" == \\"\\" ]; then $focusroot; i3-msg \\"focus child, focus right\\"; fi"
 
 # Hide borders <none|vertical|horizontal|both|smart>
 hide_edge_borders none
